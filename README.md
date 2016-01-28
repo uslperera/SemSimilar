@@ -1,0 +1,2 @@
+# ssl
+Semantic Similarity Library
