@@ -1,2 +1,2 @@
-# semsimilar
+# SemSimilar
 Library to get similar results 
