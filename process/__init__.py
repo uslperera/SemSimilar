@@ -1,11 +1,8 @@
-import logging
-from model import Document
+import re
 
-logging.basicConfig(level=logging.DEBUG)
+class SpecialTokenizer(object):
 
-def process(document):
-    logging.info("Started process")
-
-
-if __name__ == '__main__':
-    process()
+    def tokenize(self, text):
+        text = re.sub("[?\.!:;\-\(\)\[\]'\"/,]", " ", text)
+        tokens = re.split("\s+", text)
+        return tokens
