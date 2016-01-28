@@ -1,2 +1,2 @@
-# ssl
-Semantic Similarity Library
+# semsimilar
+Library to get similar results 
