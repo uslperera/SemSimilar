@@ -41,3 +41,7 @@ class Document(object):
     @tags.setter
     def tags(self, tags):
         self.__tags = tags
+
+class Result(object):
+    document = None
+    score = 0
