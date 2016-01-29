@@ -1,0 +1,251 @@
+[{
+    "Id": "9751",
+    "title": "Sending emails without looking like spam",
+    "body": "<blockquote>&#xA;  <p><strong>Possible Duplicate:<\/strong><br>&#xA;  <a href=\"http:\/\/stackoverflow.com\/questions\/371\/how-do-you-make-sure-email-you-send-programmatically-is-not-automatically-marked\">How do you make sure email you send programmatically is not automatically marked as spam?<\/a>  <\/p>&#xA;<\/blockquote>&#xA;&#xA;<p>&#xA;I want so send every week an update by email. But Im afraid that if there are too many emails sent, they will be marked as spam. Any of you has experience sending many emails (thousands) weekly? What techniques do you use?<\/p>&#xA;",
+    "tags": "<asp.net><email>"
+}, {
+    "Id": "18584",
+    "title": "Exact age calculation",
+    "body": "<blockquote>&#xA;  <p><strong>Possible Duplicate:<\/strong><br>&#xA;  <a href=\"http:\/\/stackoverflow.com\/questions\/9\/how-do-i-calculate-someones-age-in-c\">How do I calculate someone&#39;s age in C#?<\/a>  <\/p>&#xA;<\/blockquote>&#xA;&#xA;&#xA;&#xA;<p>Maybe this could be silly but and I don't have issues with my age but sometimes it is good to calculate the exact age of someone, I have introduced my birthdate in my profile (01\/12\/1975) \"dd\/mm\/yyyy\" and it calculated 33 and I'm 32 actually still, isn't it better to calculate the exact age? <\/p>&#xA;&#xA;<p>Maybe<\/p>&#xA;&#xA;<pre><code>DateTime dt1 = DateTime.Now;&#xA;TimeSpan dt2;&#xA;dt2 = dt1.Subtract(new DateTime(1975, 12, 01));&#xA;double year = dt2.TotalDays \/ 365;&#xA;<\/code><\/pre>&#xA;&#xA;<p>The result of year is 32.77405678074<\/p>&#xA;&#xA;<p>Could this code be OK?<\/p>&#xA;",
+    "tags": "<c#>"
+}, {
+    "Id": "202306",
+    "title": "How can I AutoIncrement the assembly (build) number in Visual Studio?",
+    "body": "<p>How can I AutoIncrement the assembly (build) number in Visual Studio?<\/p>&#xA;&#xA;<h3>Duplicate:<\/h3>&#xA;&#xA;<p><a href=\"http:\/\/stackoverflow.com\/questions\/650\/\">\/questions\/650\/automatically-update-version-number<\/a><\/p>&#xA;",
+    "tags": "<visual-studio>"
+}, {
+    "Id": "274764",
+    "title": "Avoiding spam filters for legitimate mail",
+    "body": "<p><strong>Duplicate of <a href=\"http:\/\/stackoverflow.com\/questions\/371\/how-do-you-make-sure-email-you-send-programmatically-is-not-automatically-marke\">http:\/\/stackoverflow.com\/questions\/371\/how-do-you-make-sure-email-you-send-programmatically-is-not-automatically-marke<\/a><\/strong><\/p>&#xA;&#xA;<p>Initially I planned to send emails from my website as html (i.e. content-type: text\/html;) but I just thought about something today, won't it better to send emails as plain text, i.e. content-type: text\/plain;, so that the chances of my mail messages ending up in the spam\/junk folder become less, I was thinking that this must be one the rules used by spam filters on popular webmail services like gmail, yahoo and hotmail, what do you think?<\/p>&#xA;",
+    "tags": "<email><spam-blocking>"
+}, {
+    "Id": "380237",
+    "title": "What exactly IS a unit test?",
+    "body": "<p>Same as title! <\/p>&#xA;&#xA;<p><em>EDIT: Almost exactly the same as, and would be contextually equal to <a href=\"http:\/\/stackoverflow.com\/questions\/1383\/\">http:\/\/stackoverflow.com\/questions\/1383\/<\/a><\/em><\/p>&#xA;",
+    "tags": "<unit-testing><debugging>"
+}, {
+    "Id": "401234",
+    "title": "How do I set the build number based on the Subversion revision number with CruiseControl.net",
+    "body": "<blockquote>&#xA;  <p><strong>Possible Duplicate:<\/strong><br>&#xA;  <a href=\"http:\/\/stackoverflow.com\/questions\/1160\/use-svn-revision-to-label-build-in-ccnet\">Use SVN Revision to label build in CCNET<\/a>  <\/p>&#xA;<\/blockquote>&#xA;&#xA;&#xA;&#xA;<p>I'm working through the process of installing CruiseControl.net and converting an Msbuild script to work with it.  I'd like our build number to reflect the Subversion revision number.  It appears as though the LastChangeLabeller should work, but all I get is \"unknown\".<\/p>&#xA;&#xA;<p>My ultimate goal is to format the build number with both a build number (incrementing by 1) and the subversion revision.  But for now I'd settle for the revision number.<\/p>&#xA;&#xA;<p><strong>Clarification:<\/strong> I'm trying to get the CruiseControl.Net build number updated. Not just the version numbers in the compiled results.<\/p>&#xA;",
+    "tags": "<svn><msbuild><cruisecontrol.net>"
+}, {
+    "Id": "652292",
+    "title": "What is unit testing and how do you do it?",
+    "body": "<h3>Exact duplicate of many posts:<\/h3>&#xA;&#xA;<p><a href=\"http:\/\/stackoverflow.com\/questions\/1383\/what-is-unit-testing\">What is unit testing?<\/a><br \/>&#xA; <a href=\"http:\/\/stackoverflow.com\/questions\/61400\/what-makes-a-good-unit-test\">What Makes a Good Unit Test?<\/a><br \/>&#xA; <a href=\"http:\/\/stackoverflow.com\/questions\/580960\/new-to-unit-testing\">New to Unit Testing<\/a><br \/>&#xA; <a href=\"http:\/\/stackoverflow.com\/questions\/633053\/unit-testing-definitions\">Unit Testing - definitions<\/a><br \/>&#xA; <a href=\"http:\/\/stackoverflow.com\/questions\/135651\/learning-unit-testing\">Learning Unit Testing<\/a><br \/>&#xA; <a href=\"http:\/\/stackoverflow.com\/questions\/476540\/how-to-properly-mock-and-unit-test\">How to properly mock and unit test<\/a><br \/>&#xA; <a href=\"http:\/\/stackoverflow.com\/questions\/473561\/unit-testing-beginner-questions\">Unit Testing: Beginner Questions<\/a><br \/>&#xA; <a href=\"http:\/\/stackoverflow.com\/questions\/tagged\/unit-testing\">And many more ...<\/a><br \/>&#xA; Also, Google for <a href=\"http:\/\/www.google.com\/search?hl=en&amp;c2coff=1&amp;q=site%3Astackoverflow.com+%22how+do+you%22+unit-test&amp;btnG=Search\">site:stackoverflow.com \"how do you\" unit-test<\/a><\/p>&#xA;&#xA;<p>I have read some questions on unit testing, but I don't exactly know WHAT it is or how you do it. I was hoping if someone can tell me the following:<\/p>&#xA;&#xA;<ul>&#xA;<li>What exactly IS unit testing? Is it built into code or run as separate programs? Or something else?<\/li>&#xA;<li>How do you do it?<\/li>&#xA;<li>When should it be done? Are there times or projects not to do it? Is everything unit-testable?<\/li>&#xA;<\/ul>&#xA;&#xA;<p>Thanks a lot for the help.<\/p>&#xA;",
+    "tags": "<unit-testing>"
+}, {
+    "Id": "670161",
+    "title": "How to create a friendly date format (for example \"submitted 2 days ago\")",
+    "body": "<blockquote>&#xA;  <p><strong>Possible Duplicate:<\/strong><br>&#xA;  <a href=\"http:\/\/stackoverflow.com\/questions\/11\/how-do-i-calculate-relative-time\">How do I calculate relative time?<\/a>  <\/p>&#xA;<\/blockquote>&#xA;&#xA;&#xA;&#xA;<p>I want to format dates on my social web app much like Digg.com and other sites do. There, you see very friendly dates, such as:<\/p>&#xA;&#xA;<ul>&#xA;<li>just now<\/li>&#xA;<li>3 minutes ago<\/li>&#xA;<li>one hour ago<\/li>&#xA;<li>2 weeks ago<\/li>&#xA;<li>6 monts ago<\/li>&#xA;<\/ul>&#xA;&#xA;<p>...you get the idea. Before I wrap my head around creating such a thing, does anyone know of any ready-to-go script for this where I simply insert a datestamp and a friendly date text is given based on how it related to the current time? <\/p>&#xA;&#xA;<p>PS: I need this in PHP, but pseudo-code or any other language is fine too.<\/p>&#xA;",
+    "tags": "<php><date><formatting>"
+}, {
+    "Id": "673476",
+    "title": "Age in years from DateTime (Date of birth)",
+    "body": "<h3>Duplicate<\/h3>&#xA;&#xA;<blockquote>&#xA;  <p><a href=\"http:\/\/stackoverflow.com\/questions\/9\/how-do-i-calculate-someones-age-in-c\">How Can I calculate Someone's Age in C#?<\/a><\/p>&#xA;<\/blockquote>&#xA;&#xA;<p>I have a <code>datetime<\/code> variable that represents the date of birth of a user.<\/p>&#xA;&#xA;<p>How can I get the age in years from this?<\/p>&#xA;&#xA;<p><b>Update<\/b>&#xA;I want a precise birthday, so 30.45 years or something.<\/p>&#xA;",
+    "tags": "<c#><datetime>"
+}, {
+    "Id": "812560",
+    "title": "Why would I not want a central repository in versioning? SVN vs. Git question",
+    "body": "<p><strong>Duplicates:<\/strong> <\/p>&#xA;&#xA;<ul>&#xA;<li><a href=\"http:\/\/stackoverflow.com\/questions\/740053\/why-should-i-use-git-instead-of-svn\">http:\/\/stackoverflow.com\/questions\/740053\/why-should-i-use-git-instead-of-svn<\/a><\/li>&#xA;<li><a href=\"http:\/\/stackoverflow.com\/questions\/161541\/svn-vs-git\">http:\/\/stackoverflow.com\/questions\/161541\/svn-vs-git<\/a><\/li>&#xA;<li><a href=\"http:\/\/stackoverflow.com\/questions\/871\/why-is-git-better-than-subversion\">http:\/\/stackoverflow.com\/questions\/871\/why-is-git-better-than-subversion<\/a><\/li>&#xA;<\/ul>&#xA;&#xA;<p>I'm sure I've asked it wrong but I read that Git doesn't use a central repository like SVN does.  One, I don't understand how you can have a decentralized version control system.  I'm sure it works because so many use it but I don't understand the concept.<\/p>&#xA;&#xA;<p>How can you have something everyone uses but not a centralized repository to hold the source code?<\/p>&#xA;&#xA;<p>I suppose this is more of a git vs. svn also,  Which do you use?  I read that git is better but not as integrated in most IDE tools as SVN.<\/p>&#xA;&#xA;<p>I'm still learning.<\/p>&#xA;&#xA;<p>Thank you.<\/p>&#xA;",
+    "tags": "<svn><git><version-control>"
+}, {
+    "Id": "885213",
+    "title": "In short, what are the advantages of git and mercurial over subversion?",
+    "body": "<p>Can someone tell me what the hype is over Git and Mercurial over Subversion?<\/p>&#xA;",
+    "tags": "<svn><git><version-control><mercurial><dvcs>"
+}, {
+    "Id": "990667",
+    "title": "How do you set a custom application as default email client in Windows in code",
+    "body": "<blockquote>&#xA;  <p><strong>Possible Duplicate:<\/strong><br>&#xA;  <a href=\"http:\/\/stackoverflow.com\/questions\/231\/register-windows-program-with-the-mailto-protocol-programmatically\">Register Windows program with the mailto protocol programmatically<\/a>  <\/p>&#xA;<\/blockquote>&#xA;&#xA;&#xA;&#xA;<p>I would like to set an in house email client written in Delphi as the default email client for mailto: using code.  Is it possible, and if so, how can it be done?<\/p>&#xA;",
+    "tags": "<delphi><email>"
+}, {
+    "Id": "1122202",
+    "title": "What's a unit test?",
+    "body": "<blockquote>&#xA;  <p><strong>Possible Duplicates:<\/strong><br>&#xA;  <a href=\"http:\/\/stackoverflow.com\/questions\/652292\/what-is-unit-testing-and-how-do-you-do-it\">What is unit testing and how do you do it?<\/a><br>&#xA;  <a href=\"http:\/\/stackoverflow.com\/questions\/1383\/what-is-unit-testing\">What is unit testing?<\/a>  <\/p>&#xA;<\/blockquote>&#xA;&#xA;<p>I recognize that to 95% of you, this is a very WTF question.<\/p>&#xA;&#xA;<p>So. What's a unit test? I understand that essentially you're attempting to isolate atomic functionality but <em>how<\/em> do you test for that? When is it necessary? When is it ridiculous?&#xA;Can you give an example? (Preferably in C? I mostly hear about it from Java devs on this site so maybe this is specific to Object Oriented languages? I really don't know.)<\/p>&#xA;&#xA;<p>I know many programmers swear by unit testing religiously. What's it all about?<\/p>&#xA;&#xA;<p><strong>EDIT:<\/strong> Also, what's the ratio of time you typically spend writing unit tests to time spent writing new code?<\/p>&#xA;",
+    "tags": "<unit-testing>"
+}, {
+    "Id": "1524979",
+    "title": "How to implement the \"Member for \" interval like SO in PHP?",
+    "body": "<blockquote>&#xA;  <p><strong>Possible Duplicate:<\/strong><br \/>&#xA;  <a href=\"http:\/\/stackoverflow.com\/questions\/11\/how-do-i-calculate-relative-time\">How do I calculate relative time?<\/a>  <\/p>&#xA;<\/blockquote>&#xA;&#xA;<p>It shows 2 days,2 month,1 year and so on.<\/p>&#xA;&#xA;<p>How to do it?<\/p>&#xA;",
+    "tags": "<php><relative-date>"
+}, {
+    "Id": "1569604",
+    "title": "Elegant Algorithm for conversational date strings?",
+    "body": "<blockquote>&#xA;  <p><strong>Possible Duplicate:<\/strong><br \/>&#xA;  <a href=\"http:\/\/stackoverflow.com\/questions\/11\/how-do-i-calculate-relative-time\">How do I calculate relative time?<\/a>  <\/p>&#xA;<\/blockquote>&#xA;&#xA;<p>Given a DateTime object, what's the most elegant way you've found of converting it to a human friendly string.  Something like this:<\/p>&#xA;&#xA;<p>(Future)<br\/><br\/>&#xA;\"Tomorrow\"<br\/>&#xA;\"[1|2|3|4|5|6] days from now.\"<br\/>&#xA;\"Next week\"<br\/>&#xA;\"Next month\"<br\/><\/p>&#xA;&#xA;<p>(Past)<br\/>&#xA;\"[1|2|3|4|5|6] days ago.\"<br\/>&#xA;\"Last week\"<br\/>&#xA;\"Last month\"<br\/><\/p>&#xA;&#xA;<p>Thanks.<\/p>&#xA;",
+    "tags": "<c#><c#-3.0>"
+}, {
+    "Id": "1603211",
+    "title": "Recommend codebase to read and hone Python skills",
+    "body": "<blockquote>&#xA;  <p><strong>Possible Duplicates:<\/strong><br \/>&#xA;  <a href=\"http:\/\/stackoverflow.com\/questions\/1257183\/a-good-open-source-python-project-to-read-code\">A good open source Python project to read code?<\/a><br \/>&#xA;  <a href=\"http:\/\/stackoverflow.com\/questions\/918\/how-to-learn-python-good-example-code\">How to learn Python: Good Example Code?<\/a>  <\/p>&#xA;<\/blockquote>&#xA;&#xA;<p>I've been reading through Coders at Work and there is a repeated theme: hackers tend to read a lot of other's code and learn from it. I program in Python, there are plenty of open source code in it. <\/p>&#xA;&#xA;<p>Which codebase you read and consider excellent? SQLAlchemy comes to mind. What else?<\/p>&#xA;",
+    "tags": "<python><coding-style>"
+}, {
+    "Id": "2139022",
+    "title": "Format DateTime like StackoverFlow",
+    "body": "<blockquote>&#xA;  <p><strong>Possible Duplicates:<\/strong><br>&#xA;  <a href=\"http:\/\/stackoverflow.com\/questions\/822124\/fuzzy-date-algorithm\">Fuzzy date algorithm<\/a><br>&#xA;  <a href=\"http:\/\/stackoverflow.com\/questions\/11\/how-do-i-calculate-relative-time\">How do I calculate relative time?<\/a>  <\/p>&#xA;<\/blockquote>&#xA;&#xA;<p>Hi,<\/p>&#xA;&#xA;<p>How-to format datetime like SO ?<\/p>&#xA;&#xA;<p>1 minute ago<\/p>&#xA;&#xA;<p>1 hour ago<\/p>&#xA;&#xA;<p>asked Aug 15 at 15:00<\/p>&#xA;",
+    "tags": "<c#><datetime><datetime-format>"
+}, {
+    "Id": "2194999",
+    "title": "How to calculate an age based on a birthday?",
+    "body": "<blockquote>&#xA;  <p><strong>Possible Duplicate:<\/strong><br>&#xA;  <a href=\"http:\/\/stackoverflow.com\/questions\/9\/how-do-i-calculate-someones-age-in-c\">How do I calculate someone&rsquo;s age in C#?<\/a>  <\/p>&#xA;<\/blockquote>&#xA;&#xA;&#xA;&#xA;<p>I want to write an ASP.NET helper method which returns the age of a person given his or her birthday.<\/p>&#xA;&#xA;<p>I've tried code like this:<\/p>&#xA;&#xA;<pre><code>public static string Age(this HtmlHelper helper, DateTime birthday)&#xA;{&#xA;    return (DateTime.Now - birthday); \/\/??&#xA;}&#xA;<\/code><\/pre>&#xA;&#xA;<p>But it's not working. What is the correct way to calculate the person's age based on their birthday?<\/p>&#xA;",
+    "tags": "<c#><asp.net-mvc><date-calculation>"
+}, {
+    "Id": "2237587",
+    "title": "how can i calculate age by datetimepicker",
+    "body": "<blockquote>&#xA;  <p><strong>Possible Duplicate:<\/strong><br>&#xA;  <a href=\"http:\/\/stackoverflow.com\/questions\/9\/how-do-i-calculate-someones-age\">How do I calculate someone\u00e2\u20ac\u2122s age<\/a>  <\/p>&#xA;<\/blockquote>&#xA;&#xA;&#xA;&#xA;<p>How can i calculate age using datetimepicker in c#?<\/p>&#xA;",
+    "tags": "<c#>"
+}, {
+    "Id": "2442990",
+    "title": "What is unit testing?",
+    "body": "<blockquote>&#xA;  <p><strong>Possible Duplicate:<\/strong><br>&#xA;  <a href=\"http:\/\/stackoverflow.com\/questions\/1383\/what-is-unit-testing\">What is unit testing?<\/a>  <\/p>&#xA;<\/blockquote>&#xA;&#xA;&#xA;&#xA;<p>What is unit testing and unit testing libraries like xUnit? I understand it's testing specific code, so what's the difference between this and just opening a new project and test this specific code?<\/p>&#xA;",
+    "tags": "<c#><unit-testing>"
+}, {
+    "Id": "2902401",
+    "title": "Calculating age based on date of birth in SQL and C#?",
+    "body": "<blockquote>&#xA;  <p><strong>Possible Duplicates:<\/strong><br>&#xA;  <a href=\"http:\/\/stackoverflow.com\/questions\/1572110\/how-to-calculate-age-in-years-based-on-date-of-birth-and-getdate\">How to calculate age (in years) based on Date of Birth and getDate()<\/a><br>&#xA;  <a href=\"http:\/\/stackoverflow.com\/questions\/9\/how-do-i-calculate-someones-age-in-c\">How do I calculate someone&rsquo;s age in C#?<\/a>  <\/p>&#xA;<\/blockquote>&#xA;&#xA;&#xA;&#xA;<p>How to calculate the customer age automatically by using their Date of Birth&#xA;using c# and SQL Server 2005<\/p>&#xA;",
+    "tags": "<sql-server><sql-server-2005><c#-2.0>"
+}, {
+    "Id": "3044847",
+    "title": "Display Friendly Date, Numbers",
+    "body": "<blockquote>&#xA;  <p><strong>Possible Duplicate:<\/strong><br>&#xA;  <a href=\"http:\/\/stackoverflow.com\/questions\/11\/how-do-i-calculate-relative-time\">How do I calculate relative time?<\/a>  <\/p>&#xA;<\/blockquote>&#xA;&#xA;&#xA;&#xA;<p>I am searching for a custom control for asp.net, which helps display user friendly dates, like instead of article date:<\/p>&#xA;&#xA;<p>(2-april-2010)<\/p>&#xA;&#xA;<p>it displays<\/p>&#xA;&#xA;<p>(2 months old)<\/p>&#xA;&#xA;<p>I am unable to find it on google, please can any one suggest links, custom controls, articles for the same.<\/p>&#xA;&#xA;<p>Thank you.<\/p>&#xA;",
+    "tags": "<asp.net><asp.net-mvc><custom-controls>"
+}, {
+    "Id": "3152977",
+    "title": "Calculate the difference between two dates and get the value in years?",
+    "body": "<blockquote>&#xA;  <p><strong>Possible Duplicate:<\/strong><br>&#xA;  <a href=\"http:\/\/stackoverflow.com\/questions\/9\/how-do-i-calculate-someones-age-in-c\">How do I calculate someone&rsquo;s age in C#?<\/a>  <\/p>&#xA;<\/blockquote>&#xA;&#xA;&#xA;&#xA;<p>I want to calculate basically the age of employees -  So we have DOB for each employee, So on &#xA;the C# Side I want to do something like this -<\/p>&#xA;&#xA;<pre><code>int age=Convert.Int32(DateTime.Now-DOB);&#xA;<\/code><\/pre>&#xA;&#xA;<p>I can use days and manipulate then get the age...but I wanted to know if there something I can use directly to get the number of years.<\/p>&#xA;",
+    "tags": "<c#><datetime><timespan>"
+}, {
+    "Id": "3215282",
+    "title": "Why to use SVN? Any hidden pros (over GIT\/Mercurial\/Bazaar) there?",
+    "body": "<blockquote>&#xA;  <p><strong>Possible Duplicates:<\/strong><br>&#xA;  <a href=\"http:\/\/stackoverflow.com\/questions\/871\/why-is-git-better-than-subversion\">Why is git better than Subversion?<\/a>  <\/p>&#xA;<\/blockquote>&#xA;&#xA;&#xA;&#xA;<p>I've already read a lot (not enough to get the perfect picture though) about versioning systems, and the obvious conclusion is that GIT is simply the best. Or Bazaar maybe. Or Mercurial. But if so it was, then nobody would be using SVN, but they still do. Why? I myself have no own opinion on what v.c.s. is generally the best yet because of lack of experience with them. Could you share your thoughts?<\/p>&#xA;",
+    "tags": "<svn><git><version-control><mercurial><bazaar>"
+}, {
+    "Id": "3396221",
+    "title": "PHP Plugins System",
+    "body": "<blockquote>&#xA;  <p><strong>Possible Duplicate:<\/strong><br>&#xA;  <a href=\"http:\/\/stackoverflow.com\/questions\/42\/best-way-to-allow-plugins-for-a-php-application\">Best way to allow plugins for a PHP application<\/a>  <\/p>&#xA;<\/blockquote>&#xA;&#xA;&#xA;&#xA;<p>Hello all..<\/p>&#xA;&#xA;<p>I'd like to learn how does the <strong>php plugins system<\/strong> works..&#xA;So can anyone explain the idea of it for me in detail,&#xA;I saw many posts and explanations but I didn't learn and understand any of it.<\/p>&#xA;&#xA;<p>Edited: Sorry.. I meant if I want to make a plugins system for my php script, how ??<\/p>&#xA;&#xA;<p>That's all and thanks advance.<\/p>&#xA;",
+    "tags": "<php><plugins><system><explain>"
+}, {
+    "Id": "3411121",
+    "title": "How do I calculate someone's Age?",
+    "body": "<blockquote>&#xA;  <p><strong>Possible Duplicate:<\/strong><br>&#xA;  <a href=\"http:\/\/stackoverflow.com\/questions\/9\/how-do-i-calculate-someones-age-in-c\">How do I calculate someone&rsquo;s age in C#?<\/a>  <\/p>&#xA;<\/blockquote>&#xA;&#xA;&#xA;&#xA;<p>How do I calculate someone's age in C#, if I have their Birthdate and today's date?<\/p>&#xA;",
+    "tags": "<c#><.net><datetime>"
+}, {
+    "Id": "3436710",
+    "title": "Basic principles for securing a web-app?",
+    "body": "<blockquote>&#xA;  <p><strong>Possible Duplicate:<\/strong><br>&#xA;  <a href=\"http:\/\/stackoverflow.com\/questions\/328\/php-session-security\">PHP Session Security<\/a>  <\/p>&#xA;<\/blockquote>&#xA;&#xA;&#xA;&#xA;<p>I've just finished coding the basics of a web-app (the main code) and I've integrated a basic user system. This is my first web-app so I'm wondering what are the things that I should use to secure it? I already know about thing like <code>mysql_real_escape_string()<\/code> and <code>strip_tags()<\/code> but what else? How would I securely store usernames and passwords through cookies and sessions? Any tips, tutorials, etc. are greatly appreciated!<\/p>&#xA;",
+    "tags": "<php><mysql><security><web-applications>"
+}, {
+    "Id": "3752266",
+    "title": "One form, multiple submit buttons and submit links",
+    "body": "<blockquote>&#xA;  <p><strong>Possible Duplicate:<\/strong><br>&#xA;  <a href=\"http:\/\/stackoverflow.com\/questions\/48\/multiple-submit-buttons-in-an-html-form\">Multiple submit buttons in an HTML form<\/a>  <\/p>&#xA;<\/blockquote>&#xA;&#xA;&#xA;&#xA;<p>I have web form with multiple submit buttons. To determine which button was pressed, each has a different name, like so:<\/p>&#xA;&#xA;<pre><code>&lt;input type=\"submit\" name=\"foo\" value=\"Foo Foo\"&gt;&#xA;<\/code><\/pre>&#xA;&#xA;<p>On the form there are also normal links that act as submit buttons, like so:<\/p>&#xA;&#xA;<pre><code>&lt;a href=\"\" onclick=\"parentNode.submit();return false;\"&gt;&#xA;Bar&#xA;&lt;\/a&gt;&#xA;<\/code><\/pre>&#xA;&#xA;<p>My question is how do I also distinguish between the links being used as submit buttons?<\/p>&#xA;&#xA;<p><br \/><br \/><br \/>&#xA;Not sure if this is relevant: <br \/>&#xA;Here is the start of the form<\/p>&#xA;&#xA;<pre><code>&lt;form action=\"foobar\" method=\"post\" enctype=\"multipart\/form-data\"&gt;&#xA;<\/code><\/pre>&#xA;&#xA;<p>I am using Flask (a micro-framework based on Werkzeug) which uses Python (2.6 in this case).<\/p>&#xA;",
+    "tags": "<javascript><html><forms><webforms>"
+}, {
+    "Id": "3889845",
+    "title": "what is the simplest and correct way to calculate age?",
+    "body": "<blockquote>&#xA;  <p><strong>Possible Duplicate:<\/strong><br>&#xA;  <a href=\"http:\/\/stackoverflow.com\/questions\/9\/how-do-i-calculate-someones-age-in-c\">How do I calculate someone&#39;s age in C#?<\/a>  <\/p>&#xA;<\/blockquote>&#xA;&#xA;&#xA;&#xA;<p>Hi,&#xA;Simple question.&#xA;Need to calculate age and only allow people who are 21.&#xA;Do you use timespan?&#xA;so given somebody inputting a date i need to check if they are >=21.<\/p>&#xA;&#xA;<p>suggestions?<\/p>&#xA;",
+    "tags": "<c#>"
+}, {
+    "Id": "3985828",
+    "title": "Calculating Timespan using asp.net",
+    "body": "<blockquote>&#xA;  <p><strong>Possible Duplicate:<\/strong><br>&#xA;  <a href=\"http:\/\/stackoverflow.com\/questions\/11\/how-do-i-calculate-relative-time\">How do I calculate relative time?<\/a>  <\/p>&#xA;<\/blockquote>&#xA;&#xA;&#xA;&#xA;<p>I would like to use asp.net c# to calculate the timespan for when a file was uploaded. Example, if i uploaded a file two weeks ago my text will say 'uploaded 2 weeks ago' or if i have upload a file 4 month's ago my text will say 'uploaded 4 months ago'<\/p>&#xA;&#xA;<p>Can anyone please give me some tips on how i can go about this.<\/p>&#xA;&#xA;<p>Thanks<\/p>&#xA;",
+    "tags": "<c#><asp.net><.net-3.5>"
+}, {
+    "Id": "4142021",
+    "title": "how to navigate the users to Login.aspx even if i set HomePage.aspx as the start page?",
+    "body": "<blockquote>&#xA;  <p><strong>Possible Duplicate:<\/strong><br>&#xA;  <a href=\"http:\/\/stackoverflow.com\/questions\/549\/the-definitive-guide-to-forms-based-website-authentication\">The Definitive Guide To Forms based Website Authentication<\/a>  <\/p>&#xA;<\/blockquote>&#xA;&#xA;&#xA;&#xA;<p>how to navigate the users to Login.aspx even if i set HomePage.aspx as the start page for my application? I dont want any unauthorized user to access my application until i authenticate him.<\/p>&#xA;",
+    "tags": "<c#><asp.net>"
+}, {
+    "Id": "4169185",
+    "title": "Why are so many opensource projects moving from SVN To git?",
+    "body": "<blockquote>&#xA;  <p><strong>Possible Duplicate:<\/strong><br>&#xA;  <a href=\"http:\/\/stackoverflow.com\/questions\/871\/why-is-git-better-than-subversion\">Why is Git better than Subversion?<\/a>  <\/p>&#xA;<\/blockquote>&#xA;&#xA;&#xA;&#xA;<p>I follow a number of different open source projects, mainly around Java technology, but this question is probably universal. I have noticed over the last 6 months or so that many projects are moving Way from subversion and moving to git.<\/p>&#xA;&#xA;<p>My question is why? What are the advantages of git over subversion, and do these advantages lend themselves to a commercial world (I.e should i be looking to replace my cvs and svn repositories with git)? <\/p>&#xA;",
+    "tags": "<svn><git>"
+}, {
+    "Id": "4295970",
+    "title": "IP To Country in PHP",
+    "body": "<blockquote>&#xA;  <p><strong>Possible Duplicate:<\/strong><br>&#xA;  <a href=\"http:\/\/stackoverflow.com\/questions\/1033\/ip-to-country\">IP to Country?<\/a>  <\/p>&#xA;<\/blockquote>&#xA;&#xA;&#xA;&#xA;<p>What is the best way to get country from given IP in PHP?<\/p>&#xA;",
+    "tags": "<php>"
+}, {
+    "Id": "4306534",
+    "title": "How to identify memory leaks in c#?",
+    "body": "<blockquote>&#xA;  <p><strong>Possible Duplicate:<\/strong><br>&#xA;  <a href=\"http:\/\/stackoverflow.com\/questions\/104\/anatomy-of-a-memory-leak\">Anatomy of a &ldquo;Memory Leak&rdquo;<\/a>  <\/p>&#xA;<\/blockquote>&#xA;&#xA;&#xA;&#xA;<p>Hi All&#xA;what are the best practices for identifying memory leak in c#?<\/p>&#xA;",
+    "tags": "<c#>"
+}, {
+    "Id": "4383959",
+    "title": "Best way to solve a linear equation in code",
+    "body": "<blockquote>&#xA;  <p><strong>Possible Duplicate:<\/strong><br>&#xA;  <a href=\"http:\/\/stackoverflow.com\/questions\/769\/solving-a-linear-equation\">Solving a linear equation<\/a>  <\/p>&#xA;<\/blockquote>&#xA;&#xA;&#xA;&#xA;<p>I need to programmatically solve a system of linear equations in C# AND VB<\/p>&#xA;&#xA;<p>Here's an example of the equations:<\/p>&#xA;&#xA;<pre><code> 12.40 = a * 56.0 + b * 27.0 + tx&#xA;-53.39 = a * 12.0 + b * 59.0 + tx&#xA; 14.94 = a * 53.0 + b * 41.0 + tx&#xA;<\/code><\/pre>&#xA;&#xA;<p>I'd like to get the best approximation for a, b, and tx.<\/p>&#xA;&#xA;<p>Should i use some sort of matrix class or something?<\/p>&#xA;",
+    "tags": "<.net><math>"
+}, {
+    "Id": "4443671",
+    "title": "Creating A List of Possible String Combination",
+    "body": "<blockquote>&#xA;  <p><strong>Possible Duplicate:<\/strong><br>&#xA;  <a href=\"http:\/\/stackoverflow.com\/questions\/361\/generate-list-of-all-possible-permutations-of-a-string\">Generate list of all possible permutations of a string<\/a>  <\/p>&#xA;<\/blockquote>&#xA;&#xA;&#xA;&#xA;<p>Hi Guys,<\/p>&#xA;&#xA;<p>I need to work on a small algorithm project where I need to be able to list and write to a text file the possible combination of a given set of characters based on a given limit.<\/p>&#xA;&#xA;<p>For example, if I enter the characters \"a\", \"b\", and \"c\" and set the limit to 3 the possible output would be:<\/p>&#xA;&#xA;<pre><code>a&#xA;b&#xA;c&#xA;aa&#xA;bb&#xA;cc&#xA;ab&#xA;ac&#xA;ba&#xA;bc&#xA;ca&#xA;cb&#xA;...&#xA;    aaa&#xA;    bbb&#xA;    ccc&#xA;    ...&#xA;    ...&#xA;    abc&#xA;    acb&#xA;    bac&#xA;    bca&#xA;    cab&#xA;    cba&#xA;<\/code><\/pre>&#xA;&#xA;<p>Until all possible combinations have been devised.<\/p>&#xA;&#xA;<p>Writing this to a text file is no problem with me. Having an algorithm that would write the combination is something that I am quite not good at.<\/p>&#xA;&#xA;<p>Appreciate in .NET (C# or VB) codes.<\/p>&#xA;&#xA;<p>Thanks.<\/p>&#xA;&#xA;<p>PS<\/p>&#xA;&#xA;<p>On a side note, I wonder how long it would take for an application to create a string combination of all possible keyboard characters and how big the file would get to be.<\/p>&#xA;&#xA;<p>Updated:&#xA;I should also show character combination from n characters to the implied limit.. <\/p>&#xA;",
+    "tags": "<.net><string>"
+}, {
+    "Id": "4746249",
+    "title": "get user timezone",
+    "body": "<blockquote>&#xA;  <p><strong>Possible Duplicate:<\/strong><br>&#xA;  <a href=\"http:\/\/stackoverflow.com\/questions\/13\/how-can-i-determine-a-web-users-time-zone\">How can I determine a web user&#39;s time zone?<\/a>  <\/p>&#xA;<\/blockquote>&#xA;&#xA;&#xA;&#xA;<p>Which is the best way to do this ? php or javascript.Can someone provide me with some snippets ? thanks.<\/p>&#xA;",
+    "tags": "<php><javascript><timezone>"
+}, {
+    "Id": "4798711",
+    "title": "How Do I Make Sessions More Secure?",
+    "body": "<blockquote>&#xA;  <p><strong>Possible Duplicate:<\/strong><br>&#xA;  <a href=\"http:\/\/stackoverflow.com\/questions\/328\/php-session-security\">PHP Session Security<\/a>  <\/p>&#xA;<\/blockquote>&#xA;&#xA;&#xA;&#xA;<p>I am using sessions all throughout my application. I want to make them much more secure. Currently I am using code like <code>$username = $_SESSION['username'];<\/code> and the like.<\/p>&#xA;&#xA;<p>How do I make my sessions more secure?<\/p>&#xA;",
+    "tags": "<php><security><session>"
+}, {
+    "Id": "5212638",
+    "title": "What debugging tools does PHP have?",
+    "body": "<blockquote>&#xA;  <p><strong>Possible Duplicate:<\/strong><br>&#xA;  <a href=\"http:\/\/stackoverflow.com\/questions\/888\/how-do-you-debug-php-scripts\">How do you debug PHP scripts?<\/a>  <\/p>&#xA;<\/blockquote>&#xA;&#xA;&#xA;&#xA;<p>How do you debug your PHP scripts? The only one I'm currently familiar with is <code>echo<\/code>. What other options are there for more in depth analysis of my code? <\/p>&#xA;&#xA;<p>(Coming from iOS I'm used to the Console, Debugger w\/ Stack Trace, Instruments et al. What comparable tools are there?)<\/p>&#xA;",
+    "tags": "<php><debugging>"
+}, {
+    "Id": "5243572",
+    "title": "How to debug PHP code?",
+    "body": "<blockquote>&#xA;  <p><strong>Possible Duplicate:<\/strong><br>&#xA;  <a href=\"http:\/\/stackoverflow.com\/questions\/888\/how-do-you-debug-php-scripts\">How do you debug PHP scripts?<\/a>  <\/p>&#xA;<\/blockquote>&#xA;&#xA;&#xA;&#xA;<p>What kind of strategies do you use to debug PHP code which does not work as expected?<\/p>&#xA;",
+    "tags": "<php><debugging>"
+}, {
+    "Id": "5301609",
+    "title": "asp.net mvc time ago in words helper",
+    "body": "<blockquote>&#xA;  <p><strong>Possible Duplicate:<\/strong><br>&#xA;  <a href=\"http:\/\/stackoverflow.com\/questions\/11\/how-do-i-calculate-relative-time\">How do I calculate relative time?<\/a>  <\/p>&#xA;<\/blockquote>&#xA;&#xA;&#xA;&#xA;<p>Is there anything similar to rails' time_ago_in_words helper for asp.net MVC?<\/p>&#xA;",
+    "tags": "<c#><asp.net-mvc>"
+}, {
+    "Id": "6867496",
+    "title": "Get country and language information from IP",
+    "body": "<blockquote>&#xA;  <p><strong>Possible Duplicate:<\/strong><br>&#xA;  <a href=\"http:\/\/stackoverflow.com\/questions\/1033\/ip-to-country\">IP to Country?<\/a>  <\/p>&#xA;<\/blockquote>&#xA;&#xA;&#xA;&#xA;<p>I would like to know how I can detect the language and country of a visitor to my website. It is my understanding that it is best to get this information from the IP but I don't know how to do that. Is this the method that large e-commerce sites use? If there is a database of location based on IP will it remain valid for a while or does that sort of information change rapidly? <\/p>&#xA;",
+    "tags": "<geolocation><ip-geolocation>"
+}, {
+    "Id": "7004623",
+    "title": "With PHP is there an easy way to connect\/execute queries against AS400 (like mysql)",
+    "body": "<blockquote>&#xA;  <p><strong>Possible Duplicate:<\/strong><br>&#xA;  <a href=\"http:\/\/stackoverflow.com\/questions\/696\/connect-php-to-an-as-400\">Connect PHP to an AS\/400<\/a>  <\/p>&#xA;<\/blockquote>&#xA;&#xA;&#xA;&#xA;<p>I need to connect to and execute queries against an AS400 (iseries)... is there an easy way to, with PHP, connect the same way you can connect with MySQL, i.e. connection string, database select, query and result with methods similar to mysql_query, mysql_fetch_assoc, etc.?<\/p>&#xA;&#xA;<p>Thanks!<\/p>&#xA;",
+    "tags": "<php><ibm-midrange>"
+}, {
+    "Id": "7053636",
+    "title": "age calculation",
+    "body": "<blockquote>&#xA;  <p><strong>Possible Duplicate:<\/strong><br>&#xA;  <a href=\"http:\/\/stackoverflow.com\/questions\/9\/how-do-i-calculate-someones-age-in-c\">How do I calculate someone&#39;s age in C#?<\/a>  <\/p>&#xA;<\/blockquote>&#xA;&#xA;&#xA;&#xA;<p>I am trying to create a form where a client's date of birth is entered and his age is displayed automatically in txtAge:<\/p>&#xA;&#xA;<pre><code> private void Form3_Load(object sender, EventArgs e)&#xA; {&#xA;     dtpDob.Value = DateTime.Today.Date;&#xA;     SqlConnection conn = new SqlConnection();&#xA; }  &#xA;&#xA; private void dtpDOB_Leave(object sender, System.EventArgs e)&#xA; {&#xA;     System.DateTime dob = default(System.DateTime);&#xA;     dob = dtpDob.Value.Date;&#xA;     txtAge.Text = DateTime.DateDiff(DateInterval.Year, dob, DateTime.Today.Date);&#xA; }&#xA;<\/code><\/pre>&#xA;&#xA;<p>But I get these errors:<\/p>&#xA;&#xA;<blockquote>&#xA;  <p>'System.DateTime' does not contain a definition for 'DateDiff'.<br>&#xA;  The name 'DateInterval' does not exist in the current context.<\/p>&#xA;<\/blockquote>&#xA;",
+    "tags": "<c#><.net><datetime>"
+}, {
+    "Id": "7392566",
+    "title": "How to get datetime in words like \"today\", \"yesterday\" or \"25 minutes ago\"?",
+    "body": "<blockquote>&#xA;  <p><strong>Possible Duplicate:<\/strong><br>&#xA;  <a href=\"http:\/\/stackoverflow.com\/questions\/11\/how-do-i-calculate-relative-time\">How do I calculate relative time?<\/a><br>&#xA;  <a href=\"http:\/\/stackoverflow.com\/questions\/18685\/how-to-display-12-minutes-ago-etc-in-a-php-webpage\">How to display &ldquo;12 minutes ago&rdquo; etc in a PHP webpage?<\/a>  <\/p>&#xA;<\/blockquote>&#xA;&#xA;&#xA;&#xA;<p>I have date formats like this:<\/p>&#xA;&#xA;<pre><code>2011-09-10 12:00:00&#xA;2011-09-12 11:02:05&#xA;2011-09-12&#xA;<\/code><\/pre>&#xA;&#xA;<p>I want to create a function that will get a date and will output something like this ?<\/p>&#xA;&#xA;<pre><code>5 minutes ago&#xA;2 hours ago&#xA;today&#xA;yesterday&#xA;&#xA;and show date if date is far away.&#xA;<\/code><\/pre>&#xA;&#xA;<p>Is there any related function in php or any free already written library.<\/p>&#xA;&#xA;<p>Thanks<\/p>&#xA;",
+    "tags": "<php><zend-framework><datetime><datetime-format>"
+}, {
+    "Id": "7433451",
+    "title": "How might I format relative dates the way Stack Overflow does \"member since\" and \"last seen\"?",
+    "body": "<blockquote>&#xA;  <p><strong>Possible Duplicate:<\/strong><br>&#xA;  <a href=\"http:\/\/stackoverflow.com\/questions\/11\/how-do-i-calculate-relative-time\">How do I calculate relative time?<\/a>  <\/p>&#xA;<\/blockquote>&#xA;&#xA;&#xA;&#xA;<p>I want to know how to display these data as seen on stackoverflow.com profile page. I have the timestamp of users registered date and last visit date. But I need to display using stackoverflow.com format. <\/p>&#xA;&#xA;<p>For example:<\/p>&#xA;&#xA;<blockquote>&#xA;  <p>Member since: 9 months<br>&#xA;  Last seen: just now<\/p>&#xA;<\/blockquote>&#xA;&#xA;<p>Is there any script to convert these dates and display in such format?<\/p>&#xA;",
+    "tags": "<php><date><formatting><relative-date>"
+}, {
+    "Id": "7472071",
+    "title": "Is gettimeofday() guaranteed to be of microsecond resolution?",
+    "body": "<blockquote>&#xA;  <p><strong>Possible Duplicate:<\/strong><br>&#xA;  <a href=\"http:\/\/stackoverflow.com\/questions\/88\/is-gettimeofday-guaranteed-to-be-of-microsecond-resolution\">Is gettimeofday() guaranteed to be of microsecond resolution?<\/a>  <\/p>&#xA;<\/blockquote>&#xA;&#xA;&#xA;&#xA;<p>So I find myself porting a game that was originally written for the Win32 API to Linux (well, porting the OS X port of the Win32 port to Linux), and have implemented QueryPerformanceCounter by giving the uSeconds since the process start up:    <\/p>&#xA;&#xA;<pre><code>BOOL QueryPerformanceCounter(LARGE_INTEGER* performanceCount)&#xA;{&#xA;    gettimeofday(&amp;currentTimeVal, NULL);&#xA;    performanceCount-&gt;QuadPart = (currentTimeVal.tv_sec - startTimeVal.tv_sec);&#xA;    performanceCount-&gt;QuadPart *= (1000 * 1000);&#xA;    performanceCount-&gt;QuadPart += (currentTimeVal.tv_usec - startTimeVal.tv_usec);&#xA;&#xA;    return true;&#xA;}&#xA;<\/code><\/pre>&#xA;&#xA;<p>This, coupled with <code>QueryPerformanceFrequency()<\/code> giving a constant <code>1000000<\/code> as the frequency works well <b>on my machine<\/b>, giving me a 64 bit variable that contains uSeconds since the program's start up. So <em>is this portable?<\/em> I don't want to discover it works differently if the kernel was compiled in a certain way or anything like that. I am fine with it being non-portable to something other than Linux, however.<\/p>&#xA;",
+    "tags": "<c++><datetime><time>"
+}, {
+    "Id": "7723946",
+    "title": "Best practices when debugging PHP code",
+    "body": "<blockquote>&#xA;  <p><strong>Possible Duplicate:<\/strong><br>&#xA;  <a href=\"http:\/\/stackoverflow.com\/questions\/888\/how-do-you-debug-php-scripts\">How do you debug PHP scripts?<\/a>  <\/p>&#xA;<\/blockquote>&#xA;&#xA;&#xA;&#xA;<p>I was wondering if there was any other way to easily debug PHP code?<\/p>&#xA;&#xA;<p>I know one method:<\/p>&#xA;&#xA;<pre><code>echo \"here\";&#xA;die; &#xA;<\/code><\/pre>&#xA;&#xA;<p>and<\/p>&#xA;&#xA;<pre><code>echo \"here\";&#xA;exit; &#xA;<\/code><\/pre>&#xA;",
+    "tags": "<php><debugging>"
+}, {
+    "Id": "7729553",
+    "title": ".NET Library to handle DateTime output nicer",
+    "body": "<blockquote>&#xA;  <p><strong>Possible Duplicate:<\/strong><br>&#xA;  <a href=\"http:\/\/stackoverflow.com\/questions\/11\/how-do-i-calculate-relative-time\">How do I calculate relative time?<\/a>  <\/p>&#xA;<\/blockquote>&#xA;&#xA;&#xA;&#xA;<p>I did stumble upon a nice library some time ago that gives you a nicer way when we're dealing with Dates like:<\/p>&#xA;&#xA;<p><code>@DateTime.AddDays(-1)<\/code> will show <code>yesterday<\/code><\/p>&#xA;&#xA;<p><code>@DateTime.Now<\/code> will show <code>Just now<\/code><\/p>&#xA;&#xA;<p>WHat is the technical term of this and, did you guys know the <a href=\"http:\/\/nuget.org\" rel=\"nofollow\">nuget package<\/a> of this library?<\/p>&#xA;",
+    "tags": "<c#><asp.net-mvc-3><nuget-package>"
+}, {
+    "Id": "8701224",
+    "title": "How I can convert Date to String formate.?",
+    "body": "<blockquote>&#xA;  <p><strong>Possible Duplicate:<\/strong><br>&#xA;  <a href=\"http:\/\/stackoverflow.com\/questions\/11\/how-do-i-calculate-relative-time\">How do I calculate relative time?<\/a>  <\/p>&#xA;<\/blockquote>&#xA;&#xA;&#xA;&#xA;<p>I want to convert Date Value to string formate just like YouTube Videos Uploaded Time or Date for Eg. 2 Years Ago or 1 month ago or 8 houre ago like this just assume I have simple Date as an Output.<\/p>&#xA;&#xA;<p>Thank you..!!<\/p>&#xA;",
+    "tags": "<c#>"
+}]

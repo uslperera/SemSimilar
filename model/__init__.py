@@ -3,6 +3,7 @@ class Document(object):
     __title = None
     __description = None
     __tags = None
+    __tokens = None
 
     def __init__(self, id, title, description, tags):
         self.__id = id
@@ -41,6 +42,15 @@ class Document(object):
     @tags.setter
     def tags(self, tags):
         self.__tags = tags
+
+    @property
+    def tokens(self):
+        return self.__tokens
+
+    @tokens.setter
+    def tokens(self, tokens):
+        self.__tokens = tokens
+
 
 class Result(object):
     document = None

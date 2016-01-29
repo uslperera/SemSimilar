@@ -1,0 +1,6 @@
+[{
+    "Id": "18584",
+    "title": "Exact age calculation",
+    "body": "<blockquote>&#xA;  <p><strong>Possible Duplicate:<\/strong><br>&#xA;  <a href=\"http:\/\/stackoverflow.com\/questions\/9\/how-do-i-calculate-someones-age-in-c\">How do I calculate someone&#39;s age in C#?<\/a>  <\/p>&#xA;<\/blockquote>&#xA;&#xA;&#xA;&#xA;<p>Maybe this could be silly but and I don't have issues with my age but sometimes it is good to calculate the exact age of someone, I have introduced my birthdate in my profile (01\/12\/1975) \"dd\/mm\/yyyy\" and it calculated 33 and I'm 32 actually still, isn't it better to calculate the exact age? <\/p>&#xA;&#xA;<p>Maybe<\/p>&#xA;&#xA;<pre><code>DateTime dt1 = DateTime.Now;&#xA;TimeSpan dt2;&#xA;dt2 = dt1.Subtract(new DateTime(1975, 12, 01));&#xA;double year = dt2.TotalDays \/ 365;&#xA;<\/code><\/pre>&#xA;&#xA;<p>The result of year is 32.77405678074<\/p>&#xA;&#xA;<p>Could this code be OK?<\/p>&#xA;",
+    "tags": "<c#>"
+}]
