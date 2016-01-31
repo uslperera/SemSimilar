@@ -6,7 +6,7 @@ from stop_words import get_stop_words
 class SemSimilarTokenizer(object):
     @staticmethod
     def tokenize(text):
-        expression = "([?!:;\-\(\)\[\]'\"/,]|(\.\B))"
+        expression = "([?!:;\-\(\)\[\]\"/,<>]|(\.\B))"
         text = re.sub(expression, " ", text).strip()
         tokens = re.split("\s+", text)
         return tokens
@@ -31,6 +31,7 @@ class Processor(object):
     def process(self, text):
         tokens = SemSimilarTokenizer.tokenize(text.lower())
         tokens = self.remove_stopwords(tokens)
+        # tokens = self.stem_tokens(tokens)
         return tokens
 
 

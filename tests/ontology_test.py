@@ -8,7 +8,7 @@ processor = Processor()
 
 # Read all the documents from the data source
 posts = []
-with open('data/posts.json') as posts_file:
+with open('data/posts1.json') as posts_file:
     posts = json.loads(posts_file.read())
 
 documents = []
@@ -17,11 +17,13 @@ for post in posts:
 
 # Tokenize the documents
 docs_builder = DocumentsBuilder(documents)
+docs_builder.tags_enabled = True
+docs_builder.description_enabled = True
 docs_builder.process()
 
 # Read all the new documents
 duplicate_posts = []
-with open('data/duplicates2.json') as posts_file:
+with open('data/duplicates.json') as posts_file:
     duplicate_posts = json.loads(posts_file.read())
 
 duplicate_documents = []
@@ -33,11 +35,13 @@ for post in duplicate_posts:
 
 # Tokenize the documents
 new_docs_builder = DocumentsBuilder(duplicate_documents)
+new_docs_builder.tags_enabled = True
+new_docs_builder.description_enabled = True
 new_docs_builder.process()
 
 # Ontology similarity
 s = Similarity(documents)
-
+s.count = 2
 for doc in duplicate_documents:
     if doc is not None:
         results = s.top(doc)

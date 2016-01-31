@@ -2,6 +2,7 @@ from gensim import similarities
 from model import Result
 from textprocessor import Processor
 
+
 class Similarity(object):
     __lda_model = None
     __documents = None
@@ -16,7 +17,7 @@ class Similarity(object):
 
     @count.setter
     def count(self, count):
-        if count > 1:
+        if count > 0:
             self.__count = count
 
     def __init__(self, lda_model, dictionary, corpus, documents):
