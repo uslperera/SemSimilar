@@ -1,6 +1,6 @@
 from gensim import similarities
-from model import Result
-from textprocessor import Processor
+from core.model import Result
+from core.textprocessor import Processor
 
 
 class Similarity(object):

@@ -1,18 +1,18 @@
-import ontology.similarity
-import topicmodel.similarity
-from model import Document
-from model import Result
+import core.ontology.similarity
+import core.topicmodel.similarity
+from core.model import Document
+from core.model import Result
 
 import operator
 
 
 class Similarity(object):
-    __ontology = ontology.Similarity
-    __topic = topicmodel.Similarity
+    __ontology = core.ontology.Similarity
+    __topic = core.topicmodel.Similarity
 
     def __init__(self, documents, dictionary, tfidf_corpus, ldamodel):
-        self.__ontology = ontology.Similarity(documents)
-        self.__topic = topicmodel.Similarity(ldamodel, dictionary, tfidf_corpus, documents)
+        self.__ontology = core.ontology.Similarity(documents)
+        self.__topic = core.topicmodel.Similarity(ldamodel, dictionary, tfidf_corpus, documents)
 
     def top(self, new_document):
 

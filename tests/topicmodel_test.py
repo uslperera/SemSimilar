@@ -1,8 +1,8 @@
 from gensim import models, corpora
 import json
-from model import Document, Result
-from textprocessor import DocumentsBuilder
-from topicmodel import Similarity
+from core.model import Document, Result
+from core.textprocessor import DocumentsBuilder
+from core.topicmodel import Similarity
 
 with open('data/posts1.json') as posts_file:
     posts = json.loads(posts_file.read())

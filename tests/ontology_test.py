@@ -1,8 +1,8 @@
 import json
-from model import Document
-from textprocessor import DocumentsBuilder
-from ontology import Similarity
-from textprocessor import Processor
+from core.model import Document
+from core.textprocessor import DocumentsBuilder
+from core.ontology import Similarity
+from core.textprocessor import Processor
 
 processor = Processor()
 

@@ -1,7 +1,7 @@
 from nltk.wsd import lesk
 import operator
-from textprocessor import Processor
-from model import Result
+from core.textprocessor import Processor
+from core.model import Result
 
 
 class Similarity(object):
@@ -58,9 +58,6 @@ class Similarity(object):
     def __similarity(self, new_doc, doc):
         set1 = set(new_doc.tokens)
         set2 = set(doc.tokens)
-        print(set1)
-        print(set2)
-        print(set1 & set2)
         total1 = self.__calculate_score(new_doc.tokens, set1, doc.tokens, set2)
         total2 = self.__calculate_score(doc.tokens, set2, new_doc.tokens, set1)
 
