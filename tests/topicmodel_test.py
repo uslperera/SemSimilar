@@ -1,6 +1,6 @@
 from gensim import models, corpora
 import json
-from core.model import Document, Result
+from core.model import Document
 from core.textprocessor import DocumentsBuilder
 from core.topicmodel import Similarity
 
