@@ -13,7 +13,7 @@ for post in posts:
 
 docs_builder = DocumentsBuilder(documents)
 docs_builder.tags_enabled = True
-#docs_builder.description_enabled = True
+# docs_builder.description_enabled = True
 docs_builder.process()
 
 texts = []
@@ -25,13 +25,13 @@ corpus = [dictionary.doc2bow(text) for text in texts]
 tfidf = models.TfidfModel(corpus)
 tfidf_corpus = tfidf[corpus]
 
-#ldamodel = models.ldamodel.LdaModel(tfidf_corpus, id2word = dictionary, num_topics=90)
+#ldamodel = models.ldamodel.LdaModel(tfidf_corpus, id2word = dictionary, num_topics=115)
 #ldamodel.save('temp/lda1.model')
 
 ldamodel = models.LdaModel.load("temp/lda1.model")
 
 s = Similarity(lda_model=ldamodel, dictionary=dictionary, corpus=tfidf_corpus, documents=documents)
-s.count = 2
+s.count = 1
 
 with open('data/duplicates1.json') as posts_file:
     duplicate_posts = json.loads(posts_file.read())
@@ -42,7 +42,7 @@ for post in duplicate_posts:
 
 new_docs_builder = DocumentsBuilder(duplicate_documents)
 new_docs_builder.tags_enabled = True
-#new_docs_builder.description_enabled = True
+# new_docs_builder.description_enabled = True
 new_docs_builder.process()
 
 for doc in duplicate_documents:
