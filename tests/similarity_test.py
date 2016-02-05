@@ -1,14 +1,9 @@
+from gensim import models, corpora
 import json
 from core.model import Document
-from core.textprocessor import DocumentsBuilder
-from core.main import Similarity
-from core.textprocessor import Processor
-from gensim import models, corpora
+from core.textprocessor.documentbuilder import process
+from core.main.similarity import similarity
 
-processor = Processor()
-
-# Read all the documents from the data source
-posts = []
 with open('data/posts1.json') as posts_file:
     posts = json.loads(posts_file.read())
 
@@ -16,12 +11,7 @@ documents = []
 for post in posts:
     documents.append(Document(post['Id'], post['Title'], post['Body'], post['Tags']))
 
-# Tokenize the documents
-docs_builder = DocumentsBuilder(documents)
-docs_builder.tags_enabled = True
-# docs_builder.description_enabled = True
-docs_builder.process()
-
+process(documents=documents, title_enabled=True, description_enabled=False, tags_enabled=True)
 
 texts = []
 for doc in documents:
@@ -32,34 +22,23 @@ corpus = [dictionary.doc2bow(text) for text in texts]
 tfidf = models.TfidfModel(corpus)
 tfidf_corpus = tfidf[corpus]
 
+# ldamodel = models.ldamodel.LdaModel(tfidf_corpus, id2word = dictionary, num_topics=115)
+# ldamodel.save('temp/lda1.model')
+
 ldamodel = models.LdaModel.load("temp/lda1.model")
 
-# Read all the new documents
-duplicate_posts = []
 with open('data/duplicates1.json') as posts_file:
     duplicate_posts = json.loads(posts_file.read())
 
 duplicate_documents = []
-i = 0
 for post in duplicate_posts:
-    if i < 50:
-        duplicate_documents.append(Document(post['Id'], post['title'], post['body'], post['tags']))
-    i += 1
+    duplicate_documents.append(Document(post['Id'], post['title'], post['body'], post['tags']))
 
-# Tokenize the documents
-new_docs_builder = DocumentsBuilder(duplicate_documents)
-new_docs_builder.tags_enabled = True
-# new_docs_builder.description_enabled = True
-new_docs_builder.process()
-
-# Ontology similarity
-s = Similarity(documents=documents, dictionary=dictionary, corpus=tfidf_corpus, ldamodel=ldamodel)
-s.count = 2
+process(documents=duplicate_documents, title_enabled=True, description_enabled=False, tags_enabled=True)
 
 for doc in duplicate_documents:
-    if doc is not None:
-        results = s.top(doc)
-        for result in results:
-            top_doc = result.document
-            if top_doc is not None:
-                print(doc.id, doc.title, top_doc.id, top_doc.title, result.score)
+    results = similarity(lda_model=ldamodel, dictionary=dictionary, corpus=tfidf_corpus, documents=documents,
+                         new_document=doc, count=1, window=0)
+    for top_doc, score in results:
+        if top_doc is not None:
+            print(doc.id, doc.title, top_doc.id, top_doc.title, score)

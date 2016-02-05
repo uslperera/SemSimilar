@@ -1,1 +1,1 @@
-from core.main.similarity import Similarity
+from core.main.similarity import similarity

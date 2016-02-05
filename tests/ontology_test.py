@@ -1,10 +1,7 @@
 import json
 from core.model import Document
-from core.textprocessor import DocumentsBuilder
-from core.ontology import Similarity
-from core.textprocessor import Processor
-
-processor = Processor()
+from core.textprocessor.documentbuilder import process
+from core.ontology import lesk_similarity as lesk
 
 # Read all the documents from the data source
 posts = []
@@ -16,10 +13,7 @@ for post in posts:
     documents.append(Document(post['Id'], post['Title'], post['Body'], post['Tags']))
 
 # Tokenize the documents
-docs_builder = DocumentsBuilder(documents)
-docs_builder.tags_enabled = True
-# docs_builder.description_enabled = True
-docs_builder.process()
+docs_builder = process(documents=documents, title_enabled=True, description_enabled=False, tags_enabled=True)
 
 # Read all the new documents
 duplicate_posts = []
@@ -34,18 +28,15 @@ for post in duplicate_posts:
     i += 1
 
 # Tokenize the documents
-new_docs_builder = DocumentsBuilder(duplicate_documents)
-new_docs_builder.tags_enabled = True
-# new_docs_builder.description_enabled = True
-new_docs_builder.process()
+new_docs_builder = process(documents=duplicate_documents, title_enabled=True, description_enabled=False,
+                           tags_enabled=True)
 
 # Ontology similarity
-s = Similarity(documents)
-s.count = 2
+count = 2
 for doc in duplicate_documents:
     if doc is not None:
-        results = s.top(doc)
+        results = lesk.similarity(documents=documents, new_document=doc, window=0, count=0)
         for result in results:
-            top_doc = result.document
+            top_doc = result[0]
             if top_doc is not None:
-                print(doc.id, doc.title, top_doc.id, top_doc.title, result.score)
+                print(doc.id, doc.title, top_doc.id, top_doc.title, result[1])
