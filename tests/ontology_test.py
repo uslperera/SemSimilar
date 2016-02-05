@@ -36,7 +36,6 @@ count = 2
 for doc in duplicate_documents:
     if doc is not None:
         results = lesk.similarity(documents=documents, new_document=doc, window=0, count=0)
-        for result in results:
-            top_doc = result[0]
+        for top_doc, score in results:
             if top_doc is not None:
-                print(doc.id, doc.title, top_doc.id, top_doc.title, result[1])
+                print(doc.id, doc.title, top_doc.id, top_doc.title, score)

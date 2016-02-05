@@ -27,7 +27,7 @@ tfidf_corpus = tfidf[corpus]
 
 ldamodel = models.LdaModel.load("temp/lda1.model")
 
-with open('data/duplicates1.json') as posts_file:
+with open('data/duplicates.json') as posts_file:
     duplicate_posts = json.loads(posts_file.read())
 
 duplicate_documents = []
@@ -39,7 +39,6 @@ process(documents=duplicate_documents, title_enabled=True, description_enabled=F
 for doc in duplicate_documents:
     results = lda.similarity(lda_model=ldamodel, dictionary=dictionary, corpus=tfidf_corpus, documents=documents,
                              new_document=doc, count=0)
-    for result in results:
-        top_doc, score = result
+    for top_doc, score in results:
         if top_doc is not None:
             print(doc.id, doc.title, top_doc.id, top_doc.title, score)
