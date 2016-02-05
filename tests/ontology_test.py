@@ -2,10 +2,13 @@ import json
 from core.model import Document
 from core.textprocessor.documentbuilder import process
 from core.ontology import lesk_similarity as lesk
+import pickle
 
+
+'''
 # Read all the documents from the data source
 posts = []
-with open('data/posts.json') as posts_file:
+with open('data/posts1.json') as posts_file:
     posts = json.loads(posts_file.read())
 
 documents = []
@@ -13,11 +16,19 @@ for post in posts:
     documents.append(Document(post['Id'], post['Title'], post['Body'], post['Tags']))
 
 # Tokenize the documents
-docs_builder = process(documents=documents, title_enabled=True, description_enabled=False, tags_enabled=True)
+
+try:
+    process(documents=documents, title_enabled=True, description_enabled=False, tags_enabled=True, window=0)
+finally:
+    pickle.dump(documents, open('temp/documents.p', 'wb'), pickle.HIGHEST_PROTOCOL)
+'''
+
+
+documents = pickle.load(open('temp/documents.p', 'rb'))
 
 # Read all the new documents
 duplicate_posts = []
-with open('data/duplicates.json') as posts_file:
+with open('data/duplicates1.json') as posts_file:
     duplicate_posts = json.loads(posts_file.read())
 
 duplicate_documents = []
@@ -29,7 +40,7 @@ for post in duplicate_posts:
 
 # Tokenize the documents
 new_docs_builder = process(documents=duplicate_documents, title_enabled=True, description_enabled=False,
-                           tags_enabled=True)
+                           tags_enabled=True, window=0)
 
 # Ontology similarity
 count = 2

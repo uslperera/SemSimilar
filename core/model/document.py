@@ -4,6 +4,7 @@ class Document(object):
     __description = None
     __tags = None
     __tokens = None
+    __synsets = None
 
     def __init__(self, id, title, description, tags):
         self.__id = id
@@ -50,3 +51,11 @@ class Document(object):
     @tokens.setter
     def tokens(self, tokens):
         self.__tokens = tokens
+
+    @property
+    def synsets(self):
+        return self.__synsets
+
+    @synsets.setter
+    def synsets(self, synsets):
+        self.__synsets = synsets

@@ -3,7 +3,8 @@ import json
 from core.model import Document
 from core.textprocessor.documentbuilder import process
 from core.main.similarity import similarity
-
+import pickle
+'''
 with open('data/posts1.json') as posts_file:
     posts = json.loads(posts_file.read())
 
@@ -11,7 +12,9 @@ documents = []
 for post in posts:
     documents.append(Document(post['Id'], post['Title'], post['Body'], post['Tags']))
 
-process(documents=documents, title_enabled=True, description_enabled=False, tags_enabled=True)
+process(documents=documents, title_enabled=True, description_enabled=False, tags_enabled=True, window=0)
+'''
+documents = pickle.load(open('temp/documents.p', 'rb'))
 
 texts = []
 for doc in documents:
@@ -34,7 +37,7 @@ duplicate_documents = []
 for post in duplicate_posts:
     duplicate_documents.append(Document(post['Id'], post['title'], post['body'], post['tags']))
 
-process(documents=duplicate_documents, title_enabled=True, description_enabled=False, tags_enabled=True)
+process(documents=duplicate_documents, title_enabled=True, description_enabled=False, tags_enabled=True, window=0)
 
 for doc in duplicate_documents:
     results = similarity(lda_model=ldamodel, dictionary=dictionary, corpus=tfidf_corpus, documents=documents,

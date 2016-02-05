@@ -11,7 +11,7 @@ documents = []
 for post in posts:
     documents.append(Document(post['Id'], post['Title'], post['Body'], post['Tags']))
 
-process(documents=documents, title_enabled=True, description_enabled=False, tags_enabled=True)
+process(documents=documents, title_enabled=True, description_enabled=False, tags_enabled=True, window=0)
 
 texts = []
 for doc in documents:
@@ -27,14 +27,14 @@ tfidf_corpus = tfidf[corpus]
 
 ldamodel = models.LdaModel.load("temp/lda1.model")
 
-with open('data/duplicates.json') as posts_file:
+with open('data/duplicates1.json') as posts_file:
     duplicate_posts = json.loads(posts_file.read())
 
 duplicate_documents = []
 for post in duplicate_posts:
     duplicate_documents.append(Document(post['Id'], post['title'], post['body'], post['tags']))
 
-process(documents=duplicate_documents, title_enabled=True, description_enabled=False, tags_enabled=True)
+process(documents=duplicate_documents, title_enabled=True, description_enabled=False, tags_enabled=True, window=0)
 
 for doc in duplicate_documents:
     results = lda.similarity(lda_model=ldamodel, dictionary=dictionary, corpus=tfidf_corpus, documents=documents,
