@@ -2,8 +2,8 @@ from core.ontology import lesk_similarity as lesk
 from core.topicmodel import lda_similarity as lda
 
 
-def similarity(documents, new_document, count, window, lda_model, dictionary, corpus):
-    results_ontology = lesk.similarity(documents=documents, new_document=new_document, window=window, count=count)
+def similarity(documents, new_document, count, lda_model, dictionary, corpus):
+    results_ontology = lesk.similarity(documents=documents, new_document=new_document, count=count)
     results_topic = lda.similarity(lda_model=lda_model, dictionary=dictionary, corpus=corpus, documents=documents,
                                    new_document=new_document, count=count)
 

@@ -26,6 +26,7 @@ def process(documents, title_enabled, description_enabled, tags_enabled, window)
                 synsets.append(None)
         document.synsets = synsets
 
+
 def __generate_window(window, tokens, target):
     new_tokens = []
     index = tokens.index(target)

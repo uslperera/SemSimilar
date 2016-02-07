@@ -1,7 +1,7 @@
 from gensim import models, corpora
 import json
 from core.model import Document
-from core.textprocessor.documentbuilder import process
+from core.textprocessor.document_builder import process
 from core.main.similarity import similarity
 import pickle
 '''
@@ -41,7 +41,7 @@ process(documents=duplicate_documents, title_enabled=True, description_enabled=F
 
 for doc in duplicate_documents:
     results = similarity(lda_model=ldamodel, dictionary=dictionary, corpus=tfidf_corpus, documents=documents,
-                         new_document=doc, count=1, window=0)
+                         new_document=doc, count=1)
     for top_doc, score in results:
         if top_doc is not None:
             print(doc.id, doc.title, top_doc.id, top_doc.title, score)
