@@ -48,7 +48,7 @@ def __generate_window(window, tokens, target):
     for num in range(left, right):
         new_tokens.append(tokens[num])
 
-    return " ".join(new_tokens)
+    return new_tokens
 
 
 def __validate_window(window):
