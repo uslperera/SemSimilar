@@ -5,7 +5,7 @@ from core.ontology import lesk_similarity as lesk
 import pickle
 
 
-'''
+
 # Read all the documents from the data source
 posts = []
 with open('data/posts1.json') as posts_file:
@@ -16,14 +16,12 @@ for post in posts:
     documents.append(Document(post['Id'], post['Title'], post['Body'], post['Tags']))
 
 # Tokenize the documents
-
+'''
 try:
-    process(documents=documents, title_enabled=True, description_enabled=False, tags_enabled=True, window=0)
+    process(documents=documents, title_enabled=True, description_enabled=True, tags_enabled=True, window=0)
 finally:
     pickle.dump(documents, open('temp/documents.p', 'wb'), pickle.HIGHEST_PROTOCOL)
 '''
-
-
 documents = pickle.load(open('temp/documents.p', 'rb'))
 
 # Read all the new documents
@@ -43,10 +41,10 @@ new_docs_builder = process(documents=duplicate_documents, title_enabled=True, de
                            tags_enabled=True, window=0)
 
 # Ontology similarity
-count = 2
+count = 1
 for doc in duplicate_documents:
     if doc is not None:
-        results = lesk.similarity(documents=documents, new_document=doc, count=0)
+        results = lesk.similarity(documents=documents, new_document=doc, count=count)
         for top_doc, score in results:
             if top_doc is not None:
                 print(doc.id, doc.title, top_doc.id, top_doc.title, score)

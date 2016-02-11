@@ -31,7 +31,14 @@ def __validate_count(count):
 
 def __get_score(new_doc, doc):
     total1 = __calculate_semantic_score(new_doc.synsets, doc.synsets)
+    '''total1 = __calculate_semantic_score(new_doc.synsets, doc.synsets) + __calculate_string_score(new_doc.synsets,
+                                                                                                 new_doc.tokens,
+                                                                                                 doc.tokens)'''
     total2 = __calculate_semantic_score(doc.synsets, new_doc.synsets)
+
+    '''total2 = __calculate_semantic_score(doc.synsets, new_doc.synsets) + __calculate_string_score(doc.synsets,
+                                                                                                 doc.tokens,
+                                                                                                 new_doc.tokens)'''
 
     return (total1 + total2) / (len(doc.tokens) + len(new_doc.tokens))
 

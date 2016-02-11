@@ -8,7 +8,7 @@ def similarity(lda_model, dictionary, corpus, documents, new_document, count):
     vec_lda = lda_model[vec_bow]
 
     index = similarities.MatrixSimilarity(lda_model[corpus])
-    index.num_best = count
+    index.num_best = 10
     sims = index[vec_lda]
 
     results = []
