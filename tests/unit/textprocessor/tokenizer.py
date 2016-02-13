@@ -3,7 +3,7 @@ from core.textprocessor.tokenizer import tokenize
 
 
 class TokenizeTestCase(unittest.TestCase):
-    '''Tests for tokenizer'''
+    """Tests for tokenizer"""
 
     def test_split(self):
         # Checks whether important symbols are getting removed E.g. # +
@@ -35,7 +35,7 @@ class TokenizeTestCase(unittest.TestCase):
 
     def test_mix(self):
         # Checks for the behaviour when there is a dot before and after a word
-        expected_tokens = ['I', 'said', 'what', 're', 'you', 'Crazy', 'said', 'Sandowsky', 'I', 'can', 't', 'afford',
+        expected_tokens = ['I', 'said', 'what\'re', 'you', 'Crazy', 'said', 'Sandowsky', 'I', 'can\'t', 'afford',
                            'to', 'do', 'that']
         sentence = "\"I said, 'what're you? Crazy?\" said Sandowsky. \"I can't afford to do that.\""
         tokens = tokenize(sentence)
