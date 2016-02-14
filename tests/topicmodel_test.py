@@ -22,7 +22,7 @@ corpus = [dictionary.doc2bow(text) for text in texts]
 tfidf = models.TfidfModel(corpus)
 tfidf_corpus = tfidf[corpus]
 
-ldamodel = models.ldamodel.LdaModel(tfidf_corpus, id2word = dictionary, num_topics=100)
+ldamodel = models.ldamodel.LdaModel(tfidf_corpus, id2word = dictionary, num_topics=536)
 #ldamodel.save('temp/lda1.model')
 
 #ldamodel = models.LdaModel.load("temp/lda2.model")

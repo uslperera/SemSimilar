@@ -3,7 +3,7 @@ from nltk.wsd import lesk
 
 
 def process(documents, title_enabled, description_enabled, tags_enabled, window):
-    window = __validate_window(window)
+    window = validate_window(window)
     for document in documents:
         if title_enabled & description_enabled & tags_enabled:
             text = document.title + " " + document.description + " " + document.tags
@@ -18,7 +18,7 @@ def process(documents, title_enabled, description_enabled, tags_enabled, window)
         document.tokens = tokens
         synsets = []
         for token in tokens:
-            sentence = __generate_window(window, tokens, token)
+            sentence = generate_window(window, tokens, token)
             synset = lesk(sentence, token)
             if synset is not None:
                 synsets.append(synset.name())
@@ -27,12 +27,12 @@ def process(documents, title_enabled, description_enabled, tags_enabled, window)
         document.synsets = synsets
 
 
-def __generate_window(window, tokens, target):
+def generate_window(window, tokens, target):
     new_tokens = []
     index = tokens.index(target)
     right = 0
     if len(tokens) < window + 1:
-        return " ".join(tokens)
+        return tokens
     # if index of the target word is greater than or equal to half of the windows size
     if index >= (window / 2):
         left = index - (window / 2)
@@ -51,7 +51,7 @@ def __generate_window(window, tokens, target):
     return new_tokens
 
 
-def __validate_window(window):
+def validate_window(window):
     default_window = 4
     if window > 1 & window % 2 == 0:
         return window

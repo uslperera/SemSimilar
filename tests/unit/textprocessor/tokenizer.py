@@ -41,6 +41,3 @@ class TokenizeTestCase(unittest.TestCase):
         tokens = tokenize(sentence)
         self.assertEqual(str(expected_tokens), str(tokens))
 
-
-if __name__ == '__main__':
-    unittest.main()
