@@ -1,6 +1,6 @@
 import json
 from core.model import Document
-from core.textprocessor.document_builder import process
+from core.textprocessor.synsets import process
 from core.ontology import lesk_similarity as lesk
 import pickle
 

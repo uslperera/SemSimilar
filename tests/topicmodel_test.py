@@ -1,7 +1,7 @@
 from gensim import models, corpora
 import json
 from core.model import Document
-from core.textprocessor.document_builder import process
+from core.textprocessor.synsets import process
 from core.topicmodel import lda_similarity as lda
 
 with open('data/posts2.json') as posts_file:

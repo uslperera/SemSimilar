@@ -1,6 +1,6 @@
 import json
 from core.model.document import Document
-from core.textprocessor.document_builder import process
+from core.textprocessor.synsets import process
 from gensim import corpora, models, matutils
 import numpy as np
 import scipy.stats as stats
