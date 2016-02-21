@@ -20,7 +20,6 @@ class Document(object):
         self.__description = description
         self.__tags = tags
         self.generate_tokens()
-        self.__synsets = get_synsets(self.__tokens, self.__window)
 
     @property
     def id(self):
@@ -58,17 +57,9 @@ class Document(object):
     def tokens(self):
         return self.__tokens
 
-    @tokens.setter
-    def tokens(self, tokens):
-        self.__tokens = tokens
-
     @property
     def synsets(self):
         return self.__synsets
-
-    @synsets.setter
-    def synsets(self, synsets):
-        self.__synsets = synsets
 
     @staticmethod
     def window(window):
@@ -91,5 +82,8 @@ class Document(object):
             text = self.__title
         tokens = self.__tokenizer.tokenize(text.lower())
         tokens = remove_stopwords(tokens)
-        # tokens = stem_tokens(tokens)
         self.__tokens = tokens
+        self.__synsets = get_synsets(self.__tokens, self.__window)
+
+    def get_stemmed_tokens(self):
+        return stem_tokens(self.__tokens)

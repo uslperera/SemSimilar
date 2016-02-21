@@ -3,12 +3,12 @@ from gensim import similarities
 
 def similarity(lda_model, dictionary, corpus, documents, new_document, count):
     count = __validate_count(count)
-    vec_bow = dictionary.doc2bow(new_document.tokens)
+    vec_bow = dictionary.doc2bow(new_document.get_stemmed_tokens())
     # convert the query to LDA space
     vec_lda = lda_model[vec_bow]
 
     index = similarities.MatrixSimilarity(lda_model[corpus])
-    index.num_best = 10
+    index.num_best = count
     sims = index[vec_lda]
 
     results = []

@@ -17,7 +17,7 @@ def stem_tokens(tokens):
     return stemmed_tokens
 
 
-def remove_meta_data(tokens):
-    keywords = ['blockquote', '&#xa', 'p', 'strong', '\\', 'br', 'a', 'code', 'pre']
-    filtered_tokens = [i for i in tokens if not i in keywords]
-    return filtered_tokens
+# def remove_meta_data(tokens):
+#     keywords = ['blockquote', '&#xa', 'p', 'strong', '\\', 'br', 'a', 'code', 'pre']
+#     filtered_tokens = [i for i in tokens if not i in keywords]
+#     return filtered_tokens

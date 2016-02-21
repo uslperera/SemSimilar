@@ -2,7 +2,7 @@ import unittest
 from core.textprocessor.processor import *
 
 
-class ProcessorTestCase(unittest.TestCase):
+class StopWordRemovalTestCase(unittest.TestCase):
     def test_remove_stopwords(self):
         stop_words = ['a', 'about', 'above', 'after', 'again', 'against', 'all', 'am', 'an', 'and', 'any', 'are',
                       "aren't", 'as', 'at', 'be', 'because', 'been', 'before', 'being', 'below', 'between', 'both',
@@ -23,14 +23,10 @@ class ProcessorTestCase(unittest.TestCase):
         new_tokens = remove_stopwords(stop_words)
         self.assertEqual(len(new_tokens), 0)
 
+
+class StemWordsTestCase(unittest.TestCase):
     def test_stem_words(self):
         tokens = ['walked', 'walking', 'walks']
         new_tokens = stem_tokens(tokens)
         for new_token in new_tokens:
             self.assertEqual(new_token, 'walk')
-
-    def test_process(self):
-        expected_tokens = ['gone', 'beach']
-        sentence = "he could have gone to beach"
-        tokens = process(sentence)
-        self.assertEqual(str(expected_tokens), str(tokens))
