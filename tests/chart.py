@@ -60,11 +60,14 @@ from sklearn.cluster import KMeans
 MAX_K = 10
 
 posts = []
-with open('data/posts1.json') as posts_file:
+with open('data/100posts.json') as posts_file:
     posts = json.loads(posts_file.read())
+
 docs = []
-for post in posts:
-    docs.append([post['Id'], post['Title'], post['Body'], post['Tags']])
+for i, post in enumerate(posts):
+    if i == 10:
+        break
+    docs.append(post['Title'])
 
 X = np.array(docs)
 ks = range(1, MAX_K + 1)
@@ -94,7 +97,8 @@ plt.plot(ks[elbow], inertias[elbow], marker='o', markersize=12,
 plt.ylabel("Inertia")
 plt.xlabel("K")
 plt.show()
-
+"""
+"""
 import csv
 
 with open('posts1.csv', 'rb') as csvfile:
@@ -102,3 +106,46 @@ with open('posts1.csv', 'rb') as csvfile:
     for row in spamreader:
         print ', '.join(row)
         """
+import json
+from core.model.document import Document
+from gensim import corpora, models, similarities
+from core.tokenize import CodeTokenizer
+
+Document.tokenizer(CodeTokenizer())
+count = 50
+with open('data/posts1.json') as posts_file:
+    posts = json.loads(posts_file.read())
+
+documents = []
+for i, post in enumerate(posts):
+    if i == count:
+        break
+    documents.append(Document(post['Id'], post['Title'], post['Body'], post['Tags']))
+
+# documents = pickle.load(open('temp/documents.p', 'rb'))
+
+texts = []
+for doc in documents:
+    texts.append(doc.get_stemmed_tokens())
+
+dictionary = corpora.Dictionary(texts)
+corpus = [dictionary.doc2bow(text) for text in texts]
+tfidf = models.TfidfModel(corpus)
+tfidf_corpus = tfidf[corpus]
+
+hdp = models.HdpModel(corpus, dictionary)
+
+new_document = Document(0, "How Do I Make Sessions More Secure", "", "")
+vec_bow = dictionary.doc2bow(new_document.get_stemmed_tokens())
+# convert the query to LDA space
+vec_lda = hdp[vec_bow]
+
+index = similarities.MatrixSimilarity(hdp[corpus])
+index.num_best = 10
+sims = index[vec_lda]
+
+for sim in sims:
+    score = sim[1]
+    document = documents[sim[0]]
+    print(document.title, score)
+
