@@ -32,30 +32,30 @@ def __validate_count(count):
 def __get_score(new_doc, doc):
     if new_doc.synsets is None or doc.synsets is None:
         return 0
-    total1 = __calculate_semantic_score(new_doc.synsets, doc.synsets)
-    '''total1 = __calculate_semantic_score(new_doc.synsets, doc.synsets) + __calculate_string_score(new_doc.synsets,
+    # total1 = __calculate_semantic_score(new_doc.synsets, doc.synsets)
+    total1 = __calculate_semantic_score(new_doc.synsets, doc.synsets) + __calculate_string_score(new_doc.synsets,
                                                                                                  new_doc.tokens,
-                                                                                                 doc.tokens)'''
-    total2 = __calculate_semantic_score(doc.synsets, new_doc.synsets)
+                                                                                                 doc.tokens)
+    # total2 = __calculate_semantic_score(doc.synsets, new_doc.synsets)
 
-    '''total2 = __calculate_semantic_score(doc.synsets, new_doc.synsets) + __calculate_string_score(doc.synsets,
+    total2 = __calculate_semantic_score(doc.synsets, new_doc.synsets) + __calculate_string_score(doc.synsets,
                                                                                                  doc.tokens,
-                                                                                                 new_doc.tokens)'''
+                                                                                                 new_doc.tokens)
 
     return (total1 + total2) / (len(doc.tokens) + len(new_doc.tokens))
 
 
-# def __calculate_string_score(synsets, tokens1, tokens2):
-#     total = 0
-#     for index, syn in enumerate(synsets, start=0):
-#         max = 0
-#         if syn is None:
-#             for token2 in tokens2:
-#                 sim = 1 - distance.jaccard_distance(set(tokens1[index]), set(token2))
-#                 if sim is not None and sim > max:
-#                     max = sim
-#         total += max
-#     return total
+def __calculate_string_score(synsets, tokens1, tokens2):
+    total = 0
+    for index, syn in enumerate(synsets, start=0):
+        max = 0
+        if syn is None:
+            for token2 in tokens2:
+                sim = 1 - distance.jaccard_distance(set(tokens1[index]), set(token2))
+                if sim is not None and sim > max:
+                    max = sim
+        total += max
+    return total
 
 
 def __calculate_semantic_score(synsets1, synsets2):
