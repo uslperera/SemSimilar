@@ -1,19 +1,20 @@
 import json
 from core.model.document import Document
-from core.textprocessor.synsets import process
+from core.tokenize import CodeTokenizer
 from gensim import corpora, models, matutils
 import numpy as np
 import scipy.stats as stats
 from matplotlib import pyplot as plt
 
-with open('data/posts1.json') as posts_file:
+Document.tokenizer(CodeTokenizer())
+with open('data/100posts.json') as posts_file:
     posts = json.loads(posts_file.read())
 
 documents = []
-for post in posts:
+for i, post in enumerate(posts):
+    if i == 100:
+        break
     documents.append(Document(post['Id'], post['Title'], post['Body'], post['Tags']))
-
-process(documents=documents, title_enabled=True, description_enabled=False, tags_enabled=True, window=0)
 
 texts = []
 for doc in documents:
@@ -48,7 +49,7 @@ def arun(corpus, dictionary, min_topics=1, max_topics=0, step=1):
     return kl
 
 
-kl = arun(corpus, dictionary, max_topics=115)
+kl = arun(corpus, dictionary, max_topics=100)
 
 # Plot kl divergence against number of topics
 plt.plot(kl)
