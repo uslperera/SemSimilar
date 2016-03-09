@@ -51,53 +51,7 @@ with open('posts1.csv', 'wb') as csvfile:
         spamwriter.writerow([post['Id'], post['Title'], post['Body'], post['Tags']])
 
 """
-"""
-import json
-import numpy as np
-import matplotlib.pyplot as plt
-from sklearn.cluster import KMeans
 
-MAX_K = 10
-
-posts = []
-with open('data/100posts.json') as posts_file:
-    posts = json.loads(posts_file.read())
-
-docs = []
-for i, post in enumerate(posts):
-    if i == 10:
-        break
-    docs.append(post['Title'])
-
-X = np.array(docs)
-ks = range(1, MAX_K + 1)
-
-inertias = np.zeros(MAX_K)
-diff = np.zeros(MAX_K)
-diff2 = np.zeros(MAX_K)
-diff3 = np.zeros(MAX_K)
-for k in ks:
-    kmeans = KMeans(k).fit(X)
-    inertias[k - 1] = kmeans.inertia_
-    # first difference
-    if k > 1:
-        diff[k - 1] = inertias[k - 1] - inertias[k - 2]
-    # second difference
-    if k > 2:
-        diff2[k - 1] = diff[k - 1] - diff[k - 2]
-    # third difference
-    if k > 3:
-        diff3[k - 1] = diff2[k - 1] - diff2[k - 2]
-
-elbow = np.argmin(diff3[3:]) + 3
-
-plt.plot(ks, inertias, "b*-")
-plt.plot(ks[elbow], inertias[elbow], marker='o', markersize=12,
-         markeredgewidth=2, markeredgecolor='r', markerfacecolor=None)
-plt.ylabel("Inertia")
-plt.xlabel("K")
-plt.show()
-"""
 """
 import csv
 
@@ -113,7 +67,7 @@ from core.tokenize import CodeTokenizer
 
 Document.tokenizer(CodeTokenizer())
 count = 50
-with open('data/posts1.json') as posts_file:
+with open('data/100posts.json') as posts_file:
     posts = json.loads(posts_file.read())
 
 documents = []
@@ -148,4 +102,3 @@ for sim in sims:
     score = sim[1]
     document = documents[sim[0]]
     print(document.title, score)
-

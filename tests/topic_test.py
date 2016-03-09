@@ -7,13 +7,11 @@ import scipy.stats as stats
 from matplotlib import pyplot as plt
 
 Document.tokenizer(CodeTokenizer())
-with open('data/100posts.json') as posts_file:
+with open('data/1000posts.json') as posts_file:
     posts = json.loads(posts_file.read())
 
 documents = []
 for i, post in enumerate(posts):
-    if i == 100:
-        break
     documents.append(Document(post['Id'], post['Title'], post['Body'], post['Tags']))
 
 texts = []
@@ -49,7 +47,7 @@ def arun(corpus, dictionary, min_topics=1, max_topics=0, step=1):
     return kl
 
 
-kl = arun(corpus, dictionary, max_topics=100)
+kl = arun(corpus, dictionary, max_topics=1000)
 
 # Plot kl divergence against number of topics
 plt.plot(kl)
