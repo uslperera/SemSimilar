@@ -34,15 +34,15 @@ def __get_score(new_doc, doc):
         return 0
     # total1 = __calculate_semantic_score(new_doc.synsets, doc.synsets)
     total1 = __calculate_semantic_score(new_doc.synsets, doc.synsets) + __calculate_string_score(new_doc.synsets,
-                                                                                                 new_doc.tokens,
-                                                                                                 doc.tokens)
+                                                                                                 new_doc.title_tokens,
+                                                                                                 doc.title_tokens)
     # total2 = __calculate_semantic_score(doc.synsets, new_doc.synsets)
 
     total2 = __calculate_semantic_score(doc.synsets, new_doc.synsets) + __calculate_string_score(doc.synsets,
-                                                                                                 doc.tokens,
-                                                                                                 new_doc.tokens)
+                                                                                                 doc.title_tokens,
+                                                                                                 new_doc.title_tokens)
 
-    return (total1 + total2) / (len(doc.tokens) + len(new_doc.tokens))
+    return (total1 + total2) / (len(doc.title_tokens) + len(new_doc.title_tokens))
 
 
 def __calculate_string_score(synsets, tokens1, tokens2):

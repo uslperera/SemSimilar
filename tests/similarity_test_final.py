@@ -7,6 +7,9 @@ from core.main.similarity import similarity
 import pickle
 from nltk.tokenize import RegexpTokenizer
 import logging
+from core.topicmodel.hal_similarity import *
+import nltk
+from nltk.collocations import *
 
 tokenizer = RegexpTokenizer(r'<(.*?)\>')
 
@@ -21,9 +24,17 @@ def load_post_links():
     for i, p in enumerate(postlinks):
         # if i == 100:
         #     break
-        post_links[int(p['PostId'])] = int(p['RelatedPostId'])
-        # l = ((int(p['PostId'])), int(p['RelatedPostId']))
-        # post_links.append(l)
+
+        if not post_links.has_key(int(p['PostId'])):
+            post_links[int(p['PostId'])] = int(p['RelatedPostId'])
+        elif isinstance(post_links[int(p['PostId'])], list):
+            post_links[int(p['PostId'])].append(int(p['RelatedPostId']))
+        else:
+            temp = post_links[int(p['PostId'])]
+            post_links[int(p['PostId'])] = [temp]
+            post_links[int(p['PostId'])].append(int(p['RelatedPostId']))
+            # l = ((int(p['PostId'])), int(p['RelatedPostId']))
+            # post_links.append(l)
 
 
 def search_post_link(dup_p, ori_p):
@@ -136,13 +147,137 @@ def print_topics(count):
         print(doc.title)
 
 
+def test_hal(count):
+    doc_m = {}
+    with open('data/100posts.json') as posts_file:
+        # with open('data/posts.json') as posts_file:
+        posts = json.loads(posts_file.read())
+
+    documents = []
+    for i, post in enumerate(posts):
+        if i == count:
+            break
+        documents.append(Document(post['Id'], post['Title'], post['Body'], post['Tags']))
+        # doc_m[int(post['Id'])] = i
+
+    print(len(documents))
+
+    texts = []
+    for doc in documents:
+        texts.append(" ".join(doc.get_stemmed_tokens()))
+
+    hal = HAL(documents=texts)
+
+    with open('data/100duplicates.json') as posts_file:
+        # with open('data/duplicates.json') as posts_file:
+        duplicate_posts = json.loads(posts_file.read())
+
+    duplicate_documents = []
+    for i, post in enumerate(duplicate_posts):
+        if i == count:
+            break
+        duplicate_documents.append(Document(post['Id'], post['Title'], post['Body'], post['Tags']))
+
+    corrects = 0
+    a = []
+    print("--querying--")
+    for doc in duplicate_documents:
+        o_corrects = corrects
+        results = hal.search(doc.get_stemmed_tokens())
+        results = results[:5]
+        for top_doc, score in results:
+            print(doc.title, documents[top_doc].title, score)
+            if post_links.has_key(int(doc.id)):
+                if isinstance(post_links[int(doc.id)], list):
+                    for id in post_links[int(doc.id)]:
+                        if id == int(documents[top_doc].id):
+                            corrects += 1
+                            break
+                elif post_links[int(doc.id)] == int(documents[top_doc].id):
+                    corrects += 1
+
+                    # if o_corrects == corrects:
+                    #     b = (doc.id, doc.title)
+                    #     a.append(b)
+
+    print(corrects)
+    print a
+
+
+def test_final(count):
+    doc_m = {}
+    with open('data/100posts.json') as posts_file:
+        # with open('data/posts.json') as posts_file:
+        posts = json.loads(posts_file.read())
+
+    documents = []
+    for i, post in enumerate(posts):
+        if i == count:
+            break
+        documents.append(Document(post['Id'], post['Title'], post['Body'], post['Tags']))
+        # doc_m[int(post['Id'])] = i
+
+    print(len(documents))
+
+    texts = []
+    for doc in documents:
+        texts.append(" ".join(doc.get_stemmed_tokens()))
+
+    hal = HAL(documents=texts)
+
+    with open('data/100duplicates.json') as posts_file:
+        # with open('data/duplicates.json') as posts_file:
+        duplicate_posts = json.loads(posts_file.read())
+
+    duplicate_documents = []
+    for i, post in enumerate(duplicate_posts):
+        if i == count:
+            break
+        duplicate_documents.append(Document(post['Id'], post['Title'], post['Body'], post['Tags']))
+
+    corrects = 0
+    a = []
+    print("--querying--")
+    for doc in duplicate_documents:
+        o_corrects = corrects
+        results = similarity(documents, doc, hal, 5)
+        for top_doc, score in results:
+            # print(doc.id, doc.title, top_doc.id, top_doc.title, score)
+            if post_links.has_key(int(doc.id)):
+                if isinstance(post_links[int(doc.id)], list):
+                    for id in post_links[int(doc.id)]:
+                        if id == int(top_doc.id):
+                            corrects += 1
+                            break
+                elif post_links[int(doc.id)] == int(top_doc.id):
+                    corrects += 1
+
+                    # if o_corrects == corrects:
+                    #     b = (doc.id, doc.title)
+                    #     a.append(b)
+
+    print(corrects)
+    print a
+
+
 if __name__ == '__main__':
     Document.window(4)
     Document.tags_enabled = True
+    Document.description_enabled = True
     Document.tokenizer(CodeTokenizer())
     load_post_links()
     # tag_count = get_tags(100)
     # print tag_count
-    test(100, 20)
+    # test(100, 20)
     # print(post_links)
     # print_topics(20)
+    test_hal(200)
+    test_final(200)
+    """
+        122
+        []
+        200
+        --querying--
+        154
+        []
+    """
