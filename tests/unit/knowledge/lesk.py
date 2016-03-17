@@ -1,14 +1,16 @@
 import unittest
+
 from mock.mock import MagicMock, patch
+
 from core.model.document import Document
-from core.tokenize import CodeTokenizer
-from core.ontology import lesk_similarity as lesk
+from core.similarity.knowledge import lesk as lesk
+from core.textprocessor.tokenize import CodeTokenizer
 
 
 class OntologyResultCountTestCase(unittest.TestCase):
     @classmethod
     def setUpClass(cls):
-        Document.tokenizer(CodeTokenizer())
+        Document.set_tokenizer(CodeTokenizer())
         doc_a = Document(1, "Some health experts suggest that driving may cause increased tension and blood pressure.",
                          "",
                          "Health, Motor")
@@ -47,11 +49,11 @@ class OntologyResultCountTestCase(unittest.TestCase):
 class SemanticScoreTestCase(unittest.TestCase):
     @classmethod
     def setUpClass(cls):
-        Document.tokenizer(CodeTokenizer())
+        Document.set_tokenizer(CodeTokenizer())
         doc_a = Document(1, "Some health experts suggest that driving may cause increased tension and blood pressure.",
                          "",
                          "Health, Motor")
-        doc_b = Document(2, "Health professionals say that brocolli is good for your health.", "", "Health, Food")
+        doc_b = Document(2, "Brocolli is a good vegetable for health", "", "Health, Food")
 
         # compile sample documents into a list
         cls.documents = [doc_a, doc_b]
@@ -59,7 +61,7 @@ class SemanticScoreTestCase(unittest.TestCase):
         for document in cls.documents:
             texts.append(document.get_stemmed_tokens())
 
-    @patch('core.textprocessor.synsets.get_synsets',
+    @patch('core.textprocessor.wsd.get_synsets',
            MagicMock(return_value=[None, u'well.r.01', u'vegetable.n.02', u'health.n.02']))
     def test_semantic_score(self):
         """Check if the similarity score is calculated correctly"""
@@ -70,9 +72,9 @@ class SemanticScoreTestCase(unittest.TestCase):
         a.path_similarity.return_value = individual_score
 
         new_document = Document(0, "Brocolli is a good vegetable for health", "", "Health, Food")
-        expected_score = (len(self.documents[0].tokens) * individual_score + (len(
-                new_document.tokens) - 1) * individual_score) / (
-                             len(self.documents[0].tokens) + len(new_document.tokens))
+        expected_score = (((len(self.documents[1].tokens) - 1) * individual_score + 1) + (len(
+                new_document.tokens) - 1) * individual_score + 1) / (
+                             len(self.documents[1].tokens) + len(new_document.tokens))
         # subtracted 1 to consider None in synsets
         with patch('nltk.corpus.wordnet.synset', MagicMock(return_value=a)):
             results = lesk.similarity(self.documents, new_document, 1)

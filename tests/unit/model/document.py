@@ -1,22 +1,23 @@
 import unittest
+
 from core.model.document import Document
-from core.tokenize import CodeTokenizer
+from core.textprocessor.tokenize import CodeTokenizer
 
 
 class WindowTestCase(unittest.TestCase):
     def test_set_window(self):
-        Document.window(6)
+        Document.set_window(6)
 
 
 class TokenizerTestCase(unittest.TestCase):
     def test_set_tokenizer(self):
-        Document.tokenizer(CodeTokenizer())
+        Document.set_tokenizer(CodeTokenizer())
 
 
 class IDTestCase(unittest.TestCase):
     @classmethod
     def setUpClass(cls):
-        Document.tokenizer(CodeTokenizer())
+        Document.set_tokenizer(CodeTokenizer())
 
     def test_set_id(self):
         d = Document(0, "", "", "")
@@ -31,7 +32,7 @@ class IDTestCase(unittest.TestCase):
 class TitleTestCase(unittest.TestCase):
     @classmethod
     def setUpClass(cls):
-        Document.tokenizer(CodeTokenizer())
+        Document.set_tokenizer(CodeTokenizer())
 
     def test_set_title(self):
         d = Document(0, "", "", "")
@@ -46,7 +47,7 @@ class TitleTestCase(unittest.TestCase):
 class DescriptionTestCase(unittest.TestCase):
     @classmethod
     def setUpClass(cls):
-        Document.tokenizer(CodeTokenizer())
+        Document.set_tokenizer(CodeTokenizer())
 
     def test_set_description(self):
         d = Document(0, "", "", "")
@@ -61,7 +62,7 @@ class DescriptionTestCase(unittest.TestCase):
 class TagsTestCase(unittest.TestCase):
     @classmethod
     def setUpClass(cls):
-        Document.tokenizer(CodeTokenizer())
+        Document.set_tokenizer(CodeTokenizer())
 
     def test_set_tags(self):
         d = Document(0, "", "", "")
@@ -76,7 +77,7 @@ class TagsTestCase(unittest.TestCase):
 class TokensOptionTestCase(unittest.TestCase):
     @classmethod
     def setUpClass(cls):
-        Document.tokenizer(CodeTokenizer())
+        Document.set_tokenizer(CodeTokenizer())
 
     def setUp(self):
         Document.title_enabled = Document.description_enabled = Document.tags_enabled = False

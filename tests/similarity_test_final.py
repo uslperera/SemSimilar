@@ -1,15 +1,13 @@
-from gensim import models, corpora
 import json
+
+from gensim import models, corpora
+
 from core.model import Document
-from core.tokenize import CodeTokenizer
-from core.main.similarity import similarity
-# from core.topicmodel.lda_similarity import similarity
-import pickle
+from core.similarity.main import similarity
+from core.textprocessor.tokenize import CodeTokenizer
+from core.similarity.corpus.hal import *
+# from core.corpus.lda_similarity import similarity
 from nltk.tokenize import RegexpTokenizer
-import logging
-from core.topicmodel.hal_similarity import *
-import nltk
-from nltk.collocations import *
 
 tokenizer = RegexpTokenizer(r'<(.*?)\>')
 
@@ -261,10 +259,10 @@ def test_final(count):
 
 
 if __name__ == '__main__':
-    Document.window(4)
+    Document.set_window(4)
     Document.tags_enabled = True
     Document.description_enabled = True
-    Document.tokenizer(CodeTokenizer())
+    Document.set_tokenizer(CodeTokenizer())
     load_post_links()
     # tag_count = get_tags(100)
     # print tag_count

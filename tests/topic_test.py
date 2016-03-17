@@ -1,12 +1,14 @@
 import json
-from core.model.document import Document
-from core.tokenize import CodeTokenizer
-from gensim import corpora, models, matutils
+
 import numpy as np
 import scipy.stats as stats
+from gensim import corpora, models, matutils
 from matplotlib import pyplot as plt
 
-Document.tokenizer(CodeTokenizer())
+from core.model.document import Document
+from core.textprocessor.tokenize import CodeTokenizer
+
+Document.set_tokenizer(CodeTokenizer())
 with open('data/1000posts.json') as posts_file:
     posts = json.loads(posts_file.read())
 

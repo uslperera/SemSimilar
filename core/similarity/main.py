@@ -1,6 +1,4 @@
-from core.ontology import lesk_similarity as lesk
-from core.topicmodel import lda_similarity as lda
-from core.topicmodel import hal_similarity as hal
+from core.similarity.knowledge import lesk as lesk
 
 
 # def similarity(documents, new_document, count, lda_model, dictionary, corpus):

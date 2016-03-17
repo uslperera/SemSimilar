@@ -1,10 +1,9 @@
-from core.topicmodel.lda_similarity import similarity as ldasim
-from core.main.similarity import similarity as semsim
 from gensim import models, corpora
-from core.model import Document
-from core.tokenize import CodeTokenizer
 
-Document.tokenizer(CodeTokenizer())
+from core.model import Document
+from core.textprocessor.tokenize import CodeTokenizer
+
+Document.set_tokenizer(CodeTokenizer())
 
 docs = ["I like to eat broccoli and bananas.",
         "I ate a banana and spinach smoothie for breakfast.",

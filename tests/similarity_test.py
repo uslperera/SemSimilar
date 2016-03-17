@@ -1,15 +1,16 @@
-from gensim import models, corpora
 import json
+
+from gensim import models, corpora
+
 from core.model import Document
-from core.tokenize import CodeTokenizer
-from core.main.similarity import similarity
-import pickle
+from core.similarity.main import similarity
+from core.textprocessor.tokenize import CodeTokenizer
 
 with open('data/posts.json') as posts_file:
     posts = json.loads(posts_file.read())
 
-Document.window(4)
-Document.tokenizer(CodeTokenizer())
+Document.set_window(4)
+Document.set_tokenizer(CodeTokenizer())
 documents = []
 for post in posts:
     documents.append(Document(post['Id'], post['Title'], post['Body'], post['Tags']))

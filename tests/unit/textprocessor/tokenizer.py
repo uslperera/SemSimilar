@@ -1,5 +1,6 @@
 import unittest
-from core.tokenize import CodeTokenizer
+
+from core.textprocessor.tokenize import CodeTokenizer
 
 
 class TokenizeSplitTestCase(unittest.TestCase):
@@ -46,3 +47,8 @@ class TokenizeMixTestCase(unittest.TestCase):
         sentence = "\"I said, 'what're you? Crazy?\" said Sandowsky. \"I can't afford to do that.\""
         tokens = CodeTokenizer().tokenize(sentence)
         self.assertEqual(str(expected_tokens), str(tokens))
+
+class TokenizeSpanTokenizeTestCase(unittest.TestCase):
+    def test(self):
+        sentence = "This is a test."
+        CodeTokenizer().span_tokenize(sentence)

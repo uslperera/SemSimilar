@@ -1,20 +1,19 @@
 import json
-
-import pandas
-
-from core.model.document import Document
-from core.tokenize import CodeTokenizer
-from gensim import models, corpora
-from core.topicmodel.lda_similarity import similarity
-from matplotlib import pyplot as plt
-import numpy as np
 from collections import defaultdict
 
-Document.window(4)
+import numpy as np
+import pandas
+from gensim import models, corpora
+from matplotlib import pyplot as plt
+
+from core.model.document import Document
+from core.textprocessor.tokenize import CodeTokenizer
+
+Document.set_window(4)
 Document.tags_enabled = True
 Document.description_enabled = True
 
-Document.tokenizer(CodeTokenizer())
+Document.set_tokenizer(CodeTokenizer())
 
 count = 20
 with open('data/100posts.json') as posts_file:

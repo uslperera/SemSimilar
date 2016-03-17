@@ -1,10 +1,9 @@
 import json
-from core.model import Document
-from core.textprocessor.synsets import process
-from core.ontology import lesk_similarity as lesk
 import pickle
 
-
+from core.model import Document
+from core.similarity.knowledge import lesk as lesk
+from core.textprocessor.wsd import process
 
 # Read all the documents from the data source
 posts = []
@@ -18,7 +17,7 @@ for post in posts:
 # Tokenize the documents
 '''
 try:
-    process(documents=documents, title_enabled=True, description_enabled=True, tags_enabled=True, window=0)
+    process(documents=documents, title_enabled=True, description_enabled=True, tags_enabled=True, set_window=0)
 finally:
     pickle.dump(documents, open('temp/documents.p', 'wb'), pickle.HIGHEST_PROTOCOL)
 '''

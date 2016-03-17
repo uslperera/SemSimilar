@@ -61,11 +61,13 @@ with open('posts1.csv', 'rb') as csvfile:
         print ', '.join(row)
         """
 import json
-from core.model.document import Document
-from gensim import corpora, models, similarities
-from core.tokenize import CodeTokenizer
 
-Document.tokenizer(CodeTokenizer())
+from gensim import corpora, models, similarities
+
+from core.model.document import Document
+from core.textprocessor.tokenize import CodeTokenizer
+
+Document.set_tokenizer(CodeTokenizer())
 count = 50
 with open('data/100posts.json') as posts_file:
     posts = json.loads(posts_file.read())

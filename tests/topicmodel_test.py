@@ -1,10 +1,12 @@
-from gensim import models, corpora
 import json
-from core.model import Document
-from core.tokenize import CodeTokenizer
-from core.topicmodel import lda_similarity as lda
 
-Document.tokenizer(CodeTokenizer())
+from gensim import models, corpora
+
+from core.model import Document
+from core.similarity.corpus import lda as lda
+from core.textprocessor.tokenize import CodeTokenizer
+
+Document.set_tokenizer(CodeTokenizer())
 
 # Read all the documents from the data source
 posts = []
@@ -25,8 +27,8 @@ for doc in documents:
 dictionary = corpora.Dictionary(texts)
 corpus = [dictionary.doc2bow(text) for text in texts]
 
-# tfidf = models.TfidfModel(corpus)
-# tfidf_corpus = tfidf[corpus]
+# __tfidf = models.TfidfModel(corpus)
+# tfidf_corpus = __tfidf[corpus]
 
 ldamodel = models.ldamodel.LdaModel(corpus, id2word=dictionary, num_topics=8)
 # ldamodel = models.ldamodel.LdaModel(tfidf_corpus, id2word=dictionary, num_topics=8)
@@ -41,7 +43,7 @@ ldamodel = models.ldamodel.LdaModel(corpus, id2word=dictionary, num_topics=8)
 # for post in duplicate_posts:
 #     duplicate_documents.append(Document(post['Id'], post['title'], post['body'], post['tags']))
 #
-# process(documents=duplicate_documents, title_enabled=True, description_enabled=False, tags_enabled=True, window=0)
+# process(documents=duplicate_documents, title_enabled=True, description_enabled=False, tags_enabled=True, set_window=0)
 
 d = Document(0, "How do I calculate someone's age in C#", "", "")
 duplicate_documents = [d]

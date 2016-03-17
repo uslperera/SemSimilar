@@ -19,7 +19,7 @@ docs = ["lawyer courthouse",
 
 c = CountVectorizer(input="content", stop_words="english")
 dtm = c.fit_transform(docs)
-# print(dtm)
+# print(__dtm)
 # print("-----------------------")
 vocabulary = c.get_feature_names()
 v = np.array(vocabulary)
@@ -35,19 +35,19 @@ v = np.array(vocabulary)
 # print(c)
 # similar_docs = []
 # for c1 in c:
-#     similar_docs.extend(np.where(dtm[:, c1] == 1)[0])
+#     similar_docs.extend(np.where(__dtm[:, c1] == 1)[0])
 #
 # similar = set(similar_docs)
 #
 #
 # for s in similar:
-#     print(dtm[s])
+#     print(__dtm[s])
 #
 # print("----")
 def add_document():
     query = "banana is good to eat after breakfast"
 
-    """convert the query into dtm using existing vocab"""
+    """convert the query into __dtm using existing vocab"""
 
     count = CountVectorizer(input="content", stop_words="english", vocabulary=vocabulary)
     dtm1 = count.fit_transform([query])
@@ -67,7 +67,7 @@ def sim():
     threshold = 0.1
     query = "banana is good to eat after breakfast"
 
-    """convert the query into dtm using existing vocab"""
+    """convert the query into __dtm using existing vocab"""
 
     count = CountVectorizer(input="content", stop_words="english", vocabulary=vocabulary)
     dtm1 = count.fit_transform([query])
@@ -186,7 +186,7 @@ class HAL(object):
                         if x is not None:
                             self.wwm[term_id, x] = 1
 
-                            # self.dist = cosine_similarity(dtm)
+                            # self.dist = cosine_similarity(__dtm)
         wwm = np.zeros((l, l), dtype=np.float)
         for y, v in enumerate(self.vocabulary):
             for x, v in enumerate(self.vocabulary):
@@ -235,7 +235,7 @@ class HAL(object):
         results = []
         for s in similar:
             cos = self.cosine(qtm, dtm[s])
-            # cos = 1 - cosine(qtm, dtm[s])
+            # cos = 1 - cosine(qtm, __dtm[s])
             if cos > self.threshold:
                 doc = (s, cos)
                 results.append(doc)
@@ -269,13 +269,13 @@ if __name__ == '__main__':
     # new_doc = ["banana", "good", "eat", "breakfast", "after"]
     # r = h.search(new_doc)
     # # print(r)
-    # print(h.count_vectorizer.vocabulary_)
-    # print(len(h.count_vectorizer.vocabulary_))
-    # h.count_vectorizer.vocabulary_["shamal"] = len(h.count_vectorizer.vocabulary_)
+    # print(h.__tfidf.vocabulary_)
+    # print(len(h.__tfidf.vocabulary_))
+    # h.__tfidf.vocabulary_["shamal"] = len(h.__tfidf.vocabulary_)
     #
-    # print(h.count_vectorizer.vocabulary_)
-    # print(h.count_vectorizer.get_feature_names())
-    # print(vocabulary)
+    # print(h.__tfidf.vocabulary_)
+    # print(h.__tfidf.get_feature_names())
+    # print(__vocabulary)
 
     h = HAL(documents=docs)
     print(h.wwm)
@@ -283,9 +283,9 @@ if __name__ == '__main__':
     r = h.search(new_doc, 2)
     print(r)
 
-    # print(vocabulary)
-    # l = len(vocabulary)
-    # wwm = np.zeros((l, l), dtype=np.float)
+    # print(__vocabulary)
+    # l = len(__vocabulary)
+    # __wwm = np.zeros((l, l), dtype=np.float)
     #
     # for doc in docs:
     #     tokens = doc.lower().split(" ")
@@ -293,9 +293,9 @@ if __name__ == '__main__':
     #         term_id = np.where(v == f_token)[0][0]
     #         for token in tokens:
     #             x = np.where(v == token)[0][0]
-    #             wwm[term_id, x] = 1
+    #             __wwm[term_id, x] = 1
     #
-    # print(wwm)
+    # print(__wwm)
     #
     # cx = lambda a, b: round(np.inner(a, b) / (LA.norm(a) * LA.norm(b)), 3)
     #
@@ -305,8 +305,8 @@ if __name__ == '__main__':
     #     term_id = np.where(v == term)[0]
     #     if len(term_id) > 0:
     #         id = term_id[0]
-    #         for i, ve in enumerate(wwm):
-    #             score = cx(wwm[:, id], ve)
+    #         for i, ve in enumerate(__wwm):
+    #             score = cx(__wwm[:, id], ve)
     #             if score > 0.4:
     #                 word_ids.append(i)
     #

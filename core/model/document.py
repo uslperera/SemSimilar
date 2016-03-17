@@ -1,5 +1,5 @@
 from nltk.tokenize.api import TokenizerI
-from core.textprocessor.synsets import get_synsets
+from core.textprocessor.wsd import get_synsets
 from core.textprocessor.processor import *
 
 
@@ -14,10 +14,7 @@ class Document(object):
     __window = 4
     title_enabled = True
     description_enabled = tags_enabled = False
-
-    title_tokens = None
-    description_tokens = None
-    tags_tokens = None
+    __synset_tokens = None
 
     def __init__(self, id, title, description, tags):
         self.__id = id
@@ -67,12 +64,12 @@ class Document(object):
         return self.__synsets
 
     @staticmethod
-    def window(window):
+    def set_window(window):
         if window > 1 & window % 2 == 0:
             Document.__window = window
 
     @staticmethod
-    def tokenizer(tokenizer):
+    def set_tokenizer(tokenizer):
         if isinstance(tokenizer, TokenizerI):
             Document.__tokenizer = tokenizer
 
@@ -80,24 +77,24 @@ class Document(object):
         self.__tokens = []
         if self.title_enabled & self.description_enabled & self.tags_enabled:
             text = self.__title + " " + self.__description + " " + self.__tags
-            self.title_tokens = self.__tokenizer.tokenize((self.__title + " " + self.__tags).lower())
+            self.__synset_tokens = self.__tokenizer.tokenize((self.__title + " " + self.__tags).lower())
         elif self.title_enabled & self.description_enabled:
             text = self.__title + " " + self.__description
-            self.title_tokens = self.__tokenizer.tokenize(self.__title.lower())
+            self.__synset_tokens = self.__tokenizer.tokenize(self.__title.lower())
         elif self.title_enabled & self.tags_enabled:
             text = self.__title + " " + self.__tags
-            self.title_tokens = self.__tokenizer.tokenize((self.__title + " " + self.__tags).lower())
+            self.__synset_tokens = self.__tokenizer.tokenize((self.__title + " " + self.__tags).lower())
         else:
             text = self.__title
-            self.title_tokens = self.__tokenizer.tokenize(self.__title.lower())
+            self.__synset_tokens = self.__tokenizer.tokenize(self.__title.lower())
 
         tokens = self.__tokenizer.tokenize(text.lower())
         tokens = remove_stopwords(tokens)
         self.__tokens = tokens
 
-        self.title_tokens = remove_stopwords(self.title_tokens)
+        self.__synset_tokens = remove_stopwords(self.__synset_tokens)
         # self.__synsets = get_synsets(self.__tokens, self.__window)
-        self.__synsets = get_synsets(self.title_tokens, self.__window)
+        self.__synsets = get_synsets(self.__synset_tokens, self.__window)
 
     def get_stemmed_tokens(self):
         return stem_tokens(self.__tokens)

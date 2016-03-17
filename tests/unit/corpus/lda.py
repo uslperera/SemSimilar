@@ -1,15 +1,17 @@
 import unittest
-from core.model.document import Document
+
 from gensim import corpora, models, similarities
-from core.topicmodel import lda_similarity as lda
-from core.tokenize import CodeTokenizer
 from mock.mock import MagicMock, patch
+
+from core.model.document import Document
+from core.similarity.corpus import lda as lda
+from core.textprocessor.tokenize import CodeTokenizer
 
 
 class LDAResultsTestCase(unittest.TestCase):
     @classmethod
     def setUpClass(cls):
-        Document.tokenizer(CodeTokenizer())
+        Document.set_tokenizer(CodeTokenizer())
         doc_a = Document(1, "Some health experts suggest that driving may cause increased tension and blood pressure.",
                          "",
                          "Health, Motor")
@@ -72,7 +74,7 @@ class LDAResultsTestCase(unittest.TestCase):
 class LDAResultsCountTestCase(unittest.TestCase):
     @classmethod
     def setUpClass(cls):
-        Document.tokenizer(CodeTokenizer())
+        Document.set_tokenizer(CodeTokenizer())
         doc_a = Document(1, "Some health experts suggest that driving may cause increased tension and blood pressure.",
                          "",
                          "Health, Motor")
