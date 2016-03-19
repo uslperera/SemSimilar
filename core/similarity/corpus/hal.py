@@ -2,7 +2,7 @@ import numpy.linalg as LA
 from scipy.sparse import csr_matrix
 from sklearn.feature_extraction.text import CountVectorizer, TfidfVectorizer
 from scipy.spatial.distance import *
-
+import numpy as np
 
 class HAL(object):
     __tfidf = None

@@ -1,8 +1,9 @@
 from nltk.stem.porter import PorterStemmer
 from nltk.stem.snowball import SnowballStemmer
 from stop_words import get_stop_words
+from nltk.corpus import stopwords
 
-en_stop = get_stop_words('en')
+en_stop = stopwords.words('english')
 p_stemmer = PorterStemmer()
 s_stemmer = SnowballStemmer("english")
 

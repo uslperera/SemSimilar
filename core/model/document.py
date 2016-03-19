@@ -56,6 +56,10 @@ class Document(object):
         self.__tags = tags
 
     @property
+    def synset_tokens(self):
+        return self.__synset_tokens
+
+    @property
     def tokens(self):
         return self.__tokens
 
