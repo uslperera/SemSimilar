@@ -68,6 +68,7 @@ class HAL(object):
         self.__wwm = wwm
 
     def add_document(self, document):
+        """Add document into corpus"""
         count = CountVectorizer(input="content", stop_words="english", vocabulary=self.__vocabulary)
         dtm1 = count.fit_transform([" ".join(document)])
 
@@ -75,6 +76,7 @@ class HAL(object):
         self.__dtm = csr_matrix(dtm2)
 
     def get_related_vocabulary(self, query):
+        """Get co-occurring vocabulary"""
         word_ids = []
         for term in query:
             term_id = np.where(self.__vocabulary == term)[0]
@@ -86,6 +88,7 @@ class HAL(object):
         return word_ids
 
     def search(self, query):
+        """Get similar documents"""
         countVectorizer = CountVectorizer(input="content", stop_words="english",
                                           vocabulary=self.__tfidf.get_feature_names())
         query_string = " ".join(query)
@@ -128,6 +131,7 @@ class HAL(object):
         return results
 
     def get_term_id(self, term):
+        """Get id of the term in vocabulary"""
         term_id = np.where(self.__vocabulary == term)[0]
         if len(term_id) > 0:
             return term_id[0]

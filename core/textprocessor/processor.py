@@ -1,6 +1,5 @@
 from nltk.stem.porter import PorterStemmer
 from nltk.stem.snowball import SnowballStemmer
-from stop_words import get_stop_words
 from nltk.corpus import stopwords
 
 en_stop = stopwords.words('english')
@@ -9,11 +8,13 @@ s_stemmer = SnowballStemmer("english")
 
 
 def remove_stopwords(tokens):
+    """Remove stop words in English"""
     stopped_tokens = [i for i in tokens if not i in en_stop]
     return stopped_tokens
 
 
 def stem_tokens(tokens):
+    """Extract the stem of tokens"""
     stemmed_tokens = [s_stemmer.stem(i) for i in tokens]
     return stemmed_tokens
 

@@ -4,12 +4,16 @@ from core.textprocessor.processor import *
 
 
 class Document(object):
+    """
+    Document class includes the basic skeleton to keep all the data associated with posts or articles.
+    """
     __id = None
     __title = None
     __description = None
     __tags = None
     __tokens = None
     __synsets = None
+    __stemmed_tokens = None
     __tokenizer = None
     __window = 4
     title_enabled = True
@@ -60,6 +64,11 @@ class Document(object):
         return self.__synset_tokens
 
     @property
+    def stemmed_tokens(self):
+        """Return stemmed tokens in the document"""
+        return self.__stemmed_tokens
+
+    @property
     def tokens(self):
         return self.__tokens
 
@@ -69,15 +78,23 @@ class Document(object):
 
     @staticmethod
     def set_window(window):
+        """
+        Set the size of the window to be used for word sense disambiguation
+        min value - 2 & even number
+        """
         if window > 1 & window % 2 == 0:
             Document.__window = window
 
     @staticmethod
     def set_tokenizer(tokenizer):
+        """
+        Possible tokenizers - semsimilar.core.textprocessor.tokenize.CodeTokenizer, nltk.tokenize.api.*
+        """
         if isinstance(tokenizer, TokenizerI):
             Document.__tokenizer = tokenizer
 
     def generate_tokens(self):
+        """Tokenize the document"""
         self.__tokens = []
         if self.title_enabled & self.description_enabled & self.tags_enabled:
             text = self.__title + " " + self.__description + " " + self.__tags
@@ -99,6 +116,4 @@ class Document(object):
         self.__synset_tokens = remove_stopwords(self.__synset_tokens)
         # self.__synsets = get_synsets(self.__tokens, self.__window)
         self.__synsets = get_synsets(self.__synset_tokens, self.__window)
-
-    def get_stemmed_tokens(self):
-        return stem_tokens(self.__tokens)
+        self.__stemmed_tokens = stem_tokens(self.__tokens)

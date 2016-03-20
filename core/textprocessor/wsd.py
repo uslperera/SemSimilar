@@ -2,6 +2,7 @@ from nltk.wsd import lesk
 
 
 def get_synsets(tokens, window):
+    """Get synsets for the tokens passed"""
     window = validate_window(window)
     synsets = []
     for token in tokens:
@@ -15,6 +16,7 @@ def get_synsets(tokens, window):
 
 
 def generate_window(window, tokens, target):
+    """Generate window to disambiguate words"""
     new_tokens = []
     index = tokens.index(target)
     right = 0
@@ -39,6 +41,7 @@ def generate_window(window, tokens, target):
 
 
 def validate_window(window):
+    """Validate window size"""
     default_window = 4
     if window > 1 & window % 2 == 0:
         return window

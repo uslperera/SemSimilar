@@ -16,6 +16,7 @@ from core.similarity.knowledge import lesk as lesk
 #     return results_ontology[:count]
 
 def similarity(documents, new_document, hal_model, count):
+    """Get semantically similar documents"""
     results_topic = hal_model.search(new_document.get_stemmed_tokens())
     results_ontology = []
     if results_topic:
@@ -24,9 +25,7 @@ def similarity(documents, new_document, hal_model, count):
         topic_documents = []
         for topic_document_id in topic_document_ids:
             topic_documents.append(documents[topic_document_id])
-        # topic_documents = list(topic_documents)
 
         results_ontology = lesk.similarity(documents=topic_documents, new_document=new_document, count=count)
 
-    # results_ontology.sort(key=lambda tup: tup[1], reverse=True)
     return results_ontology[:count]

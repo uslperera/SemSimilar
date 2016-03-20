@@ -3,6 +3,7 @@ from nltk.metrics import distance
 
 
 def similarity(documents, new_document, count):
+    """Get lexical similar documents"""
     count = __validate_count(count)
 
     results = []
@@ -30,6 +31,7 @@ def __validate_count(count):
 
 
 def __get_score(new_doc, doc):
+    """Get similarity score"""
     if new_doc.synsets is None or doc.synsets is None:
         return 0
     # total1 = __calculate_semantic_score(new_doc.synsets, doc.synsets)
@@ -46,6 +48,7 @@ def __get_score(new_doc, doc):
 
 
 def __calculate_string_score(synsets, tokens1, tokens2):
+    """Calculate string based similarity score"""
     total = 0
     for index, syn in enumerate(synsets, start=0):
         max = 0
@@ -59,6 +62,7 @@ def __calculate_string_score(synsets, tokens1, tokens2):
 
 
 def __calculate_semantic_score(synsets1, synsets2):
+    """Calculate semantic score using wordnet"""
     total = 0
     for syn1 in synsets1:
         max = 0
