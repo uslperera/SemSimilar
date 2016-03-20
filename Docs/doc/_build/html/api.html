@@ -1,0 +1,346 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>API &mdash; SemSimilar 1.0.0 documentation</title>
+    
+    <link rel="stylesheet" href="_static/alabaster.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    './',
+        VERSION:     '1.0.0',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <link rel="top" title="SemSimilar 1.0.0 documentation" href="index.html" />
+    <link rel="prev" title="Welcome to SemSimilar’s documentation!" href="index.html" />
+   
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head>
+  <body role="document">  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="api">
+<h1>API<a class="headerlink" href="#api" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="models">
+<h2>Models<a class="headerlink" href="#models" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="document">
+<h3>Document<a class="headerlink" href="#document" title="Permalink to this headline">¶</a></h3>
+<dl class="class">
+<dt id="document.Document">
+<em class="property">class </em><code class="descclassname">document.</code><code class="descname">Document</code><span class="sig-paren">(</span><em>id</em>, <em>title</em>, <em>description</em>, <em>tags</em><span class="sig-paren">)</span><a class="headerlink" href="#document.Document" title="Permalink to this definition">¶</a></dt>
+<dd><p>Document class includes the basic skeleton to keep all the data associated with posts or articles.</p>
+<dl class="attribute">
+<dt id="document.Document.description">
+<code class="descname">description</code><a class="headerlink" href="#document.Document.description" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get description of the document</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="document.Document.generate_tokens">
+<code class="descname">generate_tokens</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#document.Document.generate_tokens" title="Permalink to this definition">¶</a></dt>
+<dd><p>Tokenize the document based on selected components (title | description | tags)</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="document.Document.id">
+<code class="descname">id</code><a class="headerlink" href="#document.Document.id" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get id of the document</p>
+</dd></dl>
+
+<dl class="staticmethod">
+<dt id="document.Document.set_tokenizer">
+<em class="property">static </em><code class="descname">set_tokenizer</code><span class="sig-paren">(</span><em>tokenizer</em><span class="sig-paren">)</span><a class="headerlink" href="#document.Document.set_tokenizer" title="Permalink to this definition">¶</a></dt>
+<dd><p>Set a tokenizer to extract words</p>
+<p>Possible tokenizers - semsimilar.core.textprocessor.tokenize.CodeTokenizer, nltk.tokenize.api.*</p>
+</dd></dl>
+
+<dl class="staticmethod">
+<dt id="document.Document.set_window">
+<em class="property">static </em><code class="descname">set_window</code><span class="sig-paren">(</span><em>window</em><span class="sig-paren">)</span><a class="headerlink" href="#document.Document.set_window" title="Permalink to this definition">¶</a></dt>
+<dd><p>Set the size of the window to be used for word sense disambiguation</p>
+<p>min value = 2 &amp; must be even number</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="document.Document.stemmed_tokens">
+<code class="descname">stemmed_tokens</code><a class="headerlink" href="#document.Document.stemmed_tokens" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get stemmed tokens of the document</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="document.Document.synset_tokens">
+<code class="descname">synset_tokens</code><a class="headerlink" href="#document.Document.synset_tokens" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get synsets of the tokens (Description is excluded)</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="document.Document.synsets">
+<code class="descname">synsets</code><a class="headerlink" href="#document.Document.synsets" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get synsets of the tokens (Description is included)</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="document.Document.tags">
+<code class="descname">tags</code><a class="headerlink" href="#document.Document.tags" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get tags of the document</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="document.Document.title">
+<code class="descname">title</code><a class="headerlink" href="#document.Document.title" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get title of the document</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="document.Document.tokens">
+<code class="descname">tokens</code><a class="headerlink" href="#document.Document.tokens" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get tokens of the document</p>
+</dd></dl>
+
+</dd></dl>
+
+<p>Here is an example:</p>
+<div class="highlight-python"><div class="highlight"><pre><span></span>Document(101, &quot;PHP Session Security&quot;,
+&quot;What are some guidelines for maintaining
+responsible session security with PHP&quot;,
+ &quot;&lt;security&gt;&lt;php&gt;&quot;)
+</pre></div>
+</div>
+</div>
+<div class="section" id="module-document_worker">
+<span id="document-worker"></span><h3>Document Worker<a class="headerlink" href="#module-document_worker" title="Permalink to this headline">¶</a></h3>
+<dl class="function">
+<dt id="document_worker.parallel_process">
+<code class="descclassname">document_worker.</code><code class="descname">parallel_process</code><span class="sig-paren">(</span><em>posts</em>, <em>processors</em><span class="sig-paren">)</span><a class="headerlink" href="#document_worker.parallel_process" title="Permalink to this definition">¶</a></dt>
+<dd><p>Process large set of documents using parallel processing</p>
+</dd></dl>
+
+<p>Here is an example:</p>
+<div class="highlight-python"><div class="highlight"><pre><span></span><span class="n">final_documents</span><span class="p">,</span> <span class="n">final_texts</span> <span class="o">=</span> <span class="n">parallel_process</span><span class="p">(</span><span class="n">new_posts</span><span class="p">,</span> <span class="mi">3</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="text-processors">
+<h2>Text Processors<a class="headerlink" href="#text-processors" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="codetokenizer">
+<h3>CodeTokenizer<a class="headerlink" href="#codetokenizer" title="Permalink to this headline">¶</a></h3>
+<dl class="class">
+<dt id="tokenize.CodeTokenizer">
+<em class="property">class </em><code class="descclassname">tokenize.</code><code class="descname">CodeTokenizer</code><a class="headerlink" href="#tokenize.CodeTokenizer" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="method">
+<dt id="tokenize.CodeTokenizer.tokenize">
+<code class="descname">tokenize</code><span class="sig-paren">(</span><em>s</em><span class="sig-paren">)</span><a class="headerlink" href="#tokenize.CodeTokenizer.tokenize" title="Permalink to this definition">¶</a></dt>
+<dd><p>Tokenize a string (Splits the text into words)</p>
+</dd></dl>
+
+</dd></dl>
+
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">Compatible with any tokenizer extending <strong>nltk.tokenize.api.TokenizerI</strong></p>
+</div>
+</div>
+<div class="section" id="module-processor">
+<span id="other"></span><h3>Other<a class="headerlink" href="#module-processor" title="Permalink to this headline">¶</a></h3>
+<dl class="function">
+<dt id="processor.remove_stopwords">
+<code class="descclassname">processor.</code><code class="descname">remove_stopwords</code><span class="sig-paren">(</span><em>tokens</em><span class="sig-paren">)</span><a class="headerlink" href="#processor.remove_stopwords" title="Permalink to this definition">¶</a></dt>
+<dd><p>Remove stop words in English (e.g. and, of, for, to)</p>
+<p>Refer for the full list:
+<a class="reference external" href="http://www.ranks.nl/stopwords">http://www.ranks.nl/stopwords</a></p>
+</dd></dl>
+
+<dl class="function">
+<dt id="processor.stem_tokens">
+<code class="descclassname">processor.</code><code class="descname">stem_tokens</code><span class="sig-paren">(</span><em>tokens</em><span class="sig-paren">)</span><a class="headerlink" href="#processor.stem_tokens" title="Permalink to this definition">¶</a></dt>
+<dd><p>Extract the stem of words</p>
+</dd></dl>
+
+<span class="target" id="module-wsd"></span><dl class="function">
+<dt id="wsd.get_synsets">
+<code class="descclassname">wsd.</code><code class="descname">get_synsets</code><span class="sig-paren">(</span><em>tokens</em>, <em>window</em><span class="sig-paren">)</span><a class="headerlink" href="#wsd.get_synsets" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get synsets for the tokens passed</p>
+</dd></dl>
+
+</div>
+</div>
+<div class="section" id="module-lesk">
+<span id="semantic-similarity"></span><h2>Semantic Similarity<a class="headerlink" href="#module-lesk" title="Permalink to this headline">¶</a></h2>
+<dl class="function">
+<dt id="lesk.similarity">
+<code class="descclassname">lesk.</code><code class="descname">similarity</code><span class="sig-paren">(</span><em>documents</em>, <em>new_document</em>, <em>count</em><span class="sig-paren">)</span><a class="headerlink" href="#lesk.similarity" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get most similar documents using lexical and string based calculations</p>
+</dd></dl>
+
+<p>Here is an example:</p>
+<div class="highlight-python"><div class="highlight"><pre><span></span><span class="n">results_ontology</span> <span class="o">=</span> <span class="n">lesk</span><span class="o">.</span><span class="n">similarity</span><span class="p">(</span><span class="n">documents</span><span class="o">=</span><span class="n">topic_documents</span><span class="p">,</span>
+<span class="n">new_document</span><span class="o">=</span><span class="n">new_document</span><span class="p">,</span> <span class="n">count</span><span class="o">=</span><span class="n">count</span><span class="p">)</span>
+</pre></div>
+</div>
+<dl class="class">
+<dt id="hal.HAL">
+<em class="property">class </em><code class="descclassname">hal.</code><code class="descname">HAL</code><span class="sig-paren">(</span><em>documents</em><span class="sig-paren">)</span><a class="headerlink" href="#hal.HAL" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="method">
+<dt id="hal.HAL.add_document">
+<code class="descname">add_document</code><span class="sig-paren">(</span><em>document</em><span class="sig-paren">)</span><a class="headerlink" href="#hal.HAL.add_document" title="Permalink to this definition">¶</a></dt>
+<dd><p>Add document into corpus</p>
+</dd></dl>
+
+<dl class="staticmethod">
+<dt id="hal.HAL.cosine">
+<em class="property">static </em><code class="descname">cosine</code><span class="sig-paren">(</span><em>a</em>, <em>b</em><span class="sig-paren">)</span><a class="headerlink" href="#hal.HAL.cosine" title="Permalink to this definition">¶</a></dt>
+<dd><p>Calculate cosine angle between two vectors</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="hal.HAL.create_word_to_word_matrix">
+<code class="descname">create_word_to_word_matrix</code><span class="sig-paren">(</span><em>documents</em><span class="sig-paren">)</span><a class="headerlink" href="#hal.HAL.create_word_to_word_matrix" title="Permalink to this definition">¶</a></dt>
+<dd><p>Create word to word matrix</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="hal.HAL.document_term_matrix">
+<code class="descname">document_term_matrix</code><a class="headerlink" href="#hal.HAL.document_term_matrix" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get document term matrix (TFidf)</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="hal.HAL.get_related_vocabulary">
+<code class="descname">get_related_vocabulary</code><span class="sig-paren">(</span><em>query</em><span class="sig-paren">)</span><a class="headerlink" href="#hal.HAL.get_related_vocabulary" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get co-occurring vocabulary</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="hal.HAL.get_term_id">
+<code class="descname">get_term_id</code><span class="sig-paren">(</span><em>term</em><span class="sig-paren">)</span><a class="headerlink" href="#hal.HAL.get_term_id" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get id of the term in vocabulary</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="hal.HAL.search">
+<code class="descname">search</code><span class="sig-paren">(</span><em>query</em><span class="sig-paren">)</span><a class="headerlink" href="#hal.HAL.search" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get similar documents</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="hal.HAL.threshold">
+<code class="descname">threshold</code><a class="headerlink" href="#hal.HAL.threshold" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get threshold value for similarity match</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="hal.HAL.word_word_matrix">
+<code class="descname">word_word_matrix</code><a class="headerlink" href="#hal.HAL.word_word_matrix" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get word to word matrix</p>
+</dd></dl>
+
+</dd></dl>
+
+<p>Here is an example:</p>
+<div class="highlight-python"><div class="highlight"><pre><span></span><span class="n">hal</span> <span class="o">=</span> <span class="n">HAL</span><span class="p">(</span><span class="n">documents</span><span class="o">=</span><span class="n">final_texts</span><span class="p">)</span>
+</pre></div>
+</div>
+<span class="target" id="module-main"></span><dl class="function">
+<dt id="main.similarity">
+<code class="descclassname">main.</code><code class="descname">similarity</code><span class="sig-paren">(</span><em>documents</em>, <em>new_document</em>, <em>hal_model</em>, <em>count</em><span class="sig-paren">)</span><a class="headerlink" href="#main.similarity" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get semantically similar documents using both hal and lesk</p>
+</dd></dl>
+
+<p>Here is an example:</p>
+<div class="highlight-python"><div class="highlight"><pre><span></span><span class="n">similarity</span><span class="p">(</span><span class="n">documents</span><span class="p">,</span> <span class="n">doc</span><span class="p">,</span> <span class="n">hal</span><span class="p">,</span> <span class="mi">5</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+  <h3><a href="index.html">Table Of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">API</a><ul>
+<li><a class="reference internal" href="#models">Models</a><ul>
+<li><a class="reference internal" href="#document">Document</a></li>
+<li><a class="reference internal" href="#module-document_worker">Document Worker</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#text-processors">Text Processors</a><ul>
+<li><a class="reference internal" href="#codetokenizer">CodeTokenizer</a></li>
+<li><a class="reference internal" href="#module-processor">Other</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#module-lesk">Semantic Similarity</a></li>
+</ul>
+</li>
+</ul>
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="index.html">Documentation overview</a><ul>
+      <li>Previous: <a href="index.html" title="previous chapter">Welcome to SemSimilar&#8217;s documentation!</a></li>
+  </ul></li>
+</ul>
+</div>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="_sources/api.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2016, Shamal Perera.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.3.6</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.7</a>
+      
+      |
+      <a href="_sources/api.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
+  </body>
+</html>

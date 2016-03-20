@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta http-equiv="content-type" content="text/html;charset=utf-8">
+  <title>document.py</title>
+  <link rel="stylesheet" href="pycco.css">
+</head>
+<body>
+<div id='container'>
+  <div id="background"></div>
+  <div class='section'>
+    <div class='docs'><h1>document.py</h1></div>
+  </div>
+  <div class='clearall'>
+  <div class='section' id='section-0'>
+    <div class='docs'>
+      <div class='octowrap'>
+        <a class='octothorpe' href='#section-0'>#</a>
+      </div>
+      
+    </div>
+    <div class='code'>
+      <div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">nltk.tokenize.api</span> <span class="kn">import</span> <span class="n">TokenizerI</span>
+<span class="kn">from</span> <span class="nn">core.textprocessor.wsd</span> <span class="kn">import</span> <span class="n">get_synsets</span>
+<span class="kn">from</span> <span class="nn">core.textprocessor.processor</span> <span class="kn">import</span> <span class="o">*</span></pre></div>
+    </div>
+  </div>
+  <div class='clearall'></div>
+  <div class='section' id='section-1'>
+    <div class='docs'>
+      <div class='octowrap'>
+        <a class='octothorpe' href='#section-1'>#</a>
+      </div>
+      <h3><span id="document" href="document"> Document </span></h3>
+    </div>
+    <div class='code'>
+      <div class="highlight"><pre><span class="k">class</span> <span class="nc">Document</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span></pre></div>
+    </div>
+  </div>
+  <div class='clearall'></div>
+  <div class='section' id='section-2'>
+    <div class='docs'>
+      <div class='octowrap'>
+        <a class='octothorpe' href='#section-2'>#</a>
+      </div>
+      <p>Document class includes the basic skeleton to keep all the data associated with post or article.</p>
+    </div>
+    <div class='code'>
+      <div class="highlight"><pre>    <span class="n">__id</span> <span class="o">=</span> <span class="bp">None</span>
+    <span class="n">__title</span> <span class="o">=</span> <span class="bp">None</span>
+    <span class="n">__description</span> <span class="o">=</span> <span class="bp">None</span>
+    <span class="n">__tags</span> <span class="o">=</span> <span class="bp">None</span>
+    <span class="n">__tokens</span> <span class="o">=</span> <span class="bp">None</span>
+    <span class="n">__synsets</span> <span class="o">=</span> <span class="bp">None</span>
+    <span class="n">__stemmed_tokens</span> <span class="o">=</span> <span class="bp">None</span>
+    <span class="n">__tokenizer</span> <span class="o">=</span> <span class="bp">None</span>
+    <span class="n">__window</span> <span class="o">=</span> <span class="mi">4</span>
+    <span class="n">title_enabled</span> <span class="o">=</span> <span class="bp">True</span>
+    <span class="n">description_enabled</span> <span class="o">=</span> <span class="n">tags_enabled</span> <span class="o">=</span> <span class="bp">False</span>
+    <span class="n">__synset_tokens</span> <span class="o">=</span> <span class="bp">None</span></pre></div>
+    </div>
+  </div>
+  <div class='clearall'></div>
+  <div class='section' id='section-3'>
+    <div class='docs'>
+      <div class='octowrap'>
+        <a class='octothorpe' href='#section-3'>#</a>
+      </div>
+      
+    </div>
+    <div class='code'>
+      <div class="highlight"><pre>    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="nb">id</span><span class="p">,</span> <span class="n">title</span><span class="p">,</span> <span class="n">description</span><span class="p">,</span> <span class="n">tags</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">__id</span> <span class="o">=</span> <span class="nb">id</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">__title</span> <span class="o">=</span> <span class="n">title</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">__description</span> <span class="o">=</span> <span class="n">description</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">__tags</span> <span class="o">=</span> <span class="n">tags</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">generate_tokens</span><span class="p">()</span></pre></div>
+    </div>
+  </div>
+  <div class='clearall'></div>
+  <div class='section' id='section-4'>
+    <div class='docs'>
+      <div class='octowrap'>
+        <a class='octothorpe' href='#section-4'>#</a>
+      </div>
+      <p>stemmed_tokens Return stemmed tokens in the document</p>
+    </div>
+    <div class='code'>
+      <div class="highlight"><pre>    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">id</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">__id</span>
+
+    <span class="nd">@id.setter</span>
+    <span class="k">def</span> <span class="nf">id</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="nb">id</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">__id</span> <span class="o">=</span> <span class="nb">id</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">title</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">__title</span>
+
+    <span class="nd">@title.setter</span>
+    <span class="k">def</span> <span class="nf">title</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">title</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">__title</span> <span class="o">=</span> <span class="n">title</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">description</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">__description</span>
+
+    <span class="nd">@description.setter</span>
+    <span class="k">def</span> <span class="nf">description</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">description</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">__description</span> <span class="o">=</span> <span class="n">description</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">tags</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">__tags</span>
+
+    <span class="nd">@tags.setter</span>
+    <span class="k">def</span> <span class="nf">tags</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">tags</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">__tags</span> <span class="o">=</span> <span class="n">tags</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">synset_tokens</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">__synset_tokens</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">stemmed_tokens</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span></pre></div>
+    </div>
+  </div>
+  <div class='clearall'></div>
+  <div class='section' id='section-5'>
+    <div class='docs'>
+      <div class='octowrap'>
+        <a class='octothorpe' href='#section-5'>#</a>
+      </div>
+      
+    </div>
+    <div class='code'>
+      <div class="highlight"><pre>        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">__stemmed_tokens</span></pre></div>
+    </div>
+  </div>
+  <div class='clearall'></div>
+  <div class='section' id='section-6'>
+    <div class='docs'>
+      <div class='octowrap'>
+        <a class='octothorpe' href='#section-6'>#</a>
+      </div>
+      
+    </div>
+    <div class='code'>
+      <div class="highlight"><pre>    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">tokens</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">__tokens</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">synsets</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">__synsets</span>
+
+    <span class="nd">@staticmethod</span>
+    <span class="k">def</span> <span class="nf">set_window</span><span class="p">(</span><span class="n">window</span><span class="p">):</span>
+        <span class="k">if</span> <span class="n">window</span> <span class="o">&gt;</span> <span class="mi">1</span> <span class="o">&amp;</span> <span class="n">window</span> <span class="o">%</span> <span class="mi">2</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="n">Document</span><span class="o">.</span><span class="n">__window</span> <span class="o">=</span> <span class="n">window</span>
+
+    <span class="nd">@staticmethod</span>
+    <span class="k">def</span> <span class="nf">set_tokenizer</span><span class="p">(</span><span class="n">tokenizer</span><span class="p">):</span>
+        <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">tokenizer</span><span class="p">,</span> <span class="n">TokenizerI</span><span class="p">):</span>
+            <span class="n">Document</span><span class="o">.</span><span class="n">__tokenizer</span> <span class="o">=</span> <span class="n">tokenizer</span>
+
+    <span class="k">def</span> <span class="nf">generate_tokens</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">__tokens</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">title_enabled</span> <span class="o">&amp;</span> <span class="bp">self</span><span class="o">.</span><span class="n">description_enabled</span> <span class="o">&amp;</span> <span class="bp">self</span><span class="o">.</span><span class="n">tags_enabled</span><span class="p">:</span>
+            <span class="n">text</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">__title</span> <span class="o">+</span> <span class="s2">&quot; &quot;</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">__description</span> <span class="o">+</span> <span class="s2">&quot; &quot;</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">__tags</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">__synset_tokens</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">__tokenizer</span><span class="o">.</span><span class="n">tokenize</span><span class="p">((</span><span class="bp">self</span><span class="o">.</span><span class="n">__title</span> <span class="o">+</span> <span class="s2">&quot; &quot;</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">__tags</span><span class="p">)</span><span class="o">.</span><span class="n">lower</span><span class="p">())</span>
+        <span class="k">elif</span> <span class="bp">self</span><span class="o">.</span><span class="n">title_enabled</span> <span class="o">&amp;</span> <span class="bp">self</span><span class="o">.</span><span class="n">description_enabled</span><span class="p">:</span>
+            <span class="n">text</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">__title</span> <span class="o">+</span> <span class="s2">&quot; &quot;</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">__description</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">__synset_tokens</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">__tokenizer</span><span class="o">.</span><span class="n">tokenize</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">__title</span><span class="o">.</span><span class="n">lower</span><span class="p">())</span>
+        <span class="k">elif</span> <span class="bp">self</span><span class="o">.</span><span class="n">title_enabled</span> <span class="o">&amp;</span> <span class="bp">self</span><span class="o">.</span><span class="n">tags_enabled</span><span class="p">:</span>
+            <span class="n">text</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">__title</span> <span class="o">+</span> <span class="s2">&quot; &quot;</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">__tags</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">__synset_tokens</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">__tokenizer</span><span class="o">.</span><span class="n">tokenize</span><span class="p">((</span><span class="bp">self</span><span class="o">.</span><span class="n">__title</span> <span class="o">+</span> <span class="s2">&quot; &quot;</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">__tags</span><span class="p">)</span><span class="o">.</span><span class="n">lower</span><span class="p">())</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">text</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">__title</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">__synset_tokens</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">__tokenizer</span><span class="o">.</span><span class="n">tokenize</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">__title</span><span class="o">.</span><span class="n">lower</span><span class="p">())</span>
+
+        <span class="n">tokens</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">__tokenizer</span><span class="o">.</span><span class="n">tokenize</span><span class="p">(</span><span class="n">text</span><span class="o">.</span><span class="n">lower</span><span class="p">())</span>
+        <span class="n">tokens</span> <span class="o">=</span> <span class="n">remove_stopwords</span><span class="p">(</span><span class="n">tokens</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">__tokens</span> <span class="o">=</span> <span class="n">tokens</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">__synset_tokens</span> <span class="o">=</span> <span class="n">remove_stopwords</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">__synset_tokens</span><span class="p">)</span></pre></div>
+    </div>
+  </div>
+  <div class='clearall'></div>
+  <div class='section' id='section-7'>
+    <div class='docs'>
+      <div class='octowrap'>
+        <a class='octothorpe' href='#section-7'>#</a>
+      </div>
+      <p>self.<strong>synsets = get_synsets(self.</strong>tokens, self.__window)</p>
+    </div>
+    <div class='code'>
+      <div class="highlight"><pre>        <span class="bp">self</span><span class="o">.</span><span class="n">__synsets</span> <span class="o">=</span> <span class="n">get_synsets</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">__synset_tokens</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">__window</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">__stemmed_tokens</span> <span class="o">=</span> <span class="n">stem_tokens</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">__tokens</span><span class="p">)</span>
+
+</pre></div>
+    </div>
+  </div>
+  <div class='clearall'></div>
+</div>
+</body>
