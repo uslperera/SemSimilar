@@ -1,9 +1,11 @@
 from nltk.corpus import wordnet as wn
 from nltk.metrics import distance
-
+import logging
 
 def similarity(documents, new_document, count):
     """Get lexical similar documents"""
+    logger = logging.getLogger(__name__)
+    logger.info("Lesk similarity calculation started")
     count = __validate_count(count)
 
     results = []
@@ -19,6 +21,7 @@ def similarity(documents, new_document, count):
             result = (document, score)
             results.append(result)
             results.sort(key=lambda tup: tup[1], reverse=True)
+    logger.info("Lesk similarity calculation finished")
     return results
 
 
@@ -32,23 +35,29 @@ def __validate_count(count):
 
 def __get_score(new_doc, doc):
     """Get similarity score"""
+    logger = logging.getLogger(__name__)
+    logger.info("Started calculating score")
     if new_doc.synsets is None or doc.synsets is None:
         return 0
     # total1 = __calculate_semantic_score(new_doc.synsets, doc.synsets)
     total1 = __calculate_semantic_score(new_doc.synsets, doc.synsets) + __calculate_string_score(new_doc.synsets,
                                                                                                  new_doc.synset_tokens,
                                                                                                  doc.synset_tokens)
+    logger.debug(total1)
     # total2 = __calculate_semantic_score(doc.synsets, new_doc.synsets)
 
     total2 = __calculate_semantic_score(doc.synsets, new_doc.synsets) + __calculate_string_score(doc.synsets,
                                                                                                  doc.synset_tokens,
                                                                                                  new_doc.synset_tokens)
-
+    logger.debug(total2)
+    logger.info("Finished calculating score")
     return (total1 + total2) / (len(doc.synset_tokens) + len(new_doc.synset_tokens))
 
 
 def __calculate_string_score(synsets, tokens1, tokens2):
     """Calculate string based similarity score"""
+    logger = logging.getLogger(__name__)
+    logger.info("String-based similarity started")
     total = 0
     for index, syn in enumerate(synsets, start=0):
         max = 0
@@ -58,11 +67,15 @@ def __calculate_string_score(synsets, tokens1, tokens2):
                 if sim is not None and sim > max:
                     max = sim
         total += max
+    logger.debug("String-based similarity score for %s and %s is %s", tokens1, tokens2, total)
+    logger.info("String-based similarity finished")
     return total
 
 
 def __calculate_semantic_score(synsets1, synsets2):
     """Calculate semantic score using wordnet"""
+    logger = logging.getLogger(__name__)
+    logger.info("Path length calculation started")
     total = 0
     for syn1 in synsets1:
         max = 0
@@ -73,4 +86,6 @@ def __calculate_semantic_score(synsets1, synsets2):
                     if sim is not None and sim > max:
                         max = sim
         total += max
+    logger.debug("Score for synsets %s and %s is %s", synsets1, synsets2, total)
+    logger.info("Path length calculation finished")
     return total

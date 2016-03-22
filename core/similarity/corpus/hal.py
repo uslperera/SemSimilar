@@ -1,7 +1,5 @@
 import numpy.linalg as LA
-from scipy.sparse import csr_matrix
 from sklearn.feature_extraction.text import CountVectorizer, TfidfVectorizer
-from scipy.spatial.distance import *
 import numpy as np
 
 class HAL(object):
@@ -35,9 +33,7 @@ class HAL(object):
 
     def __init__(self, documents):
         self.__tfidf = TfidfVectorizer(input="content")
-        self.__dtm = self.__tfidf.fit_transform(documents)
-        self.__vocabulary = np.array(self.__tfidf.get_feature_names())
-        self.create_word_to_word_matrix(documents)
+        self.refresh_matrix(documents)
 
     @staticmethod
     def cosine(a, b):
@@ -46,34 +42,23 @@ class HAL(object):
         return 0
 
     def create_word_to_word_matrix(self, documents):
-        l = len(self.__vocabulary)
-        self.__wwm = np.zeros((l, l), dtype=np.float)
+        try:
+            x = self.document_term_matrix.toarray()
+            cooccurrence_matrix = np.dot(x.transpose(),x)
+            cooccurrence_matrix_diagonal = np.diagonal(cooccurrence_matrix)
+            with np.errstate(divide='ignore', invalid='ignore'):
+                cooccurrence_matrix_percentage = np.true_divide(cooccurrence_matrix, cooccurrence_matrix_diagonal[:, None])
+            self.__wwm = cooccurrence_matrix_percentage
+        except:
+            raise
 
-        for doc in documents:
-            tokens = doc.split(" ")
-            for f_token in tokens:
-                term_id = self.get_term_id(f_token)
-                if term_id is None:
-                    continue
-                for token in tokens:
-                    x = self.get_term_id(token)
-                    if x is not None:
-                        self.__wwm[term_id, x] = 1
-
-        wwm = np.zeros((l, l), dtype=np.float)
-        for y, v in enumerate(self.__vocabulary):
-            for x, v in enumerate(self.__vocabulary):
-                score = self.cosine(self.__wwm[:, x], self.__wwm[:, y])
-                wwm[x, y] = score
-        self.__wwm = wwm
-
-    def add_document(self, document):
-        """Add document into corpus"""
-        count = CountVectorizer(input="content", stop_words="english", vocabulary=self.__vocabulary)
-        dtm1 = count.fit_transform([" ".join(document)])
-
-        dtm2 = np.append(self.__dtm.toarray(), dtm1.toarray(), axis=0)
-        self.__dtm = csr_matrix(dtm2)
+    def refresh_matrix(self, documents):
+        try:
+            self.__dtm = self.__tfidf.fit_transform(documents)
+            self.__vocabulary = np.array(self.__tfidf.get_feature_names())
+            self.create_word_to_word_matrix(documents)
+        except:
+            raise
 
     def get_related_vocabulary(self, query):
         """Get co-occurring vocabulary"""

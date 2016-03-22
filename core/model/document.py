@@ -1,7 +1,7 @@
 from nltk.tokenize.api import TokenizerI
 from core.textprocessor.wsd import get_synsets
 from core.textprocessor.processor import *
-
+import logging
 
 class Document(object):
     """
@@ -20,12 +20,18 @@ class Document(object):
     description_enabled = tags_enabled = False
     __synset_tokens = None
 
+    __logger = None
+
     def __init__(self, id, title, description, tags):
+        self.__logger = logging.getLogger(__name__)
+        self.__logger.info("Started creating document with id %s", id)
+
         self.__id = id
         self.__title = title
         self.__description = description
         self.__tags = tags
         self.generate_tokens()
+        self.__logger.info("Finished creating document with id %s", id)
 
     @property
     def id(self):
@@ -95,6 +101,7 @@ class Document(object):
 
     def generate_tokens(self):
         """Tokenize the document"""
+        self.__logger.info("NLP processing started")
         self.__tokens = []
         if self.title_enabled & self.description_enabled & self.tags_enabled:
             text = self.__title + " " + self.__description + " " + self.__tags
@@ -110,10 +117,14 @@ class Document(object):
             self.__synset_tokens = self.__tokenizer.tokenize(self.__title.lower())
 
         tokens = self.__tokenizer.tokenize(text.lower())
-        tokens = remove_stopwords(tokens)
-        self.__tokens = tokens
+        self.__logger.debug("Tokens %s", tokens)
+        self.__tokens = remove_stopwords(tokens)
+        self.__logger.debug("Tokens after stop words are removed %s", self.__tokens)
 
         self.__synset_tokens = remove_stopwords(self.__synset_tokens)
-        # self.__synsets = get_synsets(self.__tokens, self.__window)
+        self.__logger.debug("Synset tokens %s", self.__synset_tokens)
         self.__synsets = get_synsets(self.__synset_tokens, self.__window)
+        self.__logger.debug("Synsets %s", self.__synsets)
         self.__stemmed_tokens = stem_tokens(self.__tokens)
+        self.__logger.debug("Stemmed tokens %s", self.__stemmed_tokens)
+        self.__logger.info("Finished processing the document")

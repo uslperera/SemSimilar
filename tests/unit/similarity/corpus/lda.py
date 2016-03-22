@@ -21,7 +21,7 @@ class LDAResultsTestCase(unittest.TestCase):
         cls.documents = [doc_a, doc_b]
         texts = []
         for document in cls.documents:
-            texts.append(document.get_stemmed_tokens())
+            texts.append(document.stemmed_tokens)
 
         # convert all the documents to a matrix
         cls.dictionary = corpora.Dictionary(texts)
@@ -85,7 +85,7 @@ class LDAResultsCountTestCase(unittest.TestCase):
 
         texts = []
         for document in cls.documents:
-            texts.append(document.get_stemmed_tokens())
+            texts.append(document.stemmed_tokens)
 
         # convert all the documents to a matrix
         cls.dictionary = corpora.Dictionary(texts)

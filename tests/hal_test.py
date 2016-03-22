@@ -7,7 +7,7 @@ from scipy.spatial.distance import *
 
 from sklearn.metrics.pairwise import cosine_similarity
 from itertools import izip
-
+from core.similarity.corpus.hal import HAL
 # docs = ["I like to eat broccoli and bananas.",
 #         "I ate a banana and spinach smoothie for breakfast.",
 #         "Chinchillas and kittens are cute.",
@@ -44,6 +44,7 @@ v = np.array(vocabulary)
 #     print(__dtm[s])
 #
 # print("----")
+'''
 def add_document():
     query = "banana is good to eat after breakfast"
 
@@ -261,7 +262,7 @@ class HAL(object):
             return term_id[0]
         return None
 
-
+'''
 if __name__ == '__main__':
     print("--test--")
     # sim()
@@ -277,11 +278,11 @@ if __name__ == '__main__':
     # print(h.__tfidf.get_feature_names())
     # print(__vocabulary)
 
-    h = HAL(documents=docs)
-    print(h.wwm)
-    new_doc = ["lawyer", "arrived", "place"]
-    r = h.search(new_doc, 2)
-    print(r)
+    # h = HAL(documents=docs)
+    # print(h.wwm)
+    # new_doc = ["lawyer", "arrived", "place"]
+    # r = h.search(new_doc, 2)
+    # print(r)
 
     # print(__vocabulary)
     # l = len(__vocabulary)
@@ -311,3 +312,15 @@ if __name__ == '__main__':
     #                 word_ids.append(i)
     #
     # print(word_ids)
+    print(v)
+    h = HAL(documents=docs)
+    print(h.word_word_matrix)
+    print("-----------------------")
+    x = dtm.toarray()
+    cooccurrence_matrix = np.dot(x.transpose(),x)
+    # print(cooccurrence_matrix)
+    cooccurrence_matrix_diagonal = np.diagonal(cooccurrence_matrix)
+    with np.errstate(divide='ignore', invalid='ignore'):
+        # cooccurrence_matrix_percentage = np.nan_to_num(np.true_divide(cooccurrence_matrix, cooccurrence_matrix_diagonal[:, None]))
+        cooccurrence_matrix_percentage = np.true_divide(cooccurrence_matrix, cooccurrence_matrix_diagonal[:, None])
+    print(cooccurrence_matrix_percentage)

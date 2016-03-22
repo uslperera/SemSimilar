@@ -219,7 +219,7 @@ def test_final(count):
 
     texts = []
     for doc in documents:
-        texts.append(" ".join(doc.get_stemmed_tokens()))
+        texts.append(" ".join(doc.stemmed_tokens))
 
     hal = HAL(documents=texts)
 
@@ -261,7 +261,7 @@ def test_final(count):
 if __name__ == '__main__':
     Document.set_window(4)
     Document.tags_enabled = True
-    Document.description_enabled = True
+    # Document.description_enabled = True
     Document.set_tokenizer(CodeTokenizer())
     load_post_links()
     # tag_count = get_tags(100)
@@ -269,8 +269,8 @@ if __name__ == '__main__':
     # test(100, 20)
     # print(post_links)
     # print_topics(20)
-    test_hal(200)
-    test_final(200)
+    #test_hal(200)
+    test_final(10)
     """
         122
         []

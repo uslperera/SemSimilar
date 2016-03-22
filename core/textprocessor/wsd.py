@@ -1,8 +1,11 @@
 from nltk.wsd import lesk
+import logging
 
 
 def get_synsets(tokens, window):
     """Get synsets for the tokens passed"""
+    logger = logging.getLogger(__name__)
+    logger.info("Retrieving synsets started")
     window = validate_window(window)
     synsets = []
     for token in tokens:
@@ -12,11 +15,15 @@ def get_synsets(tokens, window):
             synsets.append(synset.name())
         else:
             synsets.append(None)
+    logger.debug("Tokens - %s Synsets - %s", tokens, synsets)
+    logger.info("Retrieving synsets finished")
     return synsets
 
 
 def generate_window(window, tokens, target):
     """Generate window to disambiguate words"""
+    logger = logging.getLogger(__name__)
+    logger.info("Generating window")
     new_tokens = []
     index = tokens.index(target)
     right = 0
@@ -36,7 +43,8 @@ def generate_window(window, tokens, target):
         left -= (index + (window / 2) + 1) - len(tokens)
     for num in range(left, right):
         new_tokens.append(tokens[num])
-
+    logger.debug("Window of token %s is %s", target, new_tokens)
+    logger.info("Window generated")
     return new_tokens
 
 

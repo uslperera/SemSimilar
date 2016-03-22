@@ -1,14 +1,13 @@
 import unittest
 
 test_modules = [
-    'tests.unit.textprocessor.set_tokenizer',
+    'tests.unit.textprocessor.tokenizer',
     'tests.unit.textprocessor.processor',
     'tests.unit.textprocessor.wsd',
     'tests.unit.model.document',
-    'tests.unit.corpus.hal',
-    'tests.unit.corpus.lda',
-    'tests.unit.knowledge.lesk',
-    # 'tests.unit.main.similarity'
+    'tests.unit.similarity.corpus.hal',
+    'tests.unit.similarity.knowledge.lesk',
+    'tests.unit.similarity.main'
     ]
 
 suite = unittest.TestSuite()

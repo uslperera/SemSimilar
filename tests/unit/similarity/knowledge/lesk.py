@@ -21,10 +21,10 @@ class OntologyResultCountTestCase(unittest.TestCase):
         cls.documents = [doc_a, doc_b, doc_c]
         texts = []
         for document in cls.documents:
-            texts.append(document.get_stemmed_tokens())
+            texts.append(document.stemmed_tokens)
 
     @patch('core.model.document.Document.generate_tokens', MagicMock())
-    @patch('core.model.document.Document.get_stemmed_tokens', MagicMock())
+    @patch('core.model.document.Document.stemmed_tokens', MagicMock())
     def test_invalid_count(self):
         """If an invalid count is given"""
         expected_count = 1
@@ -35,7 +35,7 @@ class OntologyResultCountTestCase(unittest.TestCase):
         self.assertEqual(len(results), expected_count)
 
     @patch('core.model.document.Document.generate_tokens', MagicMock())
-    @patch('core.model.document.Document.get_stemmed_tokens', MagicMock())
+    @patch('core.model.document.Document.stemmed_tokens', MagicMock())
     def test_valid_count(self):
         """If an invalid count is given"""
         expected_count = 2
@@ -59,7 +59,7 @@ class SemanticScoreTestCase(unittest.TestCase):
         cls.documents = [doc_a, doc_b]
         texts = []
         for document in cls.documents:
-            texts.append(document.get_stemmed_tokens())
+            texts.append(document.stemmed_tokens)
 
     @patch('core.textprocessor.wsd.get_synsets',
            MagicMock(return_value=[None, u'well.r.01', u'vegetable.n.02', u'health.n.02']))
