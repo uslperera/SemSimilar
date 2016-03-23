@@ -163,6 +163,11 @@ class Document(object):
         if isinstance(tokenizer, TokenizerI):
             Document.__tokenizer = tokenizer
 
+    def remove_special_words(self, words):
+        self.__tokens = remove_custom_words(words, self.__tokens)
+        self.__synsets = get_synsets(self.__synset_tokens, self.__window)
+        self.__stemmed_tokens = stem_tokens(self.__tokens)
+
     def generate_tokens(self):
         """Tokenize the document based on selected components (title | description | tags)
 

@@ -41,7 +41,7 @@ def worker(posts, final_documents, final_texts):
 
     texts = []
     for doc in documents:
-        texts.append(" ".join(doc.get_stemmed_tokens()))
+        texts.append(" ".join(doc.stemmed_tokens))
     logger.info("Processing documents finished")
     append_documents(documents, texts, final_documents, final_texts)
     return
