@@ -8,7 +8,7 @@ import numpy as np
 
 
 class HALVocabularyTestCase(unittest.TestCase):
-    @patch('core.ss_similarity.corpus.hal.HAL.create_word_to_word_matrix', MagicMock())
+    @patch('core.similarity.corpus.hal.HAL.create_co_occurrence_matrix', MagicMock())
     def test(self):
         # vocab after stemming
         expected_vocab = [u'test']
@@ -20,13 +20,12 @@ class HALVocabularyTestCase(unittest.TestCase):
 
         for doc in documents:
             texts.append(" ".join(doc.stemmed_tokens))
-        # HAL.create_word_to_word_matrix = MagicMock()
         h = HAL(texts)
         self.assertEqual(str(h.vocabulary), str(expected_vocab))
 
 
 class HALDTMatrixTestCase(unittest.TestCase):
-    @patch('core.ss_similarity.corpus.hal.HAL.create_word_to_word_matrix', MagicMock())
+    @patch('core.similarity.corpus.hal.HAL.create_co_occurrence_matrix', MagicMock())
     def test(self):
         expected_dtm = "[[ 0.  0.  1.]\n [ 1.  0.  0.]\n [ 0.  1.  0.]]"
 
@@ -39,7 +38,6 @@ class HALDTMatrixTestCase(unittest.TestCase):
 
         for doc in documents:
             texts.append(" ".join(doc.get_stemmed_tokens()))
-        # HAL.create_word_to_word_matrix = MagicMock()
         h = HAL(texts)
         self.assertEqual(h.document_term_matrix.toarray().__str__(), expected_dtm)
 
@@ -69,7 +67,7 @@ class HALCosineTestCase(unittest.TestCase):
 
 
 class HALDTMatrixTestCase(unittest.TestCase):
-    @patch('core.ss_similarity.corpus.hal.HAL.create_word_to_word_matrix', MagicMock())
+    @patch('core.similarity.corpus.hal.HAL.create_co_occurrence_matrix', MagicMock())
     def test(self):
         expected_dtm = np.array([(0, 1), (1, 0)])
 
@@ -81,13 +79,13 @@ class HALDTMatrixTestCase(unittest.TestCase):
 
         for doc in documents:
             texts.append(" ".join(doc.stemmed_tokens))
-        # HAL.create_word_to_word_matrix = MagicMock()
+        # HAL.create_co_occurrence_matrix = MagicMock()
         h = HAL(texts)
-        self.assertTrue(np.array_equal(h.document_term_matrix.toarray(), expected_dtm))
+        self.assertTrue(np.array_equal(h.document_term_matrix, expected_dtm))
 
 
 class HALTermIdTestCase(unittest.TestCase):
-    @patch('core.ss_similarity.corpus.hal.HAL.create_word_to_word_matrix', MagicMock())
+    @patch('core.similarity.corpus.hal.HAL.create_co_occurrence_matrix', MagicMock())
     def test(self):
         expected_term_id = 0
 
@@ -98,13 +96,13 @@ class HALTermIdTestCase(unittest.TestCase):
 
         for doc in documents:
             texts.append(" ".join(doc.stemmed_tokens))
-        # HAL.create_word_to_word_matrix = MagicMock()
+        # HAL.create_co_occurrence_matrix = MagicMock()
         h = HAL(texts)
         self.assertEqual(h.get_term_id("test"), expected_term_id)
 
 class HALSearchTestCase(unittest.TestCase):
 
-    # @patch('core.ss_similarity.corpus.hal.HAL.create_word_to_word_matrix', MagicMock())
+    # @patch('core.similarity.corpus.hal.HAL.create_co_occurrence_matrix', MagicMock())
     def test(self):
 
 
@@ -117,9 +115,9 @@ class HALSearchTestCase(unittest.TestCase):
 
         for doc in documents:
             texts.append(" ".join(doc.stemmed_tokens))
-        # HAL.create_word_to_word_matrix = MagicMock()
+        # HAL.create_co_occurrence_matrix = MagicMock()
         h = HAL(texts)
         new_document = Document(3, "document", "", "")
-        results = h.search(new_document.stemmed_tokens)
+        results = h.semantic_search(new_document.stemmed_tokens)
 
         self.assertEqual(results[0][0], expected_doc_id)

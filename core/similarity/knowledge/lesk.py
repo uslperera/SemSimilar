@@ -62,7 +62,7 @@ def __validate_count(count):
 
 
 def __get_score(new_doc, doc):
-    """Get ss_similarity score"""
+    """Get similarity score"""
     logger = logging.getLogger(__name__)
     logger.info("Started calculating score")
     if new_doc.synsets is None or doc.synsets is None:
@@ -83,9 +83,9 @@ def __get_score(new_doc, doc):
 
 
 def __calculate_string_score(synsets, tokens1, tokens2):
-    """Calculate string based ss_similarity score"""
+    """Calculate string based similarity score"""
     logger = logging.getLogger(__name__)
-    logger.info("String-based ss_similarity started")
+    logger.info("String-based similarity started")
     total = 0
     for index, syn in enumerate(synsets, start=0):
         max = 0
@@ -95,8 +95,8 @@ def __calculate_string_score(synsets, tokens1, tokens2):
                 if sim is not None and sim > max:
                     max = sim
         total += max
-    logger.debug("String-based ss_similarity score for %s and %s is %s", tokens1, tokens2, total)
-    logger.info("String-based ss_similarity finished")
+    logger.debug("String-based similarity score for %s and %s is %s", tokens1, tokens2, total)
+    logger.info("String-based similarity finished")
     return total
 
 

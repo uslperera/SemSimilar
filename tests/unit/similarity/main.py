@@ -25,10 +25,10 @@ class SimilarityTestCase(unittest.TestCase):
         # Topics are health, food, motor
         cls.hal = HAL(texts)
 
-    @patch('core.ss_similarity.knowledge.lesk.ss_similarity')
-    @patch('core.ss_similarity.corpus.hal.HAL.search')
+    @patch('core.similarity.knowledge.lesk.similarity')
+    @patch('core.similarity.corpus.hal.HAL.semantic_search')
     def test_similarity(self, hal, lesk):
-        """Check for ss_similarity"""
+        """Check for similarity"""
         expected_document = self.documents[0]
         expected_score = 1.0
 

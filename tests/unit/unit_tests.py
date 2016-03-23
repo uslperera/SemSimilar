@@ -5,9 +5,9 @@ test_modules = [
     'tests.unit.textprocessor.processor',
     'tests.unit.textprocessor.wsd',
     'tests.unit.model.document',
-    'tests.unit.ss_similarity.corpus.hal',
-    'tests.unit.ss_similarity.knowledge.lesk',
-    'tests.unit.ss_similarity.main'
+    'tests.unit.similarity.corpus.hal',
+    'tests.unit.similarity.knowledge.lesk',
+    'tests.unit.similarity.main'
     ]
 
 suite = unittest.TestSuite()

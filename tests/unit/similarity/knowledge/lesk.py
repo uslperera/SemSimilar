@@ -64,7 +64,7 @@ class SemanticScoreTestCase(unittest.TestCase):
     @patch('core.textprocessor.wsd.get_synsets',
            MagicMock(return_value=[None, u'well.r.01', u'vegetable.n.02', u'health.n.02']))
     def test_semantic_score(self):
-        """Check if the ss_similarity score is calculated correctly"""
+        """Check if the similarity score is calculated correctly"""
         individual_score = 0.9
         """Calculate the semantic relatedness score"""
 
