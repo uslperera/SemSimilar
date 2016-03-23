@@ -3,7 +3,7 @@ import json
 from gensim import models, corpora
 
 from core.model import Document
-from core.similarity.main import similarity
+from core.similarity.main import ss_similarity
 from core.textprocessor.tokenize import CodeTokenizer
 
 with open('data/posts.json') as posts_file:
@@ -39,8 +39,8 @@ for post in duplicate_posts:
     duplicate_documents.append(Document(post['Id'], post['title'], post['body'], post['tags']))
 
 for doc in duplicate_documents:
-    results = similarity(lda_model=ldamodel, dictionary=dictionary, corpus=tfidf_corpus, documents=documents,
-                         new_document=doc, count=1)
+    results = ss_similarity(lda_model=ldamodel, dictionary=dictionary, corpus=tfidf_corpus, documents=documents,
+                            new_document=doc, count=1)
     for top_doc, score in results:
         if top_doc is not None:
             print(doc.id, doc.title, top_doc.id, top_doc.title, score)

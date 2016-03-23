@@ -1,7 +1,20 @@
 
 
 def get_synsets(tokens, window):
-    """Get synsets for the tokens passed"""
+    """Get synsets for the tokens passed
+
+    :param tokens: list of words
+    :param window: size of the window
+    :type tokens: list<string>
+    :type window: int
+    :returns: list of synsets
+    :rtype: list<string>
+
+    :Example:
+
+    >>> tokens = ['this', 'is', 'a', 'demo']
+    >>> get_synsets(tokens, 2)
+    """
     window = validate_window(window)
     synsets = []
     for token in tokens:

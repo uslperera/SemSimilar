@@ -8,7 +8,18 @@ class CodeTokenizer(object):
         return
 
     def tokenize(self, s):
-        """Tokenize a string (Splits the text into words)"""
+        """Tokenize a string (Splits the text into words)
+
+        :param s: stream of text
+        :type posts: string
+        :returns: list of words
+        :rtype: list<string>
+
+        :Example:
+
+        >>> c = CodeTokenizer()
+        >>> c.tokenize("Stream of text 123")
+        """
         # s = self.remove_punctuations(s)
         # return re.split("\s+", s)
         return

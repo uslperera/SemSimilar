@@ -1,11 +1,56 @@
+#!/usr/bin/python
+# -*- coding: ascii -*-
+
+__author__ = "Shamal Perera"
+__copyright__ = "Copyright 2016, SemSimilar Project"
+__license__ = "GPL"
+__version__ = "1.0.0"
+__email__ = "uslperera@gmail.com"
+
 from nltk.tokenize.api import TokenizerI
 from core.textprocessor.wsd import get_synsets
 from core.textprocessor.processor import *
 import logging
 
+
 class Document(object):
     """
     Document class includes the basic skeleton to keep all the data associated with posts or articles.
+
+    :param id: unique number of the document
+    :param title: title of the document
+    :param description: description of the document
+    :param tags: tags of the document
+    :type id: int
+    :type title: string
+    :type description: string
+    :type tags: string
+    :returns: Document model
+    :rtype: semsimilar.core.model.document.Document
+
+    **Property**:
+     - id
+     - title
+     - description
+     - tags
+     - synset_tokens (Get synsets of the tokens excluding Description)
+     - stemmed_tokens
+     - tokens
+     - synsets (Get synsets of the tokens including Description)
+
+    **Setter**
+     - id
+     - title
+     - description
+     - tags
+
+
+    :Example:
+
+    >>> Document(101, "PHP Session Security",
+    "What are some guidelines for maintaining
+    responsible session security with PHP",
+     "<security><php>")
     """
     __id = None
     __title = None
@@ -71,7 +116,6 @@ class Document(object):
 
     @property
     def stemmed_tokens(self):
-        """Return stemmed tokens in the document"""
         return self.__stemmed_tokens
 
     @property
@@ -82,11 +126,21 @@ class Document(object):
     def synsets(self):
         return self.__synsets
 
+
     @staticmethod
     def set_window(window):
         """
         Set the size of the window to be used for word sense disambiguation
-        min value - 2 & even number
+
+        The value must be an even number greater than 1
+
+        :param window: size of the window
+        :type window: int
+        :returns: void
+
+        :Example:
+
+        >>> Document.set_window(4)
         """
         if window > 1 & window % 2 == 0:
             Document.__window = window
@@ -94,13 +148,33 @@ class Document(object):
     @staticmethod
     def set_tokenizer(tokenizer):
         """
-        Possible tokenizers - semsimilar.core.textprocessor.tokenize.CodeTokenizer, nltk.tokenize.api.*
+        Set a tokenizer to extract words
+
+        .. note:: Possible tokenizers are semsimilar.core.textprocessor.tokenize.CodeTokenizer, nltk.tokenize.api.*
+
+        :param tokenizer: tokenizer object
+        :type tokenizer: semsimilar.core.textprocessor.tokenize.CodeTokenizer, nltk.tokenize.api.* ,...
+        :returns: void
+
+        :Example:
+
+        >>> Document.set_tokenizer(CodeTokenizer())
         """
         if isinstance(tokenizer, TokenizerI):
             Document.__tokenizer = tokenizer
 
     def generate_tokens(self):
-        """Tokenize the document"""
+        """Tokenize the document based on selected components (title | description | tags)
+
+        .. note:: This function is automatically called during a document creation. Can be called if content of the document is changed.
+
+        :returns: void
+
+        :Example:
+
+        >>> doc = Document(101, "PHP Session Security", None, None)
+        >>> doc.generate_tokens()
+        """
         self.__logger.info("NLP processing started")
         self.__tokens = []
         if self.title_enabled & self.description_enabled & self.tags_enabled:

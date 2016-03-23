@@ -8,7 +8,7 @@ import numpy as np
 
 
 class HALVocabularyTestCase(unittest.TestCase):
-    @patch('core.similarity.corpus.hal.HAL.create_word_to_word_matrix', MagicMock())
+    @patch('core.ss_similarity.corpus.hal.HAL.create_word_to_word_matrix', MagicMock())
     def test(self):
         # vocab after stemming
         expected_vocab = [u'test']
@@ -26,7 +26,7 @@ class HALVocabularyTestCase(unittest.TestCase):
 
 
 class HALDTMatrixTestCase(unittest.TestCase):
-    @patch('core.similarity.corpus.hal.HAL.create_word_to_word_matrix', MagicMock())
+    @patch('core.ss_similarity.corpus.hal.HAL.create_word_to_word_matrix', MagicMock())
     def test(self):
         expected_dtm = "[[ 0.  0.  1.]\n [ 1.  0.  0.]\n [ 0.  1.  0.]]"
 
@@ -57,7 +57,7 @@ class HALWTWMatrixTestCase(unittest.TestCase):
         for doc in documents:
             texts.append(" ".join(doc.stemmed_tokens))
         h = HAL(texts)
-        self.assertEqual(h.word_word_matrix.__str__(), expected_dtm)
+        self.assertEqual(h.co_occurrence_matrix.__str__(), expected_dtm)
 
 
 class HALCosineTestCase(unittest.TestCase):
@@ -69,7 +69,7 @@ class HALCosineTestCase(unittest.TestCase):
 
 
 class HALDTMatrixTestCase(unittest.TestCase):
-    @patch('core.similarity.corpus.hal.HAL.create_word_to_word_matrix', MagicMock())
+    @patch('core.ss_similarity.corpus.hal.HAL.create_word_to_word_matrix', MagicMock())
     def test(self):
         expected_dtm = np.array([(0, 1), (1, 0)])
 
@@ -87,7 +87,7 @@ class HALDTMatrixTestCase(unittest.TestCase):
 
 
 class HALTermIdTestCase(unittest.TestCase):
-    @patch('core.similarity.corpus.hal.HAL.create_word_to_word_matrix', MagicMock())
+    @patch('core.ss_similarity.corpus.hal.HAL.create_word_to_word_matrix', MagicMock())
     def test(self):
         expected_term_id = 0
 
@@ -104,7 +104,7 @@ class HALTermIdTestCase(unittest.TestCase):
 
 class HALSearchTestCase(unittest.TestCase):
 
-    # @patch('core.similarity.corpus.hal.HAL.create_word_to_word_matrix', MagicMock())
+    # @patch('core.ss_similarity.corpus.hal.HAL.create_word_to_word_matrix', MagicMock())
     def test(self):
 
 

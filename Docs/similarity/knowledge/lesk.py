@@ -2,7 +2,26 @@
 
 
 def similarity(documents, new_document, count):
-    """Get most similar documents using lexical and string based calculations"""
+    """Get most similar documents using lexical and string based calculations
+
+    :param documents: documents list
+    :param new_document: document to search
+    :param count: number of results wanted
+    :type documents: list<semsimilar.core.model.document.Document>
+    :type new_document: semsimilar.core.model.document.Document
+    :type count: int
+    :returns: Top matched documents with their scores (0-1)
+    :rtype: list<(semsimilar.core.model.document.Document, float)>
+
+    :Example:
+
+    >>> doc = Document(101, "PHP Session Security",
+        "What are some guidelines for maintaining
+        responsible session security with PHP",
+        "<security><php>")
+    >>> similarity(documents, doc, 1)
+    [(document, 0.708)]
+    """
     count = __validate_count(count)
 
     results = []
@@ -30,7 +49,7 @@ def __validate_count(count):
 
 
 def __get_score(new_doc, doc):
-    """Get similarity score"""
+    """Get ss_similarity score"""
     # if new_doc.synsets is None or doc.synsets is None:
     #     return 0
     # # total1 = __calculate_semantic_score(new_doc.synsets, doc.synsets)
@@ -48,7 +67,7 @@ def __get_score(new_doc, doc):
 
 
 def __calculate_string_score(synsets, tokens1, tokens2):
-    """Calculate string based similarity score"""
+    """Calculate string based ss_similarity score"""
     total = 0
     # for index, syn in enumerate(synsets, start=0):
     #     max = 0

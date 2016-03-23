@@ -286,7 +286,7 @@ if __name__ == '__main__':
 
     # print(__vocabulary)
     # l = len(__vocabulary)
-    # __wwm = np.zeros((l, l), dtype=np.float)
+    # __cm = np.zeros((l, l), dtype=np.float)
     #
     # for doc in docs:
     #     tokens = doc.lower().split(" ")
@@ -294,9 +294,9 @@ if __name__ == '__main__':
     #         term_id = np.where(v == f_token)[0][0]
     #         for token in tokens:
     #             x = np.where(v == token)[0][0]
-    #             __wwm[term_id, x] = 1
+    #             __cm[term_id, x] = 1
     #
-    # print(__wwm)
+    # print(__cm)
     #
     # cx = lambda a, b: round(np.inner(a, b) / (LA.norm(a) * LA.norm(b)), 3)
     #
@@ -306,21 +306,24 @@ if __name__ == '__main__':
     #     term_id = np.where(v == term)[0]
     #     if len(term_id) > 0:
     #         id = term_id[0]
-    #         for i, ve in enumerate(__wwm):
-    #             score = cx(__wwm[:, id], ve)
+    #         for i, ve in enumerate(__cm):
+    #             score = cx(__cm[:, id], ve)
     #             if score > 0.4:
     #                 word_ids.append(i)
     #
     # print(word_ids)
     print(v)
     h = HAL(documents=docs)
-    print(h.word_word_matrix)
+    new_doc = ["lawyer", "arrived", "place"]
+    r = h.semantic_search(new_doc)
+    print(r)
+    # print(h.co_occurrence_matrix)
     print("-----------------------")
-    x = dtm.toarray()
-    cooccurrence_matrix = np.dot(x.transpose(),x)
-    # print(cooccurrence_matrix)
-    cooccurrence_matrix_diagonal = np.diagonal(cooccurrence_matrix)
-    with np.errstate(divide='ignore', invalid='ignore'):
-        # cooccurrence_matrix_percentage = np.nan_to_num(np.true_divide(cooccurrence_matrix, cooccurrence_matrix_diagonal[:, None]))
-        cooccurrence_matrix_percentage = np.true_divide(cooccurrence_matrix, cooccurrence_matrix_diagonal[:, None])
-    print(cooccurrence_matrix_percentage)
+    # x = dtm.toarray()
+    # cooccurrence_matrix = np.dot(x.transpose(),x)
+    # # print(cooccurrence_matrix)
+    # cooccurrence_matrix_diagonal = np.diagonal(cooccurrence_matrix)
+    # with np.errstate(divide='ignore', invalid='ignore'):
+    #     # cooccurrence_matrix_percentage = np.nan_to_num(np.true_divide(cooccurrence_matrix, cooccurrence_matrix_diagonal[:, None]))
+    #     cooccurrence_matrix_percentage = np.true_divide(cooccurrence_matrix, cooccurrence_matrix_diagonal[:, None])
+    # print(cooccurrence_matrix_percentage)

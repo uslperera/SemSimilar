@@ -1,7 +1,7 @@
 import unittest
 from mock.mock import patch
 
-from core.similarity.main import similarity
+from core.similarity.main import ss_similarity
 from core.model.document import Document
 from core.textprocessor.tokenize import CodeTokenizer
 from core.similarity.corpus.hal import HAL
@@ -25,10 +25,10 @@ class SimilarityTestCase(unittest.TestCase):
         # Topics are health, food, motor
         cls.hal = HAL(texts)
 
-    @patch('core.similarity.knowledge.lesk.similarity')
-    @patch('core.similarity.corpus.hal.HAL.search')
+    @patch('core.ss_similarity.knowledge.lesk.ss_similarity')
+    @patch('core.ss_similarity.corpus.hal.HAL.search')
     def test_similarity(self, hal, lesk):
-        """Check for similarity"""
+        """Check for ss_similarity"""
         expected_document = self.documents[0]
         expected_score = 1.0
 
@@ -36,7 +36,7 @@ class SimilarityTestCase(unittest.TestCase):
         lesk.return_value = [(self.documents[0], 1.0), (self.documents[1], 0.890909)]
 
         new_document = Document(0, "Brocolli is a good vegetable for health", "", "Health, Food")
-        results = similarity(self.documents, new_document, self.hal, 1)
+        results = ss_similarity(self.documents, new_document, self.hal, 1)
         top_doc, score = results[0]
 
         self.assertEqual(top_doc.id, expected_document.id)

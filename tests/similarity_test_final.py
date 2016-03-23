@@ -3,10 +3,9 @@ import json
 from gensim import models, corpora
 
 from core.model import Document
-from core.similarity.main import similarity
+from core.similarity.main import *
 from core.textprocessor.tokenize import CodeTokenizer
 from core.similarity.corpus.hal import *
-# from core.corpus.lda_similarity import similarity
 from nltk.tokenize import RegexpTokenizer
 
 tokenizer = RegexpTokenizer(r'<(.*?)\>')
@@ -93,8 +92,8 @@ def test(count, tag_count):
     corrects = 0
     a = []
     for doc in duplicate_documents:
-        results = similarity(lda_model=ldamodel, dictionary=dictionary, corpus=tfidf_corpus, documents=documents,
-                             new_document=doc, count=2)
+        results = ss_similarity(lda_model=ldamodel, dictionary=dictionary, corpus=tfidf_corpus, documents=documents,
+                                new_document=doc, count=2)
         # print(results)
         for top_doc, score in results:
             if top_doc is not None:
@@ -238,7 +237,8 @@ def test_final(count):
     print("--querying--")
     for doc in duplicate_documents:
         o_corrects = corrects
-        results = similarity(documents, doc, hal, 5)
+        # results = ss_similarity(documents, doc, hal, 5)
+        results = ss_similarity(documents, doc, hal, 5)
         for top_doc, score in results:
             # print(doc.id, doc.title, top_doc.id, top_doc.title, score)
             if post_links.has_key(int(doc.id)):
@@ -257,7 +257,7 @@ def test_final(count):
     print(corrects)
     print a
 
-
+import timeit
 if __name__ == '__main__':
     Document.set_window(4)
     Document.tags_enabled = True
@@ -270,7 +270,10 @@ if __name__ == '__main__':
     # print(post_links)
     # print_topics(20)
     #test_hal(200)
+    start = timeit.default_timer()
     test_final(10)
+    stop = timeit.default_timer()
+    print(stop - start)
     """
         122
         []

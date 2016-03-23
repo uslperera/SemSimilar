@@ -41,12 +41,11 @@
 <h1 id="index">Index</h1>
 
 <div class="genindex-jumpbox">
- <a href="#A"><strong>A</strong></a>
- | <a href="#C"><strong>C</strong></a>
+ <a href="#C"><strong>C</strong></a>
  | <a href="#D"><strong>D</strong></a>
  | <a href="#G"><strong>G</strong></a>
  | <a href="#H"><strong>H</strong></a>
- | <a href="#I"><strong>I</strong></a>
+ | <a href="#K"><strong>K</strong></a>
  | <a href="#L"><strong>L</strong></a>
  | <a href="#M"><strong>M</strong></a>
  | <a href="#P"><strong>P</strong></a>
@@ -56,31 +55,29 @@
  | <a href="#W"><strong>W</strong></a>
  
 </div>
-<h2 id="A">A</h2>
-<table style="width: 100%" class="indextable genindextable"><tr>
-  <td style="width: 33%" valign="top"><dl>
-      
-  <dt><a href="api.html#hal.HAL.add_document">add_document() (hal.HAL method)</a>
-  </dt>
-
-  </dl></td>
-</tr></table>
-
 <h2 id="C">C</h2>
 <table style="width: 100%" class="indextable genindextable"><tr>
   <td style="width: 33%" valign="top"><dl>
+      
+  <dt><a href="api.html#hal.HAL.co_occurrence_search">co_occurrence_search() (hal.HAL method)</a>
+  </dt>
+
       
   <dt><a href="api.html#tokenize.CodeTokenizer">CodeTokenizer (class in tokenize)</a>
   </dt>
 
       
-  <dt><a href="api.html#hal.HAL.cosine">cosine() (hal.HAL static method)</a>
+  <dt><a href="api.html#hal.HAL.convert_to_vector_space">convert_to_vector_space() (hal.HAL method)</a>
   </dt>
 
   </dl></td>
   <td style="width: 33%" valign="top"><dl>
       
-  <dt><a href="api.html#hal.HAL.create_word_to_word_matrix">create_word_to_word_matrix() (hal.HAL method)</a>
+  <dt><a href="api.html#hal.HAL.create_co_occurrence_matrix">create_co_occurrence_matrix() (hal.HAL method)</a>
+  </dt>
+
+      
+  <dt><a href="api.html#hal.HAL.create_document_term_matrix">create_document_term_matrix() (hal.HAL method)</a>
   </dt>
 
   </dl></td>
@@ -90,19 +87,11 @@
 <table style="width: 100%" class="indextable genindextable"><tr>
   <td style="width: 33%" valign="top"><dl>
       
-  <dt><a href="api.html#document.Document.description">description (document.Document attribute)</a>
-  </dt>
-
-      
   <dt><a href="api.html#document.Document">Document (class in document)</a>
   </dt>
 
   </dl></td>
   <td style="width: 33%" valign="top"><dl>
-      
-  <dt><a href="api.html#hal.HAL.document_term_matrix">document_term_matrix (hal.HAL attribute)</a>
-  </dt>
-
       
   <dt><a href="api.html#module-document_worker">document_worker (module)</a>
   </dt>
@@ -118,15 +107,11 @@
   </dt>
 
       
-  <dt><a href="api.html#hal.HAL.get_related_vocabulary">get_related_vocabulary() (hal.HAL method)</a>
+  <dt><a href="api.html#wsd.get_synsets">get_synsets() (in module wsd)</a>
   </dt>
 
   </dl></td>
   <td style="width: 33%" valign="top"><dl>
-      
-  <dt><a href="api.html#wsd.get_synsets">get_synsets() (in module wsd)</a>
-  </dt>
-
       
   <dt><a href="api.html#hal.HAL.get_term_id">get_term_id() (hal.HAL method)</a>
   </dt>
@@ -144,11 +129,11 @@
   </dl></td>
 </tr></table>
 
-<h2 id="I">I</h2>
+<h2 id="K">K</h2>
 <table style="width: 100%" class="indextable genindextable"><tr>
   <td style="width: 33%" valign="top"><dl>
       
-  <dt><a href="api.html#document.Document.id">id (document.Document attribute)</a>
+  <dt><a href="api.html#hal.HAL.keyword_search">keyword_search() (hal.HAL method)</a>
   </dt>
 
   </dl></td>
@@ -194,6 +179,12 @@
 <table style="width: 100%" class="indextable genindextable"><tr>
   <td style="width: 33%" valign="top"><dl>
       
+  <dt><a href="api.html#processor.remove_custom_words">remove_custom_words() (in module processor)</a>
+  </dt>
+
+  </dl></td>
+  <td style="width: 33%" valign="top"><dl>
+      
   <dt><a href="api.html#processor.remove_stopwords">remove_stopwords() (in module processor)</a>
   </dt>
 
@@ -204,7 +195,7 @@
 <table style="width: 100%" class="indextable genindextable"><tr>
   <td style="width: 33%" valign="top"><dl>
       
-  <dt><a href="api.html#hal.HAL.search">search() (hal.HAL method)</a>
+  <dt><a href="api.html#hal.HAL.semantic_search">semantic_search() (hal.HAL method)</a>
   </dt>
 
       
@@ -215,32 +206,18 @@
   <dt><a href="api.html#document.Document.set_window">set_window() (document.Document static method)</a>
   </dt>
 
+  </dl></td>
+  <td style="width: 33%" valign="top"><dl>
       
   <dt><a href="api.html#lesk.similarity">similarity() (in module lesk)</a>
   </dt>
 
-      <dd><dl>
-        
-  <dt><a href="api.html#main.similarity">(in module main)</a>
+      
+  <dt><a href="api.html#main.ss_similarity">ss_similarity() (in module main)</a>
   </dt>
 
-      </dl></dd>
-  </dl></td>
-  <td style="width: 33%" valign="top"><dl>
       
   <dt><a href="api.html#processor.stem_tokens">stem_tokens() (in module processor)</a>
-  </dt>
-
-      
-  <dt><a href="api.html#document.Document.stemmed_tokens">stemmed_tokens (document.Document attribute)</a>
-  </dt>
-
-      
-  <dt><a href="api.html#document.Document.synset_tokens">synset_tokens (document.Document attribute)</a>
-  </dt>
-
-      
-  <dt><a href="api.html#document.Document.synsets">synsets (document.Document attribute)</a>
   </dt>
 
   </dl></td>
@@ -250,25 +227,7 @@
 <table style="width: 100%" class="indextable genindextable"><tr>
   <td style="width: 33%" valign="top"><dl>
       
-  <dt><a href="api.html#document.Document.tags">tags (document.Document attribute)</a>
-  </dt>
-
-      
-  <dt><a href="api.html#hal.HAL.threshold">threshold (hal.HAL attribute)</a>
-  </dt>
-
-      
-  <dt><a href="api.html#document.Document.title">title (document.Document attribute)</a>
-  </dt>
-
-  </dl></td>
-  <td style="width: 33%" valign="top"><dl>
-      
   <dt><a href="api.html#tokenize.CodeTokenizer.tokenize">tokenize() (tokenize.CodeTokenizer method)</a>
-  </dt>
-
-      
-  <dt><a href="api.html#document.Document.tokens">tokens (document.Document attribute)</a>
   </dt>
 
   </dl></td>
@@ -276,12 +235,6 @@
 
 <h2 id="W">W</h2>
 <table style="width: 100%" class="indextable genindextable"><tr>
-  <td style="width: 33%" valign="top"><dl>
-      
-  <dt><a href="api.html#hal.HAL.word_word_matrix">word_word_matrix (hal.HAL attribute)</a>
-  </dt>
-
-  </dl></td>
   <td style="width: 33%" valign="top"><dl>
       
   <dt><a href="api.html#module-wsd">wsd (module)</a>

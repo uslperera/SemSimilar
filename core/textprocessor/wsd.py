@@ -1,9 +1,31 @@
+#!/usr/bin/python
+# -*- coding: ascii -*-
+
+__author__ = "Shamal Perera"
+__copyright__ = "Copyright 2016, SemSimilar Project"
+__license__ = "GPL"
+__version__ = "1.0.0"
+__email__ = "uslperera@gmail.com"
+
 from nltk.wsd import lesk
 import logging
 
 
 def get_synsets(tokens, window):
-    """Get synsets for the tokens passed"""
+    """Get synsets for the tokens passed
+
+    :param tokens: list of words
+    :param window: size of the window
+    :type tokens: list<string>
+    :type window: int
+    :returns: list of synsets
+    :rtype: list<string>
+
+    :Example:
+
+    >>> tokens = ['this', 'is', 'a', 'demo']
+    >>> get_synsets(tokens, 2)
+    """
     logger = logging.getLogger(__name__)
     logger.info("Retrieving synsets started")
     window = validate_window(window)

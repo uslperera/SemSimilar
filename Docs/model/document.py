@@ -6,6 +6,41 @@
 class Document(object):
     """
     Document class includes the basic skeleton to keep all the data associated with posts or articles.
+
+    :param id: unique number of the document
+    :param title: title of the document
+    :param description: description of the document
+    :param tags: tags of the document
+    :type id: int
+    :type title: string
+    :type description: string
+    :type tags: string
+    :returns: Document model
+    :rtype: semsimilar.core.model.document.Document
+
+    **Property**:
+     - id
+     - title
+     - description
+     - tags
+     - synset_tokens (Get synsets of the tokens excluding Description)
+     - stemmed_tokens 
+     - tokens
+     - synsets (Get synsets of the tokens including Description)
+
+    **Setter**
+     - id
+     - title
+     - description
+     - tags
+
+
+    :Example:
+    
+    >>> Document(101, "PHP Session Security", 
+    "What are some guidelines for maintaining 
+    responsible session security with PHP",
+     "<security><php>")
     """
     __id = None
     __title = None
@@ -21,10 +56,6 @@ class Document(object):
     __synset_tokens = None
 
     def __init__(self, id, title, description, tags):
-        """
-        Create a new document
-        Document(1, "Title", "Description", "Tags")
-        """
         self.__id = id
         self.__title = title
         self.__description = description
@@ -33,62 +64,50 @@ class Document(object):
 
     @property
     def id(self):
-        """Get id of the document"""
         return self.__id
 
     @id.setter
     def id(self, id):
-        """Set id of the document"""
         self.__id = id
 
     @property
     def title(self):
-        """Get title of the document"""
         return self.__title
 
     @title.setter
     def title(self, title):
-        """Set title of the document"""
         self.__title = title
 
     @property
     def description(self):
-        """Get description of the document"""
         return self.__description
 
     @description.setter
     def description(self, description):
-        """Set description of the document"""
         self.__description = description
 
     @property
     def tags(self):
-        """Get tags of the document"""
         return self.__tags
 
     @tags.setter
     def tags(self, tags):
-        """Set tags of the document"""
         self.__tags = tags
 
     @property
     def synset_tokens(self):
-        """Get synsets of the tokens (Description is excluded)"""
         return self.__synset_tokens
 
     @property
     def stemmed_tokens(self):
-        """Get stemmed tokens of the document"""
         return self.__stemmed_tokens
 
     @property
     def tokens(self):
-        """Get tokens of the document"""
         return self.__tokens
 
     @property
     def synsets(self):
-        """Get synsets of the tokens (Description is included)"""
         return self.__synsets
 
     @staticmethod
@@ -96,7 +115,15 @@ class Document(object):
         """
         Set the size of the window to be used for word sense disambiguation
 
-        min value = 2 & must be even number
+        The value must be an even number greater than 1
+        
+        :param window: size of the window
+        :type window: int
+        :returns: void
+
+        :Example:
+        
+        >>> Document.set_window(4)
         """
         if window > 1 & window % 2 == 0:
             Document.__window = window
@@ -106,12 +133,31 @@ class Document(object):
         """
         Set a tokenizer to extract words
 
-        Possible tokenizers - semsimilar.core.textprocessor.tokenize.CodeTokenizer, nltk.tokenize.api.*
+        .. note:: Possible tokenizers are semsimilar.core.textprocessor.tokenize.CodeTokenizer, nltk.tokenize.api.*
+        
+        :param tokenizer: tokenizer object
+        :type tokenizer: semsimilar.core.textprocessor.tokenize.CodeTokenizer, nltk.tokenize.api.*, ...
+        :returns: void
+
+        :Example:
+        
+        >>> Document.set_tokenizer(CodeTokenizer())
         """
         return
 
     def generate_tokens(self):
-        """Tokenize the document based on selected components (title | description | tags)"""
+        """Tokenize the document based on selected components (title | description | tags)
+
+        .. note:: This function is automatically called during a document creation. Can be called if content of the document is changed.
+
+
+        :returns: void
+
+        :Example:
+        
+        >>> doc = Document(101, "PHP Session Security", None, None)
+        >>> doc.generate_tokens()
+        """
         self.__tokens = []
         if self.title_enabled & self.description_enabled & self.tags_enabled:
             text = self.__title + " " + self.__description + " " + self.__tags

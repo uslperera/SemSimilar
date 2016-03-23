@@ -9,7 +9,7 @@ from core.model.document_worker import parallel_process
 with open('data/100posts.json') as posts_file:
     posts = json.loads(posts_file.read())
 
-new_posts = posts[:50000]
+new_posts = posts[:1000]
 Document.set_tokenizer(CodeTokenizer())
 final_documents, final_texts = parallel_process(new_posts, 3)
 print len(final_documents), len(final_texts)

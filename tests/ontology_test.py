@@ -39,7 +39,7 @@ for post in duplicate_posts:
 new_docs_builder = process(documents=duplicate_documents, title_enabled=True, description_enabled=False,
                            tags_enabled=True, window=0)
 
-# Ontology similarity
+# Ontology ss_similarity
 count = 1
 for doc in duplicate_documents:
     if doc is not None:

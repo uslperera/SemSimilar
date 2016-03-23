@@ -28,7 +28,24 @@ def worker(posts, final_documents, final_texts):
 
 
 def parallel_process(posts, processors):
-    """Process large set of documents using parallel processing"""
+    """Process large set of documents using parallel processing
+
+
+    :param posts: posts, articles
+    :param processors: number of processors
+    :type posts: list<key-value object>
+    :type processors: int
+    :returns: Processed documents
+    :rtype: list<semsimilar.core.model.document.Document>
+
+    .. note:: Keys can be initialized before calling this function. (ID_KEY, TITLE_KEY, DESCRIPTION_KEY, TAGS_KEY)
+
+    :Example:
+
+    >>> with open('articles.json') as articles_file:
+            articles = json.loads(articles_file.read())
+    >>> parallel_process(articles, 2)
+    """
     # if processors > multiprocessing.cpu_count():
     #     # throw exception
     #     a = "exp"
