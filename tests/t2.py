@@ -1,4 +1,7 @@
-# import json
+#!/usr/bin/python
+# -*- coding: utf -*-
+#
+#  import json
 # from collections import defaultdict
 #
 # import numpy as np
@@ -92,14 +95,33 @@
 #         print(i, doc.tags, doc.title, top_doc.title, score)
 #         print("----------------------------")
 #         raw_input("Continue > ")
-import numpy as np
 
-x = np.array([(1,0,1,0), (0,1,1,0), (0,1,1,1), (0,0,1,0)])
-print(x)
-print("--")
-cooccurrence_matrix = np.dot(x.transpose(),x)
-print(cooccurrence_matrix)
 # as_int = x.astype(int)
 # print(as_int)
 # as_int.
 # print(np.cross(x, x, axis=1))
+
+from core.textprocessor.tokenize import CodeTokenizer
+from core.textprocessor.processor import *
+from core.model.document import Document
+from core.similarity.corpus.hal import HAL
+from core.similarity.knowledge.lesk import similarity
+
+c = CodeTokenizer()
+Document.set_tokenizer(c)
+# ["he tried to break the bank at Monte Carlo", "he sat on the bank of the river and watched the currents"]
+documents = [Document(1, "he tried to break the bank at Monte Carlo", None, None),
+             Document(2, "he sat on the bank of the river and watched the currents", None, None)]
+
+text = []
+for doc in documents:
+    text.append(" ".join(doc.stemmed_tokens))
+
+h = HAL(text)
+
+query_document = Document(0, None, None, None)
+
+# results = h.semantic_search(query_document.stemmed_tokens)
+results = similarity(documents, query_document, 2)
+print(results[0][0].id)
+print(results[1][0].id)

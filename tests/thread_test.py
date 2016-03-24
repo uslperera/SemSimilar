@@ -5,15 +5,111 @@ from core.model.document import Document
 from core.textprocessor.tokenize import CodeTokenizer
 import timeit
 from core.model.document_worker import parallel_process
+import pickle
+from core.similarity.corpus.hal import HAL
+from core.similarity.main import ss_similarity
 
-with open('data/100posts.json') as posts_file:
-    posts = json.loads(posts_file.read())
+# post_links = []
+post_links = {}
 
-new_posts = posts[:1000]
-Document.set_tokenizer(CodeTokenizer())
-final_documents, final_texts = parallel_process(new_posts, 3)
-print len(final_documents), len(final_texts)
+spec = ['p', '&#xa', '&#xd', 'pre', 'code', 'blockquote', 'strong', 'ul', 'li', 'a', 'href', 'em']
 
+def load_post_links():
+    with open('data/1000ids.json') as postlinks_file:
+        postlinks = json.loads(postlinks_file.read())
+
+    for i, p in enumerate(postlinks):
+        # if i == 100:
+        #     break
+
+        if not post_links.has_key(int(p['PostId'])):
+            post_links[int(p['PostId'])] = int(p['RelatedPostId'])
+        elif isinstance(post_links[int(p['PostId'])], list):
+            post_links[int(p['PostId'])].append(int(p['RelatedPostId']))
+        else:
+            temp = post_links[int(p['PostId'])]
+            post_links[int(p['PostId'])] = [temp]
+            post_links[int(p['PostId'])].append(int(p['RelatedPostId']))
+            # l = ((int(p['PostId'])), int(p['RelatedPostId']))
+            # post_links.append(l)
+
+
+def search_post_link(dup_p, ori_p):
+    for plink in post_links:
+        dp, op = plink
+        if op == int(ori_p) and dp == int(dup_p):
+            return True
+    return False
+
+
+def test(count):
+    with open('data/100posts.json') as posts_file:
+        posts = json.loads(posts_file.read())
+
+    new_posts = posts[:1000]
+    documents, final_texts = parallel_process(new_posts, 3)
+    # pickle.dump(final_documents, open('temp/final_documents.p', 'wb'), pickle.HIGHEST_PROTOCOL)
+    # pickle.dump(final_texts, open('temp/final_texts.p', 'wb'), pickle.HIGHEST_PROTOCOL)
+    hal = HAL(final_texts)
+    # hal.threshold = 0.7
+
+    print len(documents), len(final_texts)
+    with open('data/100duplicates.json') as posts_file:
+        duplicate_posts = json.loads(posts_file.read())
+
+    duplicate_documents = []
+    for i, post in enumerate(duplicate_posts):
+        if i == count:
+            break
+        d = Document(post['Id'], post['Title'], post['Body'], post['Tags'])
+        d.remove_special_words(spec)
+        duplicate_documents.append(d)
+        # duplicate_documents.append(Document(post['Id'], post['Title'], post['Body'], post['Tags']))
+
+
+    corrects = 0
+    a = []
+    print("--querying--")
+    start = timeit.default_timer()
+    for doc in duplicate_documents:
+        o_corrects = corrects
+        results = ss_similarity(documents, doc, hal, 5)
+        for top_doc, score in results:
+            # print(doc.id, doc.title, top_doc.id, top_doc.title, score)
+            if post_links.has_key(int(doc.id)):
+                if isinstance(post_links[int(doc.id)], list):
+                    for id in post_links[int(doc.id)]:
+                        if id == int(top_doc.id):
+                            corrects += 1
+                            break
+                elif post_links[int(doc.id)] == int(top_doc.id):
+                    corrects += 1
+
+            if o_corrects == corrects:
+                b = (doc.id, doc.title)
+                a.append(b)
+    end = timeit.default_timer()
+    print(corrects)
+    print(a)
+    print(end - start)
+
+
+if __name__ == '__main__':
+    Document.set_tokenizer(CodeTokenizer())
+    Document.description_enabled = True
+    Document.tags_enabled = True
+    load_post_links()
+    test(500)
+    # with open('data/100posts.json') as posts_file:
+    #     posts = json.loads(posts_file.read())
+    #
+    #
+    # for i, post in enumerate(posts):
+    #     if i==1:
+    #         break
+    #     d = Document(post['Id'], post['Title'], post['Body'], post['Tags'])
+    #     d.remove_special_words(spec)
+    #     print(d.tokens)
 
 """
 lock = multiprocessing.Lock()

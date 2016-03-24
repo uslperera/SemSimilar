@@ -8,11 +8,13 @@ __version__ = "1.0.0"
 __email__ = "uslperera@gmail.com"
 
 from nltk.tokenize.api import TokenizerI
+from core.textprocessor.replacers import RegexpReplacer
 import re
 
 
 class CodeTokenizer(TokenizerI):
     _expression = r"([?!:;\-\(\)\[\]\"/,<>]|(\.\B)|(\s'))"
+    __replacer = RegexpReplacer()
 
     def remove_punctuations(self, s):
         """Remove punctuation marks"""
@@ -31,7 +33,9 @@ class CodeTokenizer(TokenizerI):
         >>> c = CodeTokenizer()
         >>> c.tokenize("Stream of text 123")
         """
+        s = s.lower()
         s = self.remove_punctuations(s)
+        s = self.__replacer.replace(s)
         return re.split("\s+", s)
 
     def span_tokenize(self, s):

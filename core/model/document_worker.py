@@ -19,6 +19,8 @@ TAGS_KEY = "Tags"
 
 lock = multiprocessing.Lock()
 
+spec = ['p', '&#xa', '&#xd', 'pre', 'code', 'blockquote', 'strong', 'ul', 'li', 'a', 'href', 'em']
+
 
 def append_documents(documents, texts, final_documents, final_texts):
     """Add documents to the array"""
@@ -37,7 +39,10 @@ def worker(posts, final_documents, final_texts):
     logger.info("Processing documents started")
     documents = []
     for post in posts:
-        documents.append(Document(post[ID_KEY], post[TITLE_KEY], post[DESCRIPTION_KEY], post[TAGS_KEY]))
+        d = Document(post[ID_KEY], post[TITLE_KEY], post[DESCRIPTION_KEY], post[TAGS_KEY])
+        d.remove_special_words(spec)
+        documents.append(d)
+        # documents.append(Document(post[ID_KEY], post[TITLE_KEY], post[DESCRIPTION_KEY], post[TAGS_KEY]))
 
     texts = []
     for doc in documents:

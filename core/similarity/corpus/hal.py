@@ -219,11 +219,12 @@ class HAL(object):
         results = []
         for id in set(doc_ids):
             cos = self.cosine(qtm, self.__dtm[id])
-            doc = (id, cos)
-            results.append(doc)
+            if cos > 0:
+                doc = (id, cos)
+                results.append(doc)
 
         results.sort(key=lambda tup: tup[1], reverse=True)
-        return results
+        return results[:50]
 
     def keyword_search(self, query, qtm):
         """Search for a document using keywords.
@@ -265,7 +266,7 @@ class HAL(object):
                 results.append(doc)
 
         results.sort(key=lambda tup: tup[1], reverse=True)
-        return results
+        return results[:50]
 
     def get_related_vocabulary(self, query):
         # Get co-occurring terms in the vocabulary

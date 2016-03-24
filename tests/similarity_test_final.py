@@ -3,10 +3,12 @@ import json
 from gensim import models, corpora
 
 from core.model import Document
+from core.model.document_worker import parallel_process
 from core.similarity.main import *
 from core.textprocessor.tokenize import CodeTokenizer
 from core.similarity.corpus.hal import *
 from nltk.tokenize import RegexpTokenizer
+import pickle
 
 tokenizer = RegexpTokenizer(r'<(.*?)\>')
 
@@ -207,23 +209,23 @@ def test_final(count):
         # with open('data/posts.json') as posts_file:
         posts = json.loads(posts_file.read())
 
-    documents = []
-    for i, post in enumerate(posts):
-        if i == count:
-            break
-        documents.append(Document(post['Id'], post['Title'], post['Body'], post['Tags']))
-        # doc_m[int(post['Id'])] = i
+    # documents = []
+    # for i, post in enumerate(posts):
+    #     if i == count:
+    #         break
+    #     documents.append(Document(post['Id'], post['Title'], post['Body'], post['Tags']))
 
-    print(len(documents))
+    documents, texts = parallel_process(posts[:1000], 3)
+    # print(len(documents))
 
-    texts = []
-    for doc in documents:
-        texts.append(" ".join(doc.stemmed_tokens))
-
+    # texts = []
+    # for doc in documents:
+    #     texts.append(" ".join(doc.stemmed_tokens))
+    #
     hal = HAL(documents=texts)
 
+
     with open('data/100duplicates.json') as posts_file:
-        # with open('data/duplicates.json') as posts_file:
         duplicate_posts = json.loads(posts_file.read())
 
     duplicate_documents = []
@@ -257,6 +259,17 @@ def test_final(count):
     print(corrects)
     print a
 
+def aa():
+    with open('data/100posts.json') as posts_file:
+        posts = json.loads(posts_file.read())
+
+    new_posts = posts[:1000]
+    Document.set_tokenizer(CodeTokenizer())
+    final_documents, final_texts = parallel_process(new_posts, 3)
+    # pickle.dump(final_documents, open('temp/final_documents.p', 'wb'), pickle.HIGHEST_PROTOCOL)
+    # pickle.dump(final_texts, open('temp/final_texts.p', 'wb'), pickle.HIGHEST_PROTOCOL)
+    h = HAL(final_texts)
+
 import timeit
 if __name__ == '__main__':
     Document.set_window(4)
@@ -269,9 +282,8 @@ if __name__ == '__main__':
     # test(100, 20)
     # print(post_links)
     # print_topics(20)
-    #test_hal(200)
+    test_hal(200)
     start = timeit.default_timer()
-    test_final(10)
     stop = timeit.default_timer()
     print(stop - start)
     """
