@@ -200,7 +200,9 @@ class Document(object):
         self.__tokens = remove_stopwords(tokens)
         self.__logger.debug("Tokens after stop words are removed %s", self.__tokens)
 
-        self.__synset_tokens = remove_stopwords(self.__synset_tokens)
+        # synset_tokens = remove_stopwords(self.__synset_tokens)
+        synset_tokens = remove_stopwords(self.__tokens)
+        self.__synset_tokens = list(set(synset_tokens))
         self.__logger.debug("Synset tokens %s", self.__synset_tokens)
         self.__synsets = get_synsets(self.__synset_tokens, self.__window)
         self.__logger.debug("Synsets %s", self.__synsets)

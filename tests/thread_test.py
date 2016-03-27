@@ -6,13 +6,14 @@ from core.textprocessor.tokenize import CodeTokenizer
 import timeit
 from core.model.document_worker import parallel_process
 import pickle
-from core.similarity.corpus.hal import HAL
+from core.similarity.corpus.hal import *
 from core.similarity.main import ss_similarity
 
 # post_links = []
 post_links = {}
 
 spec = ['p', '&#xa', '&#xd', 'pre', 'code', 'blockquote', 'strong', 'ul', 'li', 'a', 'href', 'em']
+
 
 def load_post_links():
     with open('data/1000ids.json') as postlinks_file:
@@ -44,17 +45,24 @@ def search_post_link(dup_p, ori_p):
 
 def test(count):
     with open('data/100posts.json') as posts_file:
+    # with open('data/posts.json') as posts_file:
         posts = json.loads(posts_file.read())
 
-    new_posts = posts[:1000]
+    new_posts = posts[:100]
+    posts = None
     documents, final_texts = parallel_process(new_posts, 3)
+
+    new_posts = None
     # pickle.dump(final_documents, open('temp/final_documents.p', 'wb'), pickle.HIGHEST_PROTOCOL)
     # pickle.dump(final_texts, open('temp/final_texts.p', 'wb'), pickle.HIGHEST_PROTOCOL)
     hal = HAL(final_texts)
     # hal.threshold = 0.7
-
     print len(documents), len(final_texts)
+
+    final_texts = None
+
     with open('data/100duplicates.json') as posts_file:
+    # with open('data/duplicates.json') as posts_file:
         duplicate_posts = json.loads(posts_file.read())
 
     duplicate_documents = []
@@ -66,6 +74,7 @@ def test(count):
         duplicate_documents.append(d)
         # duplicate_documents.append(Document(post['Id'], post['Title'], post['Body'], post['Tags']))
 
+    duplicate_posts = None
 
     corrects = 0
     a = []
@@ -73,9 +82,8 @@ def test(count):
     start = timeit.default_timer()
     for doc in duplicate_documents:
         o_corrects = corrects
-        results = ss_similarity(documents, doc, hal, 5)
+        results = ss_similarity(documents, doc, hal, 10)
         for top_doc, score in results:
-            # print(doc.id, doc.title, top_doc.id, top_doc.title, score)
             if post_links.has_key(int(doc.id)):
                 if isinstance(post_links[int(doc.id)], list):
                     for id in post_links[int(doc.id)]:
@@ -85,9 +93,23 @@ def test(count):
                 elif post_links[int(doc.id)] == int(top_doc.id):
                     corrects += 1
 
-            if o_corrects == corrects:
-                b = (doc.id, doc.title)
-                a.append(b)
+        # qtm = hal.convert_to_vector_space(doc.stemmed_tokens)
+        # # results = hal.temp_search(doc.stemmed_tokens, qtm)
+        # results = hal.keyword_search(doc.stemmed_tokens, qtm)
+        # for top_d, score in results[:10]:
+        #     top_doc = documents[top_d]
+        #     if post_links.has_key(int(doc.id)):
+        #         if isinstance(post_links[int(doc.id)], list):
+        #             for id in post_links[int(doc.id)]:
+        #                 if id == int(top_doc.id):
+        #                     corrects += 1
+        #                     break
+        #         elif post_links[int(doc.id)] == int(top_doc.id):
+        #             corrects += 1
+
+        if o_corrects == corrects:
+            b = (doc.id, doc.title)
+            a.append(b)
     end = timeit.default_timer()
     print(corrects)
     print(a)
@@ -99,7 +121,7 @@ if __name__ == '__main__':
     Document.description_enabled = True
     Document.tags_enabled = True
     load_post_links()
-    test(500)
+    test(10)
     # with open('data/100posts.json') as posts_file:
     #     posts = json.loads(posts_file.read())
     #

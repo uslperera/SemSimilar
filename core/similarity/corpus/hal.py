@@ -8,7 +8,7 @@ __version__ = "1.0.0"
 __email__ = "uslperera@gmail.com"
 
 import numpy.linalg as LA
-from sklearn.feature_extraction.text import TfidfVectorizer
+from sklearn.feature_extraction.text import TfidfVectorizer, CountVectorizer
 import numpy as np
 import logging
 import collections
@@ -224,8 +224,41 @@ class HAL(object):
                 results.append(doc)
 
         results.sort(key=lambda tup: tup[1], reverse=True)
-        return results[:50]
+        return results[:10]
 
+    '''
+    def temp_search(self, query, qtm):
+        term_ids = []
+        for term in query:
+            term_id = self.get_term_id(term)
+            if term_id is not None:
+                term_ids.append(term_id)
+
+        doc_ids = []
+        for term_id in term_ids:
+            doc_ids.extend(np.where(self.__dtm[:, term_id] != 0)[0])
+
+        results = []
+        for id in set(doc_ids):
+            #Rem-----
+            t_ids = np.where(self.__dtm[id, :] != 0)[0]
+            # t_ids = self.__dtm[id, :]
+            q_ids = np.where(qtm[0, :] != 0)[0]
+            # q_ids = qtm[:, :]
+            aa = np.intersect1d(t_ids, q_ids)
+
+            score = 0
+            for i in aa:
+                c = self.__dtm[id, i] + qtm[:, i]
+                score += np.log10(c)[0] + 1
+
+            doc = (id, score)
+            results.append(doc)
+
+        results.sort(key=lambda tup: tup[1], reverse=True)
+        return results[:10]
+        #-----
+    '''
     def keyword_search(self, query, qtm):
         """Search for a document using keywords.
 
@@ -266,7 +299,7 @@ class HAL(object):
                 results.append(doc)
 
         results.sort(key=lambda tup: tup[1], reverse=True)
-        return results[:50]
+        return results[:10]
 
     def get_related_vocabulary(self, query):
         # Get co-occurring terms in the vocabulary

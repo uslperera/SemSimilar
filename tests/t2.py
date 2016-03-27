@@ -107,21 +107,39 @@ from core.model.document import Document
 from core.similarity.corpus.hal import HAL
 from core.similarity.knowledge.lesk import similarity
 
-c = CodeTokenizer()
-Document.set_tokenizer(c)
-# ["he tried to break the bank at Monte Carlo", "he sat on the bank of the river and watched the currents"]
-documents = [Document(1, "he tried to break the bank at Monte Carlo", None, None),
-             Document(2, "he sat on the bank of the river and watched the currents", None, None)]
+# c = CodeTokenizer()
+# Document.set_tokenizer(c)
+# # ["he tried to break the bank at Monte Carlo", "he sat on the bank of the river and watched the currents"]
+# documents = [Document(1, "he tried to break the bank at Monte Carlo", None, None),
+#              Document(2, "he sat on the bank of the river and watched the currents", None, None)]
+#
+# text = []
+# for doc in documents:
+#     text.append(" ".join(doc.stemmed_tokens))
+#
+# h = HAL(text)
+#
+# query_document = Document(0, None, None, None)
+#
+# # results = h.semantic_search(query_document.stemmed_tokens)
+# results = similarity(documents, query_document, 2)
+# print(results[0][0].id)
+# print(results[1][0].id)
 
-text = []
-for doc in documents:
-    text.append(" ".join(doc.stemmed_tokens))
+import numpy as np
+import numpy.linalg as LA
+from scipy.spatial import distance
 
-h = HAL(text)
+def cosine(a, b):
+    # Find the cosine distance between two vectors
+    try:
+        result = round(np.inner(a, b) / (LA.norm(a) * LA.norm(b)), 3)
+    except ZeroDivisionError:
+        result = 0
+    return result
 
-query_document = Document(0, None, None, None)
+a = np.array([(1, 0, 1, 1)])
+b = np.array([(1, 0, 0, 1)])
+print(1-distance.cosine(a, b))
+print(cosine(a,b))
 
-# results = h.semantic_search(query_document.stemmed_tokens)
-results = similarity(documents, query_document, 2)
-print(results[0][0].id)
-print(results[1][0].id)
