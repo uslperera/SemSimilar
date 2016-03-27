@@ -1,9 +1,9 @@
 import unittest
-from core.model.document import Document
-from core.textprocessor.tokenize import CodeTokenizer
-from core.similarity.corpus.hal import HAL
-from core.similarity.knowledge import lesk
-from core.similarity.main import ss_similarity
+from semsimilar.model.document import Document
+from semsimilar.textprocessor.tokenize import CodeTokenizer
+from semsimilar.similarity.corpus.hal import HAL
+from semsimilar.similarity.knowledge import lesk
+from semsimilar.similarity.main import ss_similarity
 
 Document.set_tokenizer(CodeTokenizer())
 
@@ -12,7 +12,7 @@ class TokenizerTestCase(unittest.TestCase):
     def test(self):
         Document.description_enabled = False
         d = Document(0, "\"I said, 'what're you? Crazy?\" said Sandowsky. \"I can't afford to do that.\"", None, None)
-        expected_tokens = ['said', "what're", 'crazy', 'said', 'sandowsky', 'afford']
+        expected_tokens = ['said', 'crazy', 'said', 'sandowsky', 'cannot', 'afford']
         self.assertEqual(str(d.tokens), str(expected_tokens))
 
 

@@ -64,8 +64,8 @@ import json
 
 from gensim import corpora, models, similarities
 
-from core.model.document import Document
-from core.textprocessor.tokenize import CodeTokenizer
+from semsimilar.model.document import Document
+from semsimilar.textprocessor.tokenize import CodeTokenizer
 
 Document.set_tokenizer(CodeTokenizer())
 count = 50

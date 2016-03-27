@@ -1,10 +1,10 @@
 import unittest
 from mock.mock import MagicMock, patch
-from core.textprocessor import wsd
+from semsimilar.textprocessor import wsd
 
 
 class SynsetTestCase(unittest.TestCase):
-    @patch('core.textprocessor.wsd.generate_window',
+    @patch('semsimilar.textprocessor.wsd.generate_window',
            MagicMock(return_value=["home", "owner", "garage", "car"]))
     def test_synsets_without_none(self):
         expected_synset = [u'home.v.02', u'owner.n.02', u'garage.v.01', u'car.n.04']

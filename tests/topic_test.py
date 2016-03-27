@@ -5,8 +5,8 @@ import scipy.stats as stats
 from gensim import corpora, models, matutils
 from matplotlib import pyplot as plt
 
-from core.model.document import Document
-from core.textprocessor.tokenize import CodeTokenizer
+from semsimilar.model.document import Document
+from semsimilar.textprocessor.tokenize import CodeTokenizer
 
 Document.set_tokenizer(CodeTokenizer())
 with open('data/1000posts.json') as posts_file:

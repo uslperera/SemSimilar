@@ -1,9 +1,9 @@
 import unittest
 
-from core.similarity.main import ss_similarity
-from core.model.document import Document
-from core.textprocessor.tokenize import CodeTokenizer
-from core.similarity.corpus.hal import HAL
+from semsimilar.similarity.main import ss_similarity
+from semsimilar.model.document import Document
+from semsimilar.textprocessor.tokenize import CodeTokenizer
+from semsimilar.similarity.corpus.hal import HAL
 
 class SimilarityTestCase(unittest.TestCase):
     @classmethod

@@ -1,7 +1,7 @@
 import unittest
-from core.similarity.corpus.hal import *
-from core.model.document import Document
-from core.textprocessor.tokenize import CodeTokenizer
+from semsimilar.similarity.corpus.hal import *
+from semsimilar.model.document import Document
+from semsimilar.textprocessor.tokenize import CodeTokenizer
 import numpy as np
 
 

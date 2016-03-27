@@ -1,6 +1,6 @@
 import unittest
 
-from core.textprocessor.tokenize import CodeTokenizer
+from semsimilar.textprocessor.tokenize import CodeTokenizer
 
 
 class TokenizeSplitTestCase(unittest.TestCase):

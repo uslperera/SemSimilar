@@ -3,9 +3,9 @@ import unittest
 from gensim import corpora, models, similarities
 from mock.mock import MagicMock, patch
 
-from core.model.document import Document
-from core.similarity.corpus import lda as lda
-from core.textprocessor.tokenize import CodeTokenizer
+from semsimilar.model.document import Document
+from semsimilar.similarity.corpus import lda as lda
+from semsimilar.textprocessor.tokenize import CodeTokenizer
 
 
 class LDAResultsTestCase(unittest.TestCase):
@@ -31,8 +31,8 @@ class LDAResultsTestCase(unittest.TestCase):
         # Topics are health, food, motor
         cls.ldamodel = models.ldamodel.LdaModel(cls.corpus, num_topics=3, id2word=cls.dictionary, passes=20)
 
-    @patch('core.model.document.Document.generate_tokens', MagicMock())
-    @patch('core.model.document.Document.get_stemmed_tokens', MagicMock())
+    @patch('semsimilar.model.document.Document.generate_tokens', MagicMock())
+    @patch('semsimilar.model.document.Document.get_stemmed_tokens', MagicMock())
     @patch('gensim.corpora.Dictionary.doc2bow', MagicMock())
     def test_matched_result(self):
         """If a document is matched"""
@@ -51,8 +51,8 @@ class LDAResultsTestCase(unittest.TestCase):
         top_doc, score = results[0]
         self.assertEqual(top_doc.id, expected_doc.id)
 
-    @patch('core.model.document.Document.generate_tokens', MagicMock())
-    @patch('core.model.document.Document.get_stemmed_tokens', MagicMock())
+    @patch('semsimilar.model.document.Document.generate_tokens', MagicMock())
+    @patch('semsimilar.model.document.Document.get_stemmed_tokens', MagicMock())
     @patch('gensim.corpora.Dictionary.doc2bow', MagicMock())
     def test_unmatched_result(self):
         """If no documents are matched"""
@@ -95,8 +95,8 @@ class LDAResultsCountTestCase(unittest.TestCase):
         # Topics are health, food, motor
         cls.ldamodel = models.ldamodel.LdaModel(cls.corpus, num_topics=3, id2word=cls.dictionary, passes=20)
 
-    @patch('core.model.document.Document.generate_tokens', MagicMock())
-    @patch('core.model.document.Document.get_stemmed_tokens', MagicMock())
+    @patch('semsimilar.model.document.Document.generate_tokens', MagicMock())
+    @patch('semsimilar.model.document.Document.get_stemmed_tokens', MagicMock())
     @patch('gensim.corpora.Dictionary.doc2bow', MagicMock())
     def test_invalid_count(self):
         """If an invalid count is given"""
@@ -115,8 +115,8 @@ class LDAResultsCountTestCase(unittest.TestCase):
 
         self.assertEqual(len(results), expected_count)
 
-    @patch('core.model.document.Document.generate_tokens', MagicMock())
-    @patch('core.model.document.Document.get_stemmed_tokens', MagicMock())
+    @patch('semsimilar.model.document.Document.generate_tokens', MagicMock())
+    @patch('semsimilar.model.document.Document.get_stemmed_tokens', MagicMock())
     @patch('gensim.corpora.Dictionary.doc2bow', MagicMock())
     def test_valid_count(self):
         """If a valid count is given"""

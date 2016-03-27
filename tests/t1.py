@@ -1,7 +1,7 @@
 from gensim import models, corpora
 
-from core.model import Document
-from core.textprocessor.tokenize import CodeTokenizer
+from semsimilar.model import Document
+from semsimilar.textprocessor.tokenize import CodeTokenizer
 
 Document.set_tokenizer(CodeTokenizer())
 

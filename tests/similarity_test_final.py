@@ -2,11 +2,11 @@ import json
 
 from gensim import models, corpora
 
-from core.model import Document
-from core.model.document_worker import parallel_process
-from core.similarity.main import *
-from core.textprocessor.tokenize import CodeTokenizer
-from core.similarity.corpus.hal import *
+from semsimilar.model import Document
+from semsimilar.model.document_worker import parallel_process
+from semsimilar.similarity.main import *
+from semsimilar.textprocessor.tokenize import CodeTokenizer
+from semsimilar.similarity.corpus.hal import *
 from nltk.tokenize import RegexpTokenizer
 import pickle
 

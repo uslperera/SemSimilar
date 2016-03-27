@@ -1,5 +1,5 @@
-from core.model.document import Document
-from core.textprocessor.tokenize import CodeTokenizer
+from semsimilar.model.document import Document
+from semsimilar.textprocessor.tokenize import CodeTokenizer
 import unittest
 
 

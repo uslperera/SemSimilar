@@ -17,11 +17,11 @@ def similarity(documents, new_document, count):
     :param documents: documents list
     :param new_document: document to search
     :param count: number of results wanted
-    :type documents: list<semsimilar.core.model.document.Document>
-    :type new_document: semsimilar.core.model.document.Document
+    :type documents: list<semsimilar.semsimilar.model.document.Document>
+    :type new_document: semsimilar.semsimilar.model.document.Document
     :type count: int
     :returns: Top matched documents with their scores (0-1)
-    :rtype: list<(semsimilar.core.model.document.Document, float)>
+    :rtype: list<(semsimilar.semsimilar.model.document.Document, float)>
 
     :Example:
 

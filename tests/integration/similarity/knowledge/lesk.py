@@ -1,7 +1,7 @@
 import unittest
-from core.model.document import Document
-from core.similarity.knowledge import lesk as lesk
-from core.textprocessor.tokenize import CodeTokenizer
+from semsimilar.model.document import Document
+from semsimilar.similarity.knowledge import lesk as lesk
+from semsimilar.textprocessor.tokenize import CodeTokenizer
 
 
 class OntologyResultCountTestCase(unittest.TestCase):

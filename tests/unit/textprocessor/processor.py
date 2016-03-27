@@ -1,5 +1,5 @@
 import unittest
-from core.textprocessor.processor import *
+from semsimilar.textprocessor.processor import *
 
 
 class StopWordRemovalTestCase(unittest.TestCase):

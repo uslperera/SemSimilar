@@ -8,9 +8,9 @@ class HAL(object):
     Can be used to find similar documents using keywords and word co-occurrences.
 
     :param documents: documents list
-    :type documents: list<semsimilar.core.model.document.Document>
+    :type documents: list<semsimilar.semsimilar.model.document.Document>
     :returns: HAL model
-    :rtype: semsimilar.core.similar.corpus.hal.HAL
+    :rtype: semsimilar.semsimilar.similar.corpus.hal.HAL
 
     **Property**:
      - co_occurrence_matrix
@@ -78,7 +78,7 @@ class HAL(object):
         """Create document term matrix
 
         :param documents: documents list
-        :type documents: list<semsimilar.core.model.document.Document>
+        :type documents: list<semsimilar.semsimilar.model.document.Document>
         :returns: void
 
         :Example:
@@ -95,7 +95,7 @@ class HAL(object):
         """Create term co-occurrence matrix.
 
         :param documents: documents list
-        :type documents: list<semsimilar.core.model.document.Document>
+        :type documents: list<semsimilar.semsimilar.model.document.Document>
         :returns: void
 
         :Example:

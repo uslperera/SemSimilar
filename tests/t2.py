@@ -9,8 +9,8 @@
 # from gensim import models, corpora
 # from matplotlib import pyplot as plt
 #
-# from core.model.document import Document
-# from core.textprocessor.tokenize import CodeTokenizer
+# from semsimilar.model.document import Document
+# from semsimilar.textprocessor.tokenize import CodeTokenizer
 #
 # Document.set_window(4)
 # Document.tags_enabled = True
@@ -101,11 +101,11 @@
 # as_int.
 # print(np.cross(x, x, axis=1))
 
-from core.textprocessor.tokenize import CodeTokenizer
-from core.textprocessor.processor import *
-from core.model.document import Document
-from core.similarity.corpus.hal import HAL
-from core.similarity.knowledge.lesk import similarity
+from semsimilar.textprocessor.tokenize import CodeTokenizer
+from semsimilar.textprocessor.processor import *
+from semsimilar.model.document import Document
+from semsimilar.similarity.corpus.hal import HAL
+from semsimilar.similarity.knowledge.lesk import similarity
 
 # c = CodeTokenizer()
 # Document.set_tokenizer(c)

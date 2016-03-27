@@ -1,6 +1,6 @@
-from core.model.document import Document
-from core.model.document_worker import parallel_process
-from core.textprocessor.tokenize import CodeTokenizer
+from semsimilar.model.document import Document
+from semsimilar.model.document_worker import parallel_process
+from semsimilar.textprocessor.tokenize import CodeTokenizer
 import unittest
 
 

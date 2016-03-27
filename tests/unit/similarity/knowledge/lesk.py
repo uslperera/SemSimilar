@@ -2,9 +2,9 @@ import unittest
 
 from mock.mock import MagicMock, patch
 
-from core.model.document import Document
-from core.similarity.knowledge import lesk as lesk
-from core.textprocessor.tokenize import CodeTokenizer
+from semsimilar.model.document import Document
+from semsimilar.similarity.knowledge import lesk as lesk
+from semsimilar.textprocessor.tokenize import CodeTokenizer
 
 
 class OntologyResultCountTestCase(unittest.TestCase):
@@ -23,8 +23,8 @@ class OntologyResultCountTestCase(unittest.TestCase):
         for document in cls.documents:
             texts.append(document.stemmed_tokens)
 
-    @patch('core.model.document.Document.generate_tokens', MagicMock())
-    @patch('core.model.document.Document.stemmed_tokens', MagicMock())
+    @patch('semsimilar.model.document.Document.generate_tokens', MagicMock())
+    @patch('semsimilar.model.document.Document.stemmed_tokens', MagicMock())
     def test_invalid_count(self):
         """If an invalid count is given"""
         expected_count = 1
@@ -34,8 +34,8 @@ class OntologyResultCountTestCase(unittest.TestCase):
 
         self.assertEqual(len(results), expected_count)
 
-    @patch('core.model.document.Document.generate_tokens', MagicMock())
-    @patch('core.model.document.Document.stemmed_tokens', MagicMock())
+    @patch('semsimilar.model.document.Document.generate_tokens', MagicMock())
+    @patch('semsimilar.model.document.Document.stemmed_tokens', MagicMock())
     def test_valid_count(self):
         """If an invalid count is given"""
         expected_count = 2
@@ -61,7 +61,7 @@ class SemanticScoreTestCase(unittest.TestCase):
         for document in cls.documents:
             texts.append(document.stemmed_tokens)
 
-    @patch('core.textprocessor.wsd.get_synsets',
+    @patch('semsimilar.textprocessor.wsd.get_synsets',
            MagicMock(return_value=[None, u'well.r.01', u'vegetable.n.02', u'health.n.02']))
     def test_semantic_score(self):
         """Check if the similarity score is calculated correctly"""

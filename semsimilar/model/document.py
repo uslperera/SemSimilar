@@ -8,8 +8,8 @@ __version__ = "1.0.0"
 __email__ = "uslperera@gmail.com"
 
 from nltk.tokenize.api import TokenizerI
-from core.textprocessor.wsd import get_synsets
-from core.textprocessor.processor import *
+from semsimilar.textprocessor.wsd import get_synsets
+from semsimilar.textprocessor.processor import *
 import logging
 
 
@@ -26,7 +26,7 @@ class Document(object):
     :type description: string
     :type tags: string
     :returns: Document model
-    :rtype: semsimilar.core.model.document.Document
+    :rtype: semsimilar.semsimilar.model.document.Document
 
     **Property**:
      - id
@@ -150,10 +150,10 @@ class Document(object):
         """
         Set a tokenizer to extract words
 
-        .. note:: Possible tokenizers are semsimilar.core.textprocessor.tokenize.CodeTokenizer, nltk.tokenize.api.*
+        .. note:: Possible tokenizers are semsimilar.semsimilar.textprocessor.tokenize.CodeTokenizer, nltk.tokenize.api.*
 
         :param tokenizer: tokenizer object
-        :type tokenizer: semsimilar.core.textprocessor.tokenize.CodeTokenizer, nltk.tokenize.api.* ,...
+        :type tokenizer: semsimilar.semsimilar.textprocessor.tokenize.CodeTokenizer, nltk.tokenize.api.* ,...
         :returns: void
 
         :Example:

@@ -2,9 +2,9 @@ import json
 
 from gensim import models, corpora
 
-from core.model import Document
-from core.similarity.corpus import lda as lda
-from core.textprocessor.tokenize import CodeTokenizer
+from semsimilar.model import Document
+from semsimilar.similarity.corpus import lda as lda
+from semsimilar.textprocessor.tokenize import CodeTokenizer
 
 Document.set_tokenizer(CodeTokenizer())
 

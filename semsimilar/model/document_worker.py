@@ -8,9 +8,9 @@ __version__ = "1.0.0"
 __email__ = "uslperera@gmail.com"
 
 import multiprocessing
-from core.model.document import Document
+from semsimilar.model.document import Document
 import logging
-from core.exceptions import InvalidProcessorCount
+from semsimilar.exceptions import InvalidProcessorCount
 
 ID_KEY = "Id"
 TITLE_KEY = "Title"
@@ -60,7 +60,7 @@ def parallel_process(posts, processors):
     :type posts: list<key-value object>
     :type processors: int
     :returns: Processed documents
-    :rtype: list<semsimilar.core.model.document.Document>
+    :rtype: list<semsimilar.semsimilar.model.document.Document>
 
     .. note:: Keys can be initialized before calling this function. (ID_KEY, TITLE_KEY, DESCRIPTION_KEY, TAGS_KEY)
 

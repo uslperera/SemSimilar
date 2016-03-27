@@ -1,9 +1,9 @@
 import json
 import pickle
 
-from core.model import Document
-from core.similarity.knowledge import lesk as lesk
-from core.textprocessor.wsd import process
+from semsimilar.model import Document
+from semsimilar.similarity.knowledge import lesk as lesk
+from semsimilar.textprocessor.wsd import process
 
 # Read all the documents from the data source
 posts = []

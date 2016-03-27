@@ -2,9 +2,9 @@ import json
 
 from gensim import models, corpora
 
-from core.model import Document
-from core.similarity.main import ss_similarity
-from core.textprocessor.tokenize import CodeTokenizer
+from semsimilar.model import Document
+from semsimilar.similarity.main import ss_similarity
+from semsimilar.textprocessor.tokenize import CodeTokenizer
 
 with open('data/posts.json') as posts_file:
     posts = json.loads(posts_file.read())

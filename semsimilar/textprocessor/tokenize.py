@@ -8,7 +8,7 @@ __version__ = "1.0.0"
 __email__ = "uslperera@gmail.com"
 
 from nltk.tokenize.api import TokenizerI
-from core.textprocessor.replacers import RegexpReplacer
+from semsimilar.textprocessor.replacers import RegexpReplacer
 import re
 
 

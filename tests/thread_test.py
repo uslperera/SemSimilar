@@ -1,13 +1,13 @@
 import multiprocessing
 import threading
 import json
-from core.model.document import Document
-from core.textprocessor.tokenize import CodeTokenizer
+from semsimilar.model.document import Document
+from semsimilar.textprocessor.tokenize import CodeTokenizer
 import timeit
-from core.model.document_worker import parallel_process
+from semsimilar.model.document_worker import parallel_process
 import pickle
-from core.similarity.corpus.hal import *
-from core.similarity.main import ss_similarity
+from semsimilar.similarity.corpus.hal import *
+from semsimilar.similarity.main import ss_similarity
 
 # post_links = []
 post_links = {}
