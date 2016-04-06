@@ -26,3 +26,12 @@ class StemWordsTestCase(unittest.TestCase):
         new_tokens = stem_tokens(tokens)
         for new_token in new_tokens:
             self.assertEqual(new_token, 'walk')
+
+class SpecialWordsTestCase(unittest.TestCase):
+    def test(self):
+        tokens = ['tool', 'converting', 'visual', 'j#', 'code', 'c++']
+        expected_tokens = ['tool', 'converting', 'visual', 'j#', 'c++']
+        special_token = ['code']
+        new_tokens = remove_custom_words(special_token, tokens)
+
+        self.assertEqual(str(new_tokens), str(expected_tokens))

@@ -1,4 +1,5 @@
 import unittest
+from mock import MagicMock, patch
 
 from semsimilar.model.document import Document
 from semsimilar.textprocessor.tokenize import CodeTokenizer
@@ -103,4 +104,18 @@ class TokensOptionTestCase(unittest.TestCase):
     def test_title(self):
         expected_tokens = ["title"]
         d = Document(1, "title", "description", "tags")
+        self.assertEqual(str(d.tokens), str(expected_tokens))
+
+
+class SpecialWordsTestCase(unittest.TestCase):
+    @classmethod
+    def setUpClass(cls):
+        Document.set_tokenizer(CodeTokenizer())
+
+    @patch('semsimilar.textprocessor.processor.remove_custom_words',
+               MagicMock(return_value=['tool', 'converting', 'visual', 'j#', 'c++']))
+    def test_set_title(self):
+        expected_tokens = ['tool', 'converting', 'visual', 'j#', 'c++']
+        d = Document(0, "Tool for Converting Visual J# code to C++", "", "")
+        d.remove_special_words(['code'])
         self.assertEqual(str(d.tokens), str(expected_tokens))
