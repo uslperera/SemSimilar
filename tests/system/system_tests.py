@@ -1,14 +1,8 @@
 import unittest
-import HTMLTestRunner
+from tests.unit import HTMLTestRunner
 
 test_modules = [
-    'tests.unit.textprocessor.tokenizer',
-    'tests.unit.textprocessor.processor',
-    'tests.unit.textprocessor.wsd',
-    'tests.unit.model.document',
-    'tests.unit.similarity.corpus.hal',
-    'tests.unit.similarity.knowledge.lesk',
-    'tests.unit.similarity.main'
+    'tests.system.test'
     ]
 
 suite = unittest.TestSuite()
@@ -24,11 +18,11 @@ for t in test_modules:
         suite.addTest(unittest.defaultTestLoader.loadTestsFromName(t))
 
 unittest.TextTestRunner().run(suite)
-outfile = open("UnitTestsReport.html", "w")
+outfile = open("SystemTestsReport.html", "w")
 runner = HTMLTestRunner.HTMLTestRunner(
                 stream=outfile,
                 title='Test Report',
-                description='Unit Tests'
+                description='System Tests'
                 )
 
 runner.run(suite)

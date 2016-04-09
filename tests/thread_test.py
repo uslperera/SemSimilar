@@ -48,7 +48,7 @@ def test(count):
     # with open('data/posts.json') as posts_file:
         posts = json.loads(posts_file.read())
 
-    new_posts = posts[:100]
+    new_posts = posts[:1000]
     posts = None
     documents, final_texts = parallel_process(new_posts, 3)
 
@@ -61,8 +61,8 @@ def test(count):
 
     final_texts = None
 
-    with open('data/100duplicates.json') as posts_file:
-    # with open('data/duplicates.json') as posts_file:
+    # with open('data/100duplicates.json') as posts_file:
+    with open('data/duplicates.json') as posts_file:
         duplicate_posts = json.loads(posts_file.read())
 
     duplicate_documents = []
@@ -79,10 +79,11 @@ def test(count):
     corrects = 0
     a = []
     print("--querying--")
-    start = timeit.default_timer()
     for doc in duplicate_documents:
         o_corrects = corrects
+        start = timeit.default_timer()
         results = ss_similarity(documents, doc, hal, 10)
+        end = timeit.default_timer()
         for top_doc, score in results:
             if post_links.has_key(int(doc.id)):
                 if isinstance(post_links[int(doc.id)], list):
@@ -110,7 +111,7 @@ def test(count):
         if o_corrects == corrects:
             b = (doc.id, doc.title)
             a.append(b)
-    end = timeit.default_timer()
+
     print(corrects)
     print(a)
     print(end - start)
@@ -121,7 +122,7 @@ if __name__ == '__main__':
     Document.description_enabled = True
     Document.tags_enabled = True
     load_post_links()
-    test(10)
+    test(1)
     # with open('data/100posts.json') as posts_file:
     #     posts = json.loads(posts_file.read())
     #

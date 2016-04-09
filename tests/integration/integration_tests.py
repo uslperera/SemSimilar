@@ -1,4 +1,5 @@
 import unittest
+from tests.unit import HTMLTestRunner
 
 test_modules = [
     'tests.integration.model.document_worker',
@@ -21,3 +22,12 @@ for t in test_modules:
         suite.addTest(unittest.defaultTestLoader.loadTestsFromName(t))
 
 unittest.TextTestRunner().run(suite)
+
+outfile = open("IntegrationTestsReport.html", "w")
+runner = HTMLTestRunner.HTMLTestRunner(
+                stream=outfile,
+                title='Test Report',
+                description='Integration Tests'
+                )
+
+runner.run(suite)

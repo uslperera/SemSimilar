@@ -42,7 +42,7 @@ class StemWordsDocumentTestCase(unittest.TestCase):
 
 
 class HALSearchTestCase(unittest.TestCase):
-    def test(self):
+    def test1(self):
         Document.description_enabled = False
         doc_a = Document(1, "Some health experts suggest that driving may cause increased tension and blood pressure.",
                          "",
@@ -62,9 +62,64 @@ class HALSearchTestCase(unittest.TestCase):
 
         self.assertEqual(results[0][0], expected_doc_id)
 
+    def test2(self):
+        Document.description_enabled = False
+        doc_a = Document(1, "How do I calculate someone's age in C#", "", "")
+        doc_b = Document(2, "Distributed source control options", "", "")
+
+        documents = [doc_a, doc_b]
+        texts = []
+        expected_doc_id = 1
+
+        for doc in documents:
+            texts.append(" ".join(doc.stemmed_tokens))
+        h = HAL(texts)
+        new_document = Document(0, "calculate age", "", "")
+        results = h.semantic_search(new_document.stemmed_tokens)
+
+        self.assertEqual(documents[results[0][0]].id, expected_doc_id)
+
+
+    def test3(self):
+        Document.description_enabled = False
+        doc_a = Document(1, "How do I calculate someone's age in C#", "", "")
+        doc_b = Document(2, "Distributed source control options", "", "")
+
+        documents = [doc_a, doc_b]
+        texts = []
+        expected_doc_id = 1
+
+        for doc in documents:
+            texts.append(" ".join(doc.stemmed_tokens))
+        h = HAL(texts)
+        new_document = Document(0, "age in c#", "", "")
+        results = h.semantic_search(new_document.stemmed_tokens)
+
+        self.assertEqual(documents[results[0][0]].id, expected_doc_id)
+
+    def test4(self):
+        Document.description_enabled = False
+        doc_a = Document(1, "How do I calculate someone's age in C#", "", "")
+        doc_b = Document(2, "Distributed source control options", "", "")
+        doc_c = Document(3, "How do I calculate relative time", "", "")
+
+        documents = [doc_a, doc_b, doc_c]
+        texts = []
+        expected_doc_id1 = 1
+        expected_doc_id2 = 3
+
+        for doc in documents:
+            texts.append(" ".join(doc.stemmed_tokens))
+
+        h = HAL(texts)
+        new_document = Document(0, "compute age in c#", "", "")
+        results = h.semantic_search(new_document.stemmed_tokens)
+        self.assertEqual(documents[results[0][0]].id, expected_doc_id1)
+        self.assertEqual(documents[results[1][0]].id, expected_doc_id2)
+
 
 class LeskSearchTestCase(unittest.TestCase):
-    def test(self):
+    def tes1(self):
         Document.description_enabled = False
         doc_a = Document(1, "Some health experts suggest that driving may cause increased tension and blood pressure.",
                          "",
@@ -75,6 +130,30 @@ class LeskSearchTestCase(unittest.TestCase):
         documents = [doc_a, doc_b, doc_c]
         expected_doc_id = 2
         new_document = Document(0, "Brocolli is a good vegetable for health", "", "Health, Food")
+        results = lesk.similarity(documents, new_document, 1)
+
+        self.assertEqual(results[0][0].id, expected_doc_id)
+
+    def test2(self):
+        Document.description_enabled = False
+        doc_a = Document(1, "he tried to break the bank at Monte Carlo", "", "")
+        doc_b = Document(2, "he sat on the bank of the river and watched the currents", "", "")
+
+        documents = [doc_a, doc_b]
+        expected_doc_id = 1
+        new_document = Document(0, "he went to the bank to get a loan", "", "")
+        results = lesk.similarity(documents, new_document, 1)
+
+        self.assertEqual(results[0][0].id, expected_doc_id)
+
+    def test3(self):
+        Document.description_enabled = False
+        doc_a = Document(1, "he tried to break the bank at Monte Carlo", "", "")
+        doc_b = Document(2, "he sat on the bank of the river and watched the currents", "", "")
+
+        documents = [doc_a, doc_b]
+        expected_doc_id = 1
+        new_document = Document(0, "Bank near the river is closed today", "", "")
         results = lesk.similarity(documents, new_document, 1)
 
         self.assertEqual(results[0][0].id, expected_doc_id)

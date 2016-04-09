@@ -1,5 +1,6 @@
 #!/usr/bin/python
 # -*- coding: ascii -*-
+# from __future__ import division
 
 __author__ = "Shamal Perera"
 __copyright__ = "Copyright 2016, SemSimilar Project"
@@ -7,10 +8,10 @@ __license__ = "GPL"
 __version__ = "1.0.0"
 __email__ = "uslperera@gmail.com"
 
-import numpy.linalg as LA
-from sklearn.feature_extraction.text import TfidfVectorizer, CountVectorizer
-import numpy as np
 import logging
+import numpy.linalg as LA
+from sklearn.feature_extraction.text import TfidfVectorizer
+import numpy as np
 import collections
 
 
@@ -216,12 +217,19 @@ class HAL(object):
             docs = np.where(self.__dtm[:, term_id] != 0)[0]
             doc_ids.extend(docs)
 
+        semantic_term_id_list = np.array(list(semantic_term_ids))
         results = []
         for id in set(doc_ids):
-            cos = self.cosine(qtm, self.__dtm[id])
-            if cos > 0:
-                doc = (id, cos)
-                results.append(doc)
+            # cos = self.cosine(qtm, self.__dtm[id])
+            # if cos > 0:
+            #     doc = (id, cos)
+            #     results.append(doc)
+            term_ids = np.where(self.__dtm[id, :] != 0)[0]
+            i_term_ids = semantic_term_ids & set(term_ids.tolist())
+            # cos = (len(i_term_ids) / len(semantic_term_ids))
+            cos = np.true_divide(len(i_term_ids), len(semantic_term_ids))
+            doc = (id, cos)
+            results.append(doc)
 
         results.sort(key=lambda tup: tup[1], reverse=True)
         return results[:10]
@@ -259,6 +267,7 @@ class HAL(object):
         return results[:10]
         #-----
     '''
+
     def keyword_search(self, query, qtm):
         """Search for a document using keywords.
 
@@ -302,7 +311,7 @@ class HAL(object):
         return results[:10]
 
     def get_related_vocabulary(self, query):
-        # Get co-occurring terms in the vocabulary
+        """Get co-occurring terms in the vocabulary"""
         logging.info("Started getting related vocabulary")
         word_ids = []
         for term in query:
