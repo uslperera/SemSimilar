@@ -9,6 +9,7 @@ __email__ = "uslperera@gmail.com"
 
 from nltk.corpus import wordnet as wn
 from nltk.metrics import distance
+import ngram
 import logging
 
 def similarity(documents, new_document, count):
@@ -91,7 +92,8 @@ def __calculate_string_score(synsets, tokens1, tokens2):
         max = 0
         if syn is None:
             for token2 in tokens2:
-                sim = 1 - distance.jaccard_distance(set(tokens1[index]), set(token2))
+                # sim = 1 - distance.jaccard_distance(set(tokens1[index]), set(token2))
+                sim = ngram.NGram.compare(tokens1[index], token2, N=2)
                 if sim is not None and sim > max:
                     max = sim
         total += max

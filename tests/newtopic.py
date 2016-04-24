@@ -1,7 +1,7 @@
 import random
 from collections import Counter
 
-
+'''
 def sample_from(weights):
     """returns i with probability weights[i] / sum(weights)"""
     total = sum(weights)
@@ -111,3 +111,26 @@ for document, topic_counts in zip(documents, document_topic_counts):
         if count > 0:
             print topic_names[topic], count,
             print
+'''
+
+# from nltk.metrics import distance
+# from scipy.spatial.distance import *
+# import numpy as np
+
+# token1 = "Apple"
+# token2 = "Apple"
+
+#print distance.jaccard_distance(set(token1), set(token2))
+
+# a = np.asarray(list(token1))
+# b = np.asarray(list(token2))
+# cosine(np.linalg.norm(token1), np.linalg.norm(token2))
+import json
+
+with open('data/100posts.json') as posts_file:
+    posts = json.loads(posts_file.read())
+
+new_posts = posts[:1000]
+
+with open('data/test_posts.json', 'w') as file:
+    json.dump(new_posts, file)

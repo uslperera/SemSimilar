@@ -8,7 +8,11 @@ from semsimilar.model.document_worker import parallel_process
 import pickle
 from semsimilar.similarity.corpus.hal import *
 from semsimilar.similarity.main import ss_similarity
+import httplib, urllib
+from StringIO import StringIO
+import re
 
+_expression = r"([?!:;\-\(\)\[\]\"/,<>]|(\.\B)|(\s'))"
 # post_links = []
 post_links = {}
 
@@ -44,25 +48,29 @@ def search_post_link(dup_p, ori_p):
 
 
 def test(count):
+
+    # '''
     with open('data/100posts.json') as posts_file:
     # with open('data/posts.json') as posts_file:
         posts = json.loads(posts_file.read())
 
     new_posts = posts[:1000]
     posts = None
+    start = timeit.default_timer()
     documents, final_texts = parallel_process(new_posts, 3)
 
     new_posts = None
     # pickle.dump(final_documents, open('temp/final_documents.p', 'wb'), pickle.HIGHEST_PROTOCOL)
     # pickle.dump(final_texts, open('temp/final_texts.p', 'wb'), pickle.HIGHEST_PROTOCOL)
     hal = HAL(final_texts)
+    end = timeit.default_timer()
     # hal.threshold = 0.7
     print len(documents), len(final_texts)
 
     final_texts = None
 
-    # with open('data/100duplicates.json') as posts_file:
-    with open('data/duplicates.json') as posts_file:
+    with open('data/100duplicates.json') as posts_file:
+    # with open('data/duplicates.json') as posts_file:
         duplicate_posts = json.loads(posts_file.read())
 
     duplicate_documents = []
@@ -70,6 +78,7 @@ def test(count):
         if i == count:
             break
         d = Document(post['Id'], post['Title'], post['Body'], post['Tags'])
+        # d = Document(post['Id'], post['Title'], "", post['Tags'])
         d.remove_special_words(spec)
         duplicate_documents.append(d)
         # duplicate_documents.append(Document(post['Id'], post['Title'], post['Body'], post['Tags']))
@@ -79,7 +88,9 @@ def test(count):
     corrects = 0
     a = []
     print("--querying--")
-    for doc in duplicate_documents:
+    for i, doc in enumerate(duplicate_documents):
+        if i % 100 == 0:
+            print corrects, " / ", i
         o_corrects = corrects
         start = timeit.default_timer()
         results = ss_similarity(documents, doc, hal, 10)
@@ -108,12 +119,44 @@ def test(count):
         #         elif post_links[int(doc.id)] == int(top_doc.id):
         #             corrects += 1
 
+        # Solr
+        # text = doc.title + " " + doc.description + " " + doc.tags
+        # text = text.replace("\\", "")
+        #----
+        # text = re.sub(_expression, "", doc.title + doc.description + doc.tags)
+        # o_corrects = corrects
+        # params = urllib.urlencode({'wt': "json", 'indent': 'true', 'q': text.encode('utf-8').strip()})
+        # headers = {"Content-type": "application/x-www-form-urlencoded",
+        #             "Accept": "text/plain"}
+        # conn = httplib.HTTPConnection("localhost", 8983)
+        # conn.request("GET", "/solr/gettingstarted/select", params, headers)
+        # response = conn.getresponse()
+        # # print response.status, response.reason
+        # data = response.read()
+        # io = StringIO(data)
+        # res = json.load(io)
+        # conn.close()
+        # if not res.has_key("response"):
+        #     continue
+        # for obj in res["response"]["docs"][:5]:
+        #     num = re.sub(_expression, "", str(obj["Id"]))
+        #     # print(int(num))
+        #     if post_links.has_key(int(doc.id)):
+        #         if isinstance(post_links[int(doc.id)], list):
+        #             for id in post_links[int(doc.id)]:
+        #                 if id == int(num):
+        #                     corrects += 1
+        #                     break
+        #         elif post_links[int(doc.id)] == int(num):
+        #             corrects += 1
+
         if o_corrects == corrects:
             b = (doc.id, doc.title)
             a.append(b)
 
     print(corrects)
     print(a)
+
     print(end - start)
 
 
@@ -122,7 +165,7 @@ if __name__ == '__main__':
     Document.description_enabled = True
     Document.tags_enabled = True
     load_post_links()
-    test(1)
+    test(100)
     # with open('data/100posts.json') as posts_file:
     #     posts = json.loads(posts_file.read())
     #

@@ -10,7 +10,7 @@ __email__ = "uslperera@gmail.com"
 
 import logging
 import numpy.linalg as LA
-from sklearn.feature_extraction.text import TfidfVectorizer
+from sklearn.feature_extraction.text import TfidfVectorizer, CountVectorizer
 import numpy as np
 import collections
 
@@ -100,6 +100,8 @@ class HAL(object):
         >>> hal.create_document_term_matrix(documents)
         """
         logging.info("Started creating TFidf matrix")
+        # self.__dtm = self.__tfidf.fit_transform(documents).toarray()
+        # self.__tfidf = CountVectorizer(input="content")
         self.__dtm = self.__tfidf.fit_transform(documents).toarray()
         self.__vocabulary = np.array(self.__tfidf.get_feature_names())
 
@@ -217,19 +219,19 @@ class HAL(object):
             docs = np.where(self.__dtm[:, term_id] != 0)[0]
             doc_ids.extend(docs)
 
-        semantic_term_id_list = np.array(list(semantic_term_ids))
+        # semantic_term_id_list = np.array(list(semantic_term_ids))
         results = []
         for id in set(doc_ids):
-            # cos = self.cosine(qtm, self.__dtm[id])
-            # if cos > 0:
-            #     doc = (id, cos)
-            #     results.append(doc)
-            term_ids = np.where(self.__dtm[id, :] != 0)[0]
-            i_term_ids = semantic_term_ids & set(term_ids.tolist())
-            # cos = (len(i_term_ids) / len(semantic_term_ids))
-            cos = np.true_divide(len(i_term_ids), len(semantic_term_ids))
-            doc = (id, cos)
-            results.append(doc)
+            cos = self.cosine(qtm, self.__dtm[id])
+            if cos > 0:
+                doc = (id, cos)
+                results.append(doc)
+            # term_ids = np.where(self.__dtm[id, :] != 0)[0]
+            # i_term_ids = semantic_term_ids & set(term_ids.tolist())
+            # # cos = (len(i_term_ids) / len(semantic_term_ids))
+            # cos = np.true_divide(len(i_term_ids), len(semantic_term_ids))
+            # doc = (id, cos)
+            # results.append(doc)
 
         results.sort(key=lambda tup: tup[1], reverse=True)
         return results[:10]

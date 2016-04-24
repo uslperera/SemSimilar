@@ -126,20 +126,86 @@ from semsimilar.similarity.knowledge.lesk import similarity
 # print(results[0][0].id)
 # print(results[1][0].id)
 
-import numpy as np
-import numpy.linalg as LA
-from scipy.spatial import distance
+# import numpy as np
+# import numpy.linalg as LA
+# from scipy.spatial import distance
+#
+# def cosine(a, b):
+#     # Find the cosine distance between two vectors
+#     try:
+#         result = round(np.inner(a, b) / (LA.norm(a) * LA.norm(b)), 3)
+#     except ZeroDivisionError:
+#         result = 0
+#     return result
+#
+# a = np.array([(1, 0, 1, 1)])
+# b = np.array([(1, 0, 0, 1)])
+# print(1-distance.cosine(a, b))
+# print(cosine(a,b))
 
-def cosine(a, b):
-    # Find the cosine distance between two vectors
-    try:
-        result = round(np.inner(a, b) / (LA.norm(a) * LA.norm(b)), 3)
-    except ZeroDivisionError:
-        result = 0
-    return result
+import json
+import httplib, urllib
+from StringIO import StringIO
 
-a = np.array([(1, 0, 1, 1)])
-b = np.array([(1, 0, 0, 1)])
-print(1-distance.cosine(a, b))
-print(cosine(a,b))
+params = urllib.urlencode({'wt': "json", 'indent': 'true', 'q': 'police'})
+headers = {"Content-type": "application/x-www-form-urlencoded",
+            "Accept": "text/plain"}
+conn = httplib.HTTPConnection("localhost", 8983)
+conn.request("GET", "/solr/gettingstarted/select", params, headers)
+response = conn.getresponse()
+print response.status, response.reason
+data = response.read()
+print(data)
+io = StringIO(data)
+res = json.load(io)
+for obj in res["response"]["docs"]:
+    print(int(obj["Id"]))
 
+# post_links = {}
+#
+# def load_post_links():
+#     with open('data/1000ids.json') as postlinks_file:
+#         postlinks = json.loads(postlinks_file.read())
+#
+#     for i, p in enumerate(postlinks):
+#         if not post_links.has_key(int(p['PostId'])):
+#             post_links[int(p['PostId'])] = int(p['RelatedPostId'])
+#         elif isinstance(post_links[int(p['PostId'])], list):
+#             post_links[int(p['PostId'])].append(int(p['RelatedPostId']))
+#         else:
+#             temp = post_links[int(p['PostId'])]
+#             post_links[int(p['PostId'])] = [temp]
+#             post_links[int(p['PostId'])].append(int(p['RelatedPostId']))
+#
+# def search_post_link(dup_p, ori_p):
+#     for plink in post_links:
+#         dp, op = plink
+#         if op == int(ori_p) and dp == int(dup_p):
+#             return True
+#     return False
+#
+# load_post_links()
+#
+# documents = {}
+# with open('data/100posts.json') as posts:
+#     posts = json.loads(posts.read())
+#
+#     for i, p in enumerate(posts):
+#         if i == 1000:
+#             break
+#         documents[int(p['Id'])]=p['Title']
+#
+# with open('data/100duplicates.json') as posts_file:
+#     duplicate_posts = json.loads(posts_file.read())
+#
+#     duplicate_documents = []
+#     for i, post in enumerate(duplicate_posts):
+#         if i == 1000:
+#             break
+#         if post_links.has_key(int(post['Id'])):
+#             original_post_id = post_links[int(post['Id'])]
+#             if isinstance(original_post_id, list):
+#                 original_post_id = int(original_post_id[0])
+#             if documents.has_key(original_post_id):
+#                 title = documents[original_post_id]
+#                 print original_post_id, title, int(post['Id']), post['Title']
