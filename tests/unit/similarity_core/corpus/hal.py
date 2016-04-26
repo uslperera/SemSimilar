@@ -1,14 +1,14 @@
 import unittest
 from mock.mock import MagicMock, patch
 from sklearn.feature_extraction import text
-from semsimilar.similarity.corpus.hal import *
+from semsimilar.similarity_core.corpus.hal import *
 from semsimilar.model.document import Document
 from semsimilar.textprocessor.tokenize import CodeTokenizer
 import numpy as np
 
 
 class HALVocabularyTestCase(unittest.TestCase):
-    @patch('semsimilar.similarity.corpus.hal.HAL.create_co_occurrence_matrix', MagicMock())
+    @patch('semsimilar.similarity_core.corpus.hal.HAL.create_co_occurrence_matrix', MagicMock())
     def test(self):
         # vocab after stemming
         expected_vocab = [u'test']
@@ -25,7 +25,7 @@ class HALVocabularyTestCase(unittest.TestCase):
 
 
 class HALDTMatrixTestCase(unittest.TestCase):
-    @patch('semsimilar.similarity.corpus.hal.HAL.create_co_occurrence_matrix', MagicMock())
+    @patch('semsimilar.similarity_core.corpus.hal.HAL.create_co_occurrence_matrix', MagicMock())
     def test(self):
         expected_dtm = "[[ 0.  0.  1.]\n [ 1.  0.  0.]\n [ 0.  1.  0.]]"
 
@@ -67,7 +67,7 @@ class HALCosineTestCase(unittest.TestCase):
 
 
 class HALDTMatrixTestCase(unittest.TestCase):
-    @patch('semsimilar.similarity.corpus.hal.HAL.create_co_occurrence_matrix', MagicMock())
+    @patch('semsimilar.similarity_core.corpus.hal.HAL.create_co_occurrence_matrix', MagicMock())
     def test(self):
         expected_dtm = np.array([(0, 1), (1, 0)])
 
@@ -85,7 +85,7 @@ class HALDTMatrixTestCase(unittest.TestCase):
 
 
 class HALTermIdTestCase(unittest.TestCase):
-    @patch('semsimilar.similarity.corpus.hal.HAL.create_co_occurrence_matrix', MagicMock())
+    @patch('semsimilar.similarity_core.corpus.hal.HAL.create_co_occurrence_matrix', MagicMock())
     def test(self):
         expected_term_id = 0
 
@@ -102,7 +102,7 @@ class HALTermIdTestCase(unittest.TestCase):
 
 class HALSearchTestCase(unittest.TestCase):
 
-    # @patch('semsimilar.similarity.corpus.hal.HAL.create_co_occurrence_matrix', MagicMock())
+    # @patch('semsimilar.similarity_core.corpus.hal.HAL.create_co_occurrence_matrix', MagicMock())
     def test(self):
 
 

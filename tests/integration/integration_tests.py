@@ -4,9 +4,9 @@ from tests.unit import HTMLTestRunner
 test_modules = [
     'tests.integration.model.document_worker',
     'tests.integration.model.document',
-    'tests.integration.similarity.corpus.hal',
-    'tests.integration.similarity.knowledge.lesk',
-    'tests.integration.similarity.main'
+    'tests.integration.similarity_core.corpus.hal',
+    'tests.integration.similarity_core.knowledge.lesk',
+    'tests.integration.similarity_core.main'
     ]
 
 suite = unittest.TestSuite()

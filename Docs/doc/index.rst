@@ -14,7 +14,7 @@ Features
 ------------
 * Simple & Fast.
 * Boilerplate data structure.
-* Algorithms from Distributional Semantics, Hyperspace Analogue to Language (HAL).
+* Algorithms from Distributional Semantics.
 * No prior knowledge needed of the corpora.
 * Integrated with WordNet which enables to find more relations such as hypernym/hyponym.
 * Multicore processing of large corpora.

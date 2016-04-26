@@ -100,8 +100,6 @@ class HAL(object):
         >>> hal.create_document_term_matrix(documents)
         """
         logging.info("Started creating TFidf matrix")
-        # self.__dtm = self.__tfidf.fit_transform(documents).toarray()
-        # self.__tfidf = CountVectorizer(input="content")
         self.__dtm = self.__tfidf.fit_transform(documents).toarray()
         self.__vocabulary = np.array(self.__tfidf.get_feature_names())
 

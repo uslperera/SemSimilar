@@ -4,7 +4,7 @@ from gensim import corpora, models, similarities
 from mock.mock import MagicMock, patch
 
 from semsimilar.model.document import Document
-from semsimilar.similarity.corpus import lda as lda
+from semsimilar.similarity_core.corpus import lda as lda
 from semsimilar.textprocessor.tokenize import CodeTokenizer
 
 

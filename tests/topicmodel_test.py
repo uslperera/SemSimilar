@@ -3,7 +3,7 @@ import json
 from gensim import models, corpora
 
 from semsimilar.model import Document
-from semsimilar.similarity.corpus import lda as lda
+from semsimilar.similarity_core.corpus import lda as lda
 from semsimilar.textprocessor.tokenize import CodeTokenizer
 
 Document.set_tokenizer(CodeTokenizer())

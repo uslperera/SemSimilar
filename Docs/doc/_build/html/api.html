@@ -62,7 +62,7 @@
 <tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">Document model</p>
 </td>
 </tr>
-<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first last">semsimilar.core.model.document.Document</p>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first last">semsimilar.semsimilar.model.document.Document</p>
 </td>
 </tr>
 </tbody>
@@ -133,13 +133,13 @@
 <dd><p>Set a tokenizer to extract words</p>
 <div class="admonition note">
 <p class="first admonition-title">Note</p>
-<p class="last">Possible tokenizers are semsimilar.core.textprocessor.tokenize.CodeTokenizer, nltk.tokenize.api.*</p>
+<p class="last">Possible tokenizers are semsimilar.semsimilar.textprocessor.tokenize.CodeTokenizer, nltk.tokenize.api.*</p>
 </div>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
 <col class="field-body" />
 <tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>tokenizer</strong> (<em>semsimilar.core.textprocessor.tokenize.CodeTokenizer, nltk.tokenize.api.*, ...</em>) &#8211; tokenizer object</td>
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>tokenizer</strong> (<em>semsimilar.semsimilar.textprocessor.tokenize.CodeTokenizer, nltk.tokenize.api.*, ...</em>) &#8211; tokenizer object</td>
 </tr>
 <tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">void</td>
 </tr>
@@ -196,7 +196,7 @@
 <tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">Processed documents</p>
 </td>
 </tr>
-<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first last">list&lt;semsimilar.core.model.document.Document&gt;</p>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first last">list&lt;semsimilar.semsimilar.model.document.Document&gt;</p>
 </td>
 </tr>
 </tbody>
@@ -379,8 +379,8 @@
 <col class="field-body" />
 <tbody valign="top">
 <tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
-<li><strong>documents</strong> (<em>list&lt;semsimilar.core.model.document.Document&gt;</em>) &#8211; documents list</li>
-<li><strong>new_document</strong> (<em>semsimilar.core.model.document.Document</em>) &#8211; document to search</li>
+<li><strong>documents</strong> (<em>list&lt;semsimilar.semsimilar.model.document.Document&gt;</em>) &#8211; documents list</li>
+<li><strong>new_document</strong> (<em>semsimilar.semsimilar.model.document.Document</em>) &#8211; document to search</li>
 <li><strong>count</strong> (<em>int</em>) &#8211; number of results wanted</li>
 </ul>
 </td>
@@ -388,7 +388,7 @@
 <tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">Top matched documents with their scores (0-1)</p>
 </td>
 </tr>
-<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first">list&lt;(semsimilar.core.model.document.Document, float)&gt;</p>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first">list&lt;(semsimilar.semsimilar.model.document.Document, float)&gt;</p>
 </td>
 </tr>
 <tr class="field-even field"><th class="field-name">Example:</th><td class="field-body"></td>
@@ -414,11 +414,11 @@
 <col class="field-name" />
 <col class="field-body" />
 <tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>documents</strong> (<em>list&lt;semsimilar.core.model.document.Document&gt;</em>) &#8211; documents list</td>
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>documents</strong> (<em>list&lt;semsimilar.semsimilar.model.document.Document&gt;</em>) &#8211; documents list</td>
 </tr>
 <tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">HAL model</td>
 </tr>
-<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body">semsimilar.core.similar.corpus.hal.HAL</td>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body">semsimilar.semsimilar.similar.corpus.hal.HAL</td>
 </tr>
 </tbody>
 </table>
@@ -523,7 +523,7 @@
 <col class="field-name" />
 <col class="field-body" />
 <tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>documents</strong> (<em>list&lt;semsimilar.core.model.document.Document&gt;</em>) &#8211; documents list</td>
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>documents</strong> (<em>list&lt;semsimilar.semsimilar.model.document.Document&gt;</em>) &#8211; documents list</td>
 </tr>
 <tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">void</td>
 </tr>
@@ -545,7 +545,7 @@
 <col class="field-name" />
 <col class="field-body" />
 <tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>documents</strong> (<em>list&lt;semsimilar.core.model.document.Document&gt;</em>) &#8211; documents list</td>
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>documents</strong> (<em>list&lt;semsimilar.semsimilar.model.document.Document&gt;</em>) &#8211; documents list</td>
 </tr>
 <tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">void</td>
 </tr>
@@ -662,9 +662,9 @@
 <col class="field-body" />
 <tbody valign="top">
 <tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
-<li><strong>documents</strong> (<em>list&lt;semsimilar.core.model.document.Document&gt;</em>) &#8211; documents list</li>
-<li><strong>new_document</strong> (<em>semsimilar.core.model.document.Document</em>) &#8211; document to search</li>
-<li><strong>hal_model</strong> (<em>semsimilar.core.similarity.corpus.hal.Hal</em>) &#8211; HAL model created from existing documents</li>
+<li><strong>documents</strong> (<em>list&lt;semsimilar.semsimilar.model.document.Document&gt;</em>) &#8211; documents list</li>
+<li><strong>new_document</strong> (<em>semsimilar.semsimilar.model.document.Document</em>) &#8211; document to search</li>
+<li><strong>hal_model</strong> (<em>semsimilar.semsimilar.similarity_core.corpus.hal.Hal</em>) &#8211; HAL model created from existing documents</li>
 <li><strong>count</strong> (<em>int</em>) &#8211; number of results wanted</li>
 </ul>
 </td>
@@ -672,7 +672,7 @@
 <tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">Top matched documents with their scores (0-1)</p>
 </td>
 </tr>
-<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first">list&lt;(semsimilar.core.model.document.Document, float)&gt;</p>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first">list&lt;(semsimilar.semsimilar.model.document.Document, float)&gt;</p>
 </td>
 </tr>
 <tr class="field-even field"><th class="field-name">Example:</th><td class="field-body"></td>

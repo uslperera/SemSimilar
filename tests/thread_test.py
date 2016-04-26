@@ -1,16 +1,10 @@
-import multiprocessing
-import threading
 import json
 from semsimilar.model.document import Document
 from semsimilar.textprocessor.tokenize import CodeTokenizer
 import timeit
 from semsimilar.model.document_worker import parallel_process
-import pickle
-from semsimilar.similarity.corpus.hal import *
-from semsimilar.similarity.main import ss_similarity
-import httplib, urllib
-from StringIO import StringIO
-import re
+from semsimilar.similarity_core.corpus.hal import *
+from semsimilar.similarity_core.main import ss_similarity
 
 _expression = r"([?!:;\-\(\)\[\]\"/,<>]|(\.\B)|(\s'))"
 # post_links = []

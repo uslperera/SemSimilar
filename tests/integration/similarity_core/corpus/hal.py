@@ -1,5 +1,5 @@
 import unittest
-from semsimilar.similarity.corpus.hal import *
+from semsimilar.similarity_core.corpus.hal import *
 from semsimilar.model.document import Document
 from semsimilar.textprocessor.tokenize import CodeTokenizer
 import numpy as np

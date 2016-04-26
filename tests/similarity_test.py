@@ -3,7 +3,7 @@ import json
 from gensim import models, corpora
 
 from semsimilar.model import Document
-from semsimilar.similarity.main import ss_similarity
+from semsimilar.similarity_core.main import ss_similarity
 from semsimilar.textprocessor.tokenize import CodeTokenizer
 
 with open('data/posts.json') as posts_file:

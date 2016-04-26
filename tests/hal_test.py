@@ -7,7 +7,7 @@ from scipy.spatial.distance import *
 
 from sklearn.metrics.pairwise import cosine_similarity
 from itertools import izip
-from semsimilar.similarity.corpus.hal import HAL
+from semsimilar.similarity_core.corpus.hal import HAL
 # docs = ["I like to eat broccoli and bananas.",
 #         "I ate a banana and spinach smoothie for breakfast.",
 #         "Chinchillas and kittens are cute.",

@@ -2,8 +2,8 @@
 # import numpy as np
 # from semsimilar.model import Document
 # from semsimilar.textprocessor.tokenize import CodeTokenizer
-# from semsimilar.similarity.main import ss_similarity
-# from semsimilar.similarity.corpus.hal import HAL
+# from semsimilar.similarity_core.main import ss_similarity
+# from semsimilar.similarity_core.corpus.hal import HAL
 # import numpy.linalg as LA
 # import scipy.sparse as sp
 # from sklearn.feature_extraction.text import TfidfTransformer

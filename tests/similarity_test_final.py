@@ -4,9 +4,9 @@ from gensim import models, corpora
 
 from semsimilar.model import Document
 from semsimilar.model.document_worker import parallel_process
-from semsimilar.similarity.main import *
+from semsimilar.similarity_core.main import *
 from semsimilar.textprocessor.tokenize import CodeTokenizer
-from semsimilar.similarity.corpus.hal import *
+from semsimilar.similarity_core.corpus.hal import *
 from nltk.tokenize import RegexpTokenizer
 import pickle
 

@@ -104,8 +104,8 @@
 from semsimilar.textprocessor.tokenize import CodeTokenizer
 from semsimilar.textprocessor.processor import *
 from semsimilar.model.document import Document
-from semsimilar.similarity.corpus.hal import HAL
-from semsimilar.similarity.knowledge.lesk import similarity
+from semsimilar.similarity_core.corpus.hal import HAL
+from semsimilar.similarity_core.knowledge.lesk import similarity
 
 # c = CodeTokenizer()
 # Document.set_tokenizer(c)

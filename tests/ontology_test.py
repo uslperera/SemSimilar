@@ -2,7 +2,7 @@ import json
 import pickle
 
 from semsimilar.model import Document
-from semsimilar.similarity.knowledge import lesk as lesk
+from semsimilar.similarity_core.knowledge import lesk as lesk
 from semsimilar.textprocessor.wsd import process
 
 # Read all the documents from the data source

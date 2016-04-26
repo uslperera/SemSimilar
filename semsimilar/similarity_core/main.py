@@ -7,7 +7,7 @@ __license__ = "GPL"
 __version__ = "1.0.0"
 __email__ = "uslperera@gmail.com"
 
-from semsimilar.similarity.knowledge import lesk as lesk
+from semsimilar.similarity_core.knowledge import lesk as lesk
 import logging
 
 
@@ -22,7 +22,7 @@ def ss_similarity(documents, new_document, hal_model, count):
     :param count: number of results wanted
     :type documents: list<semsimilar.semsimilar.model.document.Document>
     :type new_document: semsimilar.semsimilar.model.document.Document
-    :type hal_model: semsimilar.semsimilar.similarity.corpus.hal.Hal
+    :type hal_model: semsimilar.semsimilar.similarity_core.corpus.hal.Hal
     :type count: int
     :returns: Top matched documents with their scores (0-1)
     :rtype: list<(semsimilar.semsimilar.model.document.Document, float)>

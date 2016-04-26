@@ -20,9 +20,9 @@ import os
 # documentation root, use os.path.abspath to make it absolute, like shown here.
 sys.path.insert(0, os.path.abspath('../model'))
 sys.path.insert(0, os.path.abspath('../textprocessor'))
-sys.path.insert(0, os.path.abspath('../similarity'))
-sys.path.insert(0, os.path.abspath('../similarity/corpus'))
-sys.path.insert(0, os.path.abspath('../similarity/knowledge'))
+sys.path.insert(0, os.path.abspath('../similarity_core'))
+sys.path.insert(0, os.path.abspath('../similarity_core/corpus'))
+sys.path.insert(0, os.path.abspath('../similarity_core/knowledge'))
 
 # -- General configuration ------------------------------------------------
 

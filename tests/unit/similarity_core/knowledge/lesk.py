@@ -3,7 +3,7 @@ import unittest
 from mock.mock import MagicMock, patch
 
 from semsimilar.model.document import Document
-from semsimilar.similarity.knowledge import lesk as lesk
+from semsimilar.similarity_core.knowledge import lesk as lesk
 from semsimilar.textprocessor.tokenize import CodeTokenizer
 
 

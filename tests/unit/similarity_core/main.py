@@ -1,10 +1,10 @@
 import unittest
 from mock.mock import patch
 
-from semsimilar.similarity.main import ss_similarity
+from semsimilar.similarity_core.main import ss_similarity
 from semsimilar.model.document import Document
 from semsimilar.textprocessor.tokenize import CodeTokenizer
-from semsimilar.similarity.corpus.hal import HAL
+from semsimilar.similarity_core.corpus.hal import HAL
 
 class SimilarityTestCase(unittest.TestCase):
     @classmethod
@@ -25,10 +25,10 @@ class SimilarityTestCase(unittest.TestCase):
         # Topics are health, food, motor
         cls.hal = HAL(texts)
 
-    @patch('semsimilar.similarity.knowledge.lesk.similarity')
-    @patch('semsimilar.similarity.corpus.hal.HAL.semantic_search')
+    @patch('semsimilar.similarity_core.knowledge.lesk.similarity')
+    @patch('semsimilar.similarity_core.corpus.hal.HAL.semantic_search')
     def test_similarity(self, hal, lesk):
-        """Check for similarity"""
+        """Check for similarity_core"""
         expected_document = self.documents[0]
         expected_score = 1.0
 
